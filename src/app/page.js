@@ -6,6 +6,7 @@ import MoreInfoButton from "./components/moreinfobutton";
 
 import Carousel from "./components/cardcarousel";
 
+
 import Image from "next/image";
 
 export const revalidate = 3600;
@@ -65,43 +66,17 @@ export default async function Page() {
 					</div>
 				</div>
 				<div className="flex flex-col moviecardsblock relative ml-20 my-3">
-					{/* <Carousel items={movies?.data.results}/> */}
-					<div className="scontainer">
-						<div className="slider">
-							<div className="slider__title">
-								Popular On Netflix
-							</div>
-							<div className="slider__content">
-								<div className="swiper">
-									<div className="swiper-wrapper">
-										{movies?.data.results?.map((movie) => (
-											<div className="swiper-slide" key={movie.id}>
-												<div className="item">
-													<div className="item__inner">
-														<MovieCard
-															
-															backdrop_path={
-																movie.backdrop_path
-															}
-														/>
-													</div>
-												</div>
-											</div>
-										))}
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					{/* <div className="moviecards my-3">
+					<Carousel items={movies?.data.results}/>
+					<p>trending</p>
+					<div className="moviecards my-3">
 						{movies?.data.results?.map((movie) => (
 							<MovieCard
 								key={movie.id}
 								backdrop_path={movie.backdrop_path}
 							/>
 						))}
-					</div> */}
-					{/* <p>horror</p>
+					</div>
+					<p>horror</p>
 					<div className="moviecards my-3">
 						{movies?.data.results?.map((movie) => (
 							<MovieCard
@@ -127,7 +102,7 @@ export default async function Page() {
 								backdrop_path={movie.backdrop_path}
 							/>
 						))}
-					</div> */}
+					</div>
 				</div>
 			</div>
 		</>
