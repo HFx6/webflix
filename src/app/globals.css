@@ -49,18 +49,13 @@ body {
 	border-radius: 5px;
 	width: -webkit-fill-available;
 }
-.sdfsdfe3fe {
+.moviecardimage {
 	/* height: calc((100dvw - 20px) / 10); */
 	border-radius: 5px; 
 	transition: transform 0.2s ease-in-out;
 	cursor: pointer;
 }
 
-.sdfsdfe3fe:hover {
-	transform: scale(1.15);
-	z-index: 999;
-	position: relative;
-}
 
 
 
@@ -80,3 +75,57 @@ html::-webkit-scrollbar {
 	right: 0px;
 	z-index: 99;
 }
+
+
+
+
+.hovercard {
+  border-radius: 0.2vw;
+  position: absolute;
+  display: block;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.2s, opacity 0.2s, visibility 0.2s;
+  transform-origin: center top;
+  overflow: hidden;
+  transform: scale(var(--scale, 1)) translateY(var(--translateY, 0)) translateX(var(--translateX, 0));
+}
+
+.hovercard__image {
+  aspect-ratio: 16/9;
+  display: block;
+  overflow: hidden;
+}
+
+.hovercard__image img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hovercard__content {
+  background-color: #181818;
+  opacity: 0;
+  padding: 16px;
+  transition: all 0.3s;
+}
+
+.hovercard--active {
+  opacity: 1;
+  visibility: visible;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+}
+
+.hovercard--active .hovercard__content {
+  opacity: 1;
+
+}
+

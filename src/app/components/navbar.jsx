@@ -21,7 +21,7 @@ const pathname = "/docs";
 export default function SiteHeader() {
 	return (
 		<header className="fixed top-0 z-50 w-full bg-background/95 bg-black supports-[backdrop-filter]:bg-background/60">
-			<div className="flex h-10 items-center mx-20 my-1.5">
+			<div className="flex h-10 items-center mx-[4rem] my-1.5">
 				<div className="mr-4 hidden md:flex">
 					<Link href="/" className="mr-6 flex items-center space-x-2">
 						<Image

@@ -39,7 +39,7 @@ export default async function Page() {
 							zIndex: "-1",
 						}}
 					/>
-					<div className="heroinfo gap-3 mx-20 my-auto">
+					<div className="heroinfo gap-3 mx-[4rem] my-auto">
 						<Image
 							src={
 								"https://image.tmdb.org/t/p/original/6tpiiM1i862oS2tjSwqmjv4dKGD.png"
@@ -65,44 +65,8 @@ export default async function Page() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col moviecardsblock relative ml-20 my-3">
-					<Carousel items={movies?.data.results}/>
-					<p>trending</p>
-					<div className="moviecards my-3">
-						{movies?.data.results?.map((movie) => (
-							<MovieCard
-								key={movie.id}
-								backdrop_path={movie.backdrop_path}
-							/>
-						))}
-					</div>
-					<p>horror</p>
-					<div className="moviecards my-3">
-						{movies?.data.results?.map((movie) => (
-							<MovieCard
-								key={movie.id}
-								backdrop_path={movie.backdrop_path}
-							/>
-						))}
-					</div>
-					<p>action</p>
-					<div className="moviecards my-3">
-						{movies?.data.results?.map((movie) => (
-							<MovieCard
-								key={movie.id}
-								backdrop_path={movie.backdrop_path}
-							/>
-						))}
-					</div>
-					<p>comedy</p>
-					<div className="moviecards my-3">
-						{movies?.data.results?.map((movie) => (
-							<MovieCard
-								key={movie.id}
-								backdrop_path={movie.backdrop_path}
-							/>
-						))}
-					</div>
+				<div className="flex flex-col moviecardsblock relative mx-[4rem] my-3">
+					<Carousel title={"trending"} items={movies?.data.results}/>
 				</div>
 			</div>
 		</>
