@@ -4,28 +4,11 @@ import MovieCard from "./components/moviecard";
 import PlayButton from "./components/playbutton";
 import MoreInfoButton from "./components/moreinfobutton";
 
-import Carousel from "./components/cardcarousel";
-
+import MediaListWrapper from "./components/medialistwrapper";
 
 import Image from "next/image";
 
-export const revalidate = 3600;
-
-async function getData() {
-	const res = await fetch(process.env.URL + "/api/movies");
-	return res.json();
-}
-
-async function getGenre() {
-	const res = await fetch(process.env.URL + "/api/discover");
-	return res.json();
-}
-
-export default async function Page() {
-	const movieData = getData();
-	const genreData = getGenre();
-	const [movies, genre] = await Promise.all([movieData, genreData]);
-
+export default function Page() {
 	return (
 		<>
 			<div>
@@ -71,10 +54,8 @@ export default async function Page() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col moviecardsblock relative mx-[4rem] my-3">
-					<Carousel title={"Trending"} items={movies?.data.results}/>
-					<Carousel title={"Animation"} items={genre?.data.results}/>
-				</div>
+
+				<MediaListWrapper />
 			</div>
 		</>
 	);
