@@ -16,9 +16,15 @@ async function getData() {
 	return res.json();
 }
 
+async function getGenre() {
+	const res = await fetch(process.env.URL + "/api/discover");
+	return res.json();
+}
+
 export default async function Page() {
 	const movieData = getData();
-	const [movies] = await Promise.all([movieData]);
+	const genreData = getGenre();
+	const [movies, genre] = await Promise.all([movieData, genreData]);
 
 	return (
 		<>
@@ -66,7 +72,8 @@ export default async function Page() {
 					</div>
 				</div>
 				<div className="flex flex-col moviecardsblock relative mx-[4rem] my-3">
-					<Carousel title={"trending"} items={movies?.data.results}/>
+					<Carousel title={"Trending"} items={movies?.data.results}/>
+					<Carousel title={"Animation"} items={genre?.data.results}/>
 				</div>
 			</div>
 		</>
