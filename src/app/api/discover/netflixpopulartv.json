@@ -1,0 +1,425 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/imlTCObfzISogbvcwB1dokoXAIc.jpg",
+      "genre_ids": [
+        10765,
+        10759,
+        18
+      ],
+      "id": 82452,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Avatar: The Last Airbender",
+      "overview": "A young boy known as the Avatar must master the four elemental powers to save a world at war — and fight a ruthless enemy bent on stopping him.",
+      "popularity": 1393.277,
+      "poster_path": "/lzZpWEaqzP0qVA5nkCc5ASbNcSy.jpg",
+      "first_air_date": "2024-02-22",
+      "name": "Avatar: The Last Airbender",
+      "vote_average": 8.19,
+      "vote_count": 428
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vCFqjjJBEbRSHxLaoaBN29atLky.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 240667,
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "One Day",
+      "overview": "After spending graduation night together, Emma and Dexter go their separate ways — but their lives remain intertwined.",
+      "popularity": 162.094,
+      "poster_path": "/smBWt8rHCCavV88C5gQVjh0NUFa.jpg",
+      "first_air_date": "2024-02-08",
+      "name": "One Day",
+      "vote_average": 7.827,
+      "vote_count": 78
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/nj06Yo0yVzI7jx6novjyGOyNQKC.jpg",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "id": 137893,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Griselda",
+      "overview": "Chronicles the life of Griselda Blanco, who created one of the most profitable cartels in history. A devoted mother, Blanco’s lethal blend of charm and unsuspecting savagery helped her expertly navigate between family and business leading her to become widely known as the “Black Widow”.",
+      "popularity": 131.064,
+      "poster_path": "/nhEtK1lJKb3kqBtDBDXynGr3hJL.jpg",
+      "first_air_date": "2024-01-25",
+      "name": "Griselda",
+      "vote_average": 7.452,
+      "vote_count": 189
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9h15FWJFZstTGLTUVbToCEFdH9F.jpg",
+      "genre_ids": [
+        18,
+        10759,
+        80
+      ],
+      "id": 227004,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Brothers Sun",
+      "overview": "When a mysterious enemy targets his family, a Taipei triad member heads to Los Angeles to protect his strong-willed mother and oblivious younger brother.",
+      "popularity": 132.597,
+      "poster_path": "/aTPMj3Bqb0WfHsIv8zUOROSjb7S.jpg",
+      "first_air_date": "2024-01-04",
+      "name": "The Brothers Sun",
+      "vote_average": 7.753,
+      "vote_count": 89
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5QlPMpggN5pLAZWpae0doDgRNZi.jpg",
+      "genre_ids": [
+        18,
+        80,
+        9648
+      ],
+      "id": 220801,
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Fool Me Once",
+      "overview": "When ex-soldier Maya sees her murdered husband on a secret nanny cam, she uncovers a deadly conspiracy that stretches deep into the past.",
+      "popularity": 124.203,
+      "poster_path": "/Ertv4WLEyHgi8zN4ldOKgPcGAZ.jpg",
+      "first_air_date": "2024-01-01",
+      "name": "Fool Me Once",
+      "vote_average": 7.277,
+      "vote_count": 206
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gBh9HHrpNozKJvsaLuU3uCnKwjx.jpg",
+      "genre_ids": [
+        16,
+        10762,
+        10759
+      ],
+      "id": 235995,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Hot Wheels Let's Race",
+      "overview": "Six young hopefuls at the Hot Wheels Ultimate Garage Racing Camp learn the skills they need to become the next generation of amazing racers.",
+      "popularity": 120.083,
+      "poster_path": "/ketVrjhxmXMogzX360DnrIVAeK5.jpg",
+      "first_air_date": "2024-03-04",
+      "name": "Hot Wheels Let's Race",
+      "vote_average": 10,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gJd7leBA9VvRefWLYuVFHSBPVoW.jpg",
+      "genre_ids": [
+        16,
+        10759,
+        10765
+      ],
+      "id": 234721,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Masters of the Universe: Revolution",
+      "overview": "It's technology versus magic as He-Man and friends fight back against the shadowy forces of Skeletor in an epic battle for the heart of Eternia.",
+      "popularity": 59.248,
+      "poster_path": "/s54EXuPe3BlQ4PlotUznkuIHgd9.jpg",
+      "first_air_date": "2024-01-25",
+      "name": "Masters of the Universe: Revolution",
+      "vote_average": 8.237,
+      "vote_count": 38
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/miqJXBf8WUv9S9klUanjkO6BtsU.jpg",
+      "genre_ids": [
+        99,
+        80
+      ],
+      "id": 244616,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "American Conspiracy: The Octopus Murders",
+      "overview": "An investigative journalist pursuing a political conspiracy known as the Octopus is found dead in his hotel room. Decades later, new details emerge.",
+      "popularity": 37.568,
+      "poster_path": "/lrcJuD9HPu5ZVcZaLk9cB0xufi5.jpg",
+      "first_air_date": "2024-02-28",
+      "name": "American Conspiracy: The Octopus Murders",
+      "vote_average": 6.833,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/v0cVF5nO5FvcF5oLyQX5ayYpypu.jpg",
+      "genre_ids": [
+        18,
+        80,
+        9648
+      ],
+      "id": 209332,
+      "origin_country": [
+        "AU"
+      ],
+      "original_language": "en",
+      "original_name": "Boy Swallows Universe",
+      "overview": "A young boy growing up in the suburbs of 1980s Brisbane faces the harsh realities of life — and the looming dangers that threaten his family.",
+      "popularity": 41.055,
+      "poster_path": "/nb0ek7qonE0YkyaB4dsAw5J9NoH.jpg",
+      "first_air_date": "2024-01-11",
+      "name": "Boy Swallows Universe",
+      "vote_average": 7.383,
+      "vote_count": 60
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wb8FEe569dxey9PwQMqqO5yKTMf.jpg",
+      "genre_ids": [
+        99,
+        80
+      ],
+      "id": 242845,
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "American Nightmare",
+      "overview": "After a harrowing home invasion and kidnapping in 2015, a couple is accused of staging the ordeal when the woman reappears in this true-crime docuseries.",
+      "popularity": 24.611,
+      "poster_path": "/y7dQEXvqzNxm3sFY3VV7PqKeHzB.jpg",
+      "first_air_date": "2024-01-17",
+      "name": "American Nightmare",
+      "vote_average": 7.4,
+      "vote_count": 40
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/of4G6KnanGQ0MYcIvl1p8aDAe9N.jpg",
+      "genre_ids": [
+        99,
+        18
+      ],
+      "id": 242392,
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Alexander: The Making of a God",
+      "overview": "Expert interviews and gripping reenactments combine to reveal the extraordinary life of Alexander the Great and his burning desire to conquer the world.",
+      "popularity": 29.466,
+      "poster_path": "/tKUTpdyg0wGfIYplIAfkN6hDbRw.jpg",
+      "first_air_date": "2024-01-31",
+      "name": "Alexander: The Making of a God",
+      "vote_average": 6.8,
+      "vote_count": 25
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/edLxbkOKXtKPmk6Qxzgutol0uwd.jpg",
+      "genre_ids": [
+        10764
+      ],
+      "id": 244587,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Dinner Time Live with David Chang",
+      "overview": "Chef David Chang hosts an unfiltered dining experience as he cooks for celebrity guests and shares culinary secrets.",
+      "popularity": 17.058,
+      "poster_path": "/6isaKyEbUyTlks7eWxTwfAUpXA3.jpg",
+      "first_air_date": "2024-01-25",
+      "name": "Dinner Time Live with David Chang",
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/nd70axjGzfprChYTDbbGDndHFVl.jpg",
+      "genre_ids": [
+        18,
+        35
+      ],
+      "id": 243861,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Vince Staples Show",
+      "overview": "Kind of famous and sort of rich, rapper and actor Vince Staples navigates the challenges and surprises of everyday life in his hometown of The Beach.",
+      "popularity": 13.471,
+      "poster_path": "/gyUKo6ILKVwuiVq4EWv1avEXpBp.jpg",
+      "first_air_date": "2024-02-15",
+      "name": "The Vince Staples Show",
+      "vote_average": 6.25,
+      "vote_count": 8
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/uUSjHNkxjb23e5kylpDp747iF7M.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 245551,
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Can I Tell You a Secret?",
+      "overview": "Three women's lives are changed forever when a prolific stalker infiltrates their social media accounts. And they're only a fraction of his many victims.",
+      "popularity": 18.568,
+      "poster_path": "/cWyIMECkpTsLslyyuH0RaAAw5Vh.jpg",
+      "first_air_date": "2024-02-21",
+      "name": "Can I Tell You a Secret?",
+      "vote_average": 6.5,
+      "vote_count": 9
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/q53nYvorj8kJAGYywWRT5EaKoTM.jpg",
+      "genre_ids": [
+        10762,
+        16,
+        10765
+      ],
+      "id": 235997,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Dee & Friends in Oz",
+      "overview": "When a mysterious key transports her to the land of Oz, a regular kid named Dee goes on a musical journey to save magic — and be the hero of the story.",
+      "popularity": 13.947,
+      "poster_path": "/2JpmHa3kETozHCRckt3RTc9WQFJ.jpg",
+      "first_air_date": "2024-02-05",
+      "name": "Dee & Friends in Oz",
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2LttijRpmEfR2OlPzEO2BC5A8Og.jpg",
+      "genre_ids": [
+        99,
+        10764
+      ],
+      "id": 242394,
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Six Nations: Full Contact",
+      "overview": "Round after round, match after match, Europe's best teams battle to take home the trophy in the 2023 Six Nations Championship.",
+      "popularity": 15.619,
+      "poster_path": "/spnLKY3togIef7m8kpA7dH4rNlf.jpg",
+      "first_air_date": "2024-01-24",
+      "name": "Six Nations: Full Contact",
+      "vote_average": 7.6,
+      "vote_count": 4
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iIdEmwWVrv5cfDDup3JuxdMwSUp.jpg",
+      "genre_ids": [
+        10764
+      ],
+      "id": 241168,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Trust: A Game of Greed",
+      "overview": "In this reality series, strangers compete to share a quarter of a million dollars. Will they split it evenly — or cut each other out to raise their take?",
+      "popularity": 14.509,
+      "poster_path": "/pA1wT1JMjoZNf7vVIzEEJ6Gvp1j.jpg",
+      "first_air_date": "2024-01-10",
+      "name": "The Trust: A Game of Greed",
+      "vote_average": 6.143,
+      "vote_count": 7
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hPP2b6CbhM8pzDwRKou5tv3KhZp.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 243348,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "NASCAR: Full Speed",
+      "overview": "Fueled by passion and NASCAR Cup glory, drivers and their teams compete for the championship and the chance to make history in this sports docuseries.",
+      "popularity": 15.683,
+      "poster_path": "/fXhZCpFlFXST8qZt2dYT4XTeF1E.jpg",
+      "first_air_date": "2024-01-30",
+      "name": "NASCAR: Full Speed",
+      "vote_average": 8,
+      "vote_count": 3
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qkbWY2QSiGQnA0vXG5Ld96WJsLL.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 241849,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "You Are What You Eat: A Twin Experiment",
+      "overview": "Identical twins change their diets and lifestyles for eight weeks in a unique scientific experiment designed to explore how certain foods impact the body.",
+      "popularity": 8.861,
+      "poster_path": "/uRy6fpVNrxtjt03YgO2YdY4yoje.jpg",
+      "first_air_date": "2024-01-01",
+      "name": "You Are What You Eat: A Twin Experiment",
+      "vote_average": 6.6,
+      "vote_count": 20
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 242768,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Peaky Blinders: How We Made Them Dance",
+      "overview": "Peaky Blinders writer and creator Steven Knight and choreographer Benoit Swan Pouffer of the celebrated Rambert Dance Company discuss the collaboration that resulted in one of the most unexpected and tantalising stage productions of recent years: Peaky Blinders: The Redemption of Thomas Shelby.\n\nWith a mesmerising performance in the lead role by Guillaume Queau, this dance extravaganza doesn’t shy away from the shocking violence of the drama that has won fans across the world, telling the story of Thomas during World War I, before he transformed himself into the notorious crime boss of the TV series.\n\nSteven and Benoit share their insights into the making of the show, the challenges they faced along the way, and how this unlikely idea became a remarkable reality.",
+      "popularity": 1.643,
+      "poster_path": null,
+      "first_air_date": "2024-01-01",
+      "name": "Peaky Blinders: How We Made Them Dance",
+      "vote_average": 0,
+      "vote_count": 0
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 20
+}
