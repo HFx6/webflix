@@ -4,12 +4,19 @@ import { Button } from "@/components/ui/button";
 import { FaPlay } from "react-icons/fa";
 import { TbInfoCircle } from "react-icons/tb";
 
-export default function PlayButton() {
+export default function MoreInfoButton({ mediaid }) {
 	return (
 		<>
-			<Button variant="moreinfo" className="flex gap-2 text-white">
-				<TbInfoCircle className="text-xl" /> More Info
-			</Button>
+			<Link
+				href={{
+					pathname: "/browse",
+					query: { mediaid },
+				}}
+			>
+				<Button variant="moreinfo" className="flex gap-2 text-white">
+					<TbInfoCircle className="text-xl" /> More Info
+				</Button>
+			</Link>
 		</>
 	);
 }

@@ -13,9 +13,8 @@ import dynamic from "next/dynamic";
 
 function MediaModal({ mediaid }) {
 	return (
-		<div className="mt-20">
+		
 			<Dialog defaultOpen={mediaid}>
-				<DialogTrigger>Open</DialogTrigger>
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>Are you absolutely sure?</DialogTitle>
@@ -27,7 +26,7 @@ function MediaModal({ mediaid }) {
 					</DialogHeader>
 				</DialogContent>
 			</Dialog>
-		</div>
+		
 	);
 }
 
