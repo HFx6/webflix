@@ -16,7 +16,7 @@ export default function Page({ searchParams }) {
 		<>
 			<div>
 				{mediaid ? <MediaModal mediaid={mediaid} /> : null}
-				<div className="imagepage mt-[52px]">
+				<div className="imagepage h-[100vh]">
 					<Image
 						src={
 							"https://image.tmdb.org/t/p/original/bQS43HSLZzMjZkcHJz4fGc7fNdz.jpg"
@@ -32,7 +32,7 @@ export default function Page({ searchParams }) {
 							zIndex: "-1",
 						}}
 					/>
-					<div className="heroinfo gap-3 mx-[4rem] my-auto">
+					<div className="heroinfo gap-3 mx-[2rem] my-auto">
 						<Image
 							src={
 								"https://image.tmdb.org/t/p/original/6tpiiM1i862oS2tjSwqmjv4dKGD.png"
@@ -41,9 +41,9 @@ export default function Page({ searchParams }) {
 							width="0"
 							height="0"
 							sizes="100dvw"
-							className="w-[65%]"
+							className="w-[37%]"
 						/>
-						<p>
+						<p className="text-[0.75rem]">
 							Follow the mythic journey of Paul Atreides as he
 							unites with Chani and the Fremen while on a path of
 							revenge against the conspirators who destroyed his

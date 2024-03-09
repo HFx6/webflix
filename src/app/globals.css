@@ -122,6 +122,8 @@ html::-webkit-scrollbar {
   opacity: 1;
   visibility: visible;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+	left: -20px;
+	top: 36px;
 }
 
 .hovercard--active .hovercard__content {

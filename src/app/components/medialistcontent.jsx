@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import Carousel from "./cardcarousel";
 import MovieCardInfo from "./moviecardinfo";
 
-export default function MediaListContent({ movies, genre }) {
+export default function MediaListContent({ results, titles }) {
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);
-
+	console.log(results[0]);
 	let delay = setTimeout(() => {}, 100);
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -56,19 +56,16 @@ export default function MediaListContent({ movies, genre }) {
 		cardRef.current.classList.remove("hovercard--active");
 	};
 	return (
-		<div className="flex flex-col moviecardsblock relative mx-[4rem] my-3">
-			<Carousel
-				title={"Trending"}
-				items={movies?.data.results}
-				handleMouseLeave={handleMouseLeave}
-				handleMouseEnter={handleMouseEnter}
-			/>
-			<Carousel
-				title={"Animation"}
-				items={genre?.data.results}
-				handleMouseLeave={handleMouseLeave}
-				handleMouseEnter={handleMouseEnter}
-			/>
+		<div className="flex flex-col moviecardsblock relative mx-[2rem] my-3 gap-16 mt-[-18vh]">
+			{results.map((result, index) => (
+				<Carousel
+					key={titles[index]}
+					title={titles[index]}
+					items={result?.data?.results}
+					handleMouseLeave={handleMouseLeave}
+					handleMouseEnter={handleMouseEnter}
+				/>
+			))}
 			<MovieCardInfo
 				cardRef={cardRef}
 				imageRef={imageRef}

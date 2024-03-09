@@ -12,7 +12,11 @@ import { FaStar } from "react-icons/fa";
 function Cardbutton({ children, active }) {
 	return (
 		<Link href="#">
-			<div className={`${active ? "!text-black bg-white" : "border-zinc-50 border-2 "} border-zinc-50 border-2 rounded-full p-2`}>
+			<div
+				className={`${
+					active ? "!text-black bg-white" : "border-zinc-50 border-2 "
+				} border-zinc-50 border-2 rounded-full p-2`}
+			>
 				{children}
 			</div>
 		</Link>
@@ -21,19 +25,19 @@ function Cardbutton({ children, active }) {
 
 function getColor(value) {
 	const colors = [
-			{val: 0, color: 'red'},
-			{val: 30, color: 'orange'},
-			{val: 60, color: 'yellow'},
-			{val: 80, color: '#21d07a'}
+		{ val: 0, color: "red" },
+		{ val: 30, color: "orange" },
+		{ val: 60, color: "yellow" },
+		{ val: 80, color: "#21d07a" },
 	];
 
 	let colorToUse = colors[0].color;
 
 	for (let i = 0; i < colors.length; i++) {
-			if (value < colors[i].val) {
-					break;
-			}
-			colorToUse = colors[i].color;
+		if (value < colors[i].val) {
+			break;
+		}
+		colorToUse = colors[i].color;
 	}
 
 	return colorToUse;
@@ -52,7 +56,7 @@ export default function MovieCardInfo({
 		>
 			<div className="hovercard__image">
 				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img src={""} alt="Image" draggable="false" ref={imageRef} />
+				<img src="" alt="Image" draggable="false" ref={imageRef} />
 			</div>
 			<div className="hovercard__content flex flex-col gap-2">
 				<div className="flex items-center justify-between text-[0.9rem]">
@@ -72,15 +76,28 @@ export default function MovieCardInfo({
 					</Cardbutton>
 				</div>
 				<div className="flex justify-between">
-					<div className="movierating" style={{color: getColor(84)}}><p>84% score</p></div>
-					<div className="movieyear text-gray-300"><p>2020</p></div>
-					<div className="movieruntime text-gray-300"><p>1h 30m</p></div>
+					<div
+						className="movierating"
+						style={{ color: getColor(84) }}
+					>
+						<p>84% score</p>
+					</div>
+					<div className="movieyear text-gray-300">
+						<p>2020</p>
+					</div>
+					<div className="movieruntime text-gray-300">
+						<p>1h 30m</p>
+					</div>
 				</div>
 				<div className="flex items-center">
 					<p>Drama</p>
-					<span className="text-gray-500"><LuDot /></span>
+					<span className="text-gray-500">
+						<LuDot />
+					</span>
 					<p>Comedy</p>
-					<span className="text-gray-500"><LuDot /></span>
+					<span className="text-gray-500">
+						<LuDot />
+					</span>
 					<p>Thriller</p>
 				</div>
 			</div>

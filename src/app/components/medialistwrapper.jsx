@@ -20,6 +20,7 @@ const curatedLists = [
 	{
 		title: "Trending",
 		endpoint: "/trending/all/week",
+		type: "week",
 		apiParams: {
 			language: "en-US",
 		},
@@ -27,6 +28,7 @@ const curatedLists = [
 	{
 		title: "Popular movies on Netflix",
 		endpoint: "/discover/movie",
+		type: "movie",
 		apiParams: {
 			language: "en-US",
 			primary_release_year: 2024,
@@ -41,6 +43,7 @@ const curatedLists = [
 	{
 		title: "Popular shows on Netflix",
 		endpoint: "/discover/tv",
+		type: "tv",
 		apiParams: {
 			language: "en-US",
 			first_air_date: "2024-01-01",
@@ -54,34 +57,35 @@ const curatedLists = [
 	},
 	{
 		title: "We Think You'll Love These",
-		endpoint: "",
-		apiParams: {},
-	},
-	{
-		title: "Suspenseful Movies",
-		endpoint: "",
-		apiParams: {},
-	},
-	{
-		title: "K-Dramas",
-		endpoint: "",
-		apiParams: {},
-	},
-	{
-		title: "US TV Shows",
-		endpoint: "",
+		endpoint: "/discover/animation",
+		type: "animation",
 		apiParams: {},
 	},
 	{
 		title: "Documentaries",
-		endpoint: "",
+		endpoint: "/discover/docu",
+		type: "docu",
 		apiParams: {},
 	},
 ];
 
 export default async function MediaListWrapper() {
-	const movieData = getData();
-	const genreData = getGenre();
-	const [movies, genre] = await Promise.all([movieData, genreData]);
-	return <MediaListContent movies={movies} genre={genre} />;
+	// const movieData = getData();
+	// const genreData = getGenre();
+	// const [movies, genre] = await Promise.all([movieData, genreData]);
+	// loop through curatedLists and fetch data dynamically
+
+	const listOfData = curatedLists.map((list) =>
+		fetch(process.env.URL + `/api/discover?type=${list.type}`).then((res) =>
+			res.json()
+		)
+	);
+	const results = await Promise.all(listOfData);
+	// console.log(results);
+	return (
+		<MediaListContent
+			results={results}
+			titles={curatedLists.map((list) => list.title)}
+		/>
+	);
 }

@@ -21,7 +21,7 @@ const pathname = "/docs";
 export default function SiteHeader() {
 	return (
 		<header className="fixed top-0 z-50 w-full bg-background/95 bg-black supports-[backdrop-filter]:bg-background/60">
-			<div className="flex h-10 items-center mx-[4rem] my-1.5">
+			<div className="flex h-10 items-center mx-[2rem] my-1.5">
 				<div className="mr-4 hidden md:flex">
 					<Link href="/" className="mr-6 flex items-center space-x-2">
 						<Image
@@ -94,7 +94,7 @@ export default function SiteHeader() {
 											src="/avatar.png"
 											alt="@shadcn"
 										/>
-										<AvatarFallback>HW</AvatarFallback>
+										<AvatarFallback>JS</AvatarFallback>
 									</Avatar>
 								</Button>
 							</DropdownMenuTrigger>
@@ -106,10 +106,10 @@ export default function SiteHeader() {
 								<DropdownMenuLabel className="font-normal">
 									<div className="flex flex-col space-y-1">
 										<p className="text-sm font-medium leading-none">
-											shadcn
+											j Smith
 										</p>
 										<p className="text-xs leading-none text-muted-foreground">
-											m@example.com
+											viewer@webflix.com
 										</p>
 									</div>
 								</DropdownMenuLabel>
@@ -133,9 +133,7 @@ export default function SiteHeader() {
 											⌘S
 										</DropdownMenuShortcut>
 									</DropdownMenuItem>
-									<DropdownMenuItem>
-										New Team
-									</DropdownMenuItem>
+									
 								</DropdownMenuGroup>
 								<DropdownMenuSeparator />
 								<DropdownMenuItem>

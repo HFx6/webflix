@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import NavBar from "./components/navbar";
+import Footer from "./components/footer";
 
 import Scrollbar from "./components/scrollbar";
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
 					< Scrollbar />
 					<NavBar />
 					<main className="flex-1">{children}</main>
+					<Footer />
 				</div>
 			</body>
 		</html>

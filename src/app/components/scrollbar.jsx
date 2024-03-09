@@ -27,7 +27,7 @@ export default function Scrollbar() {
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScrollThrottled);
-
+		handleScroll();
 		return () => {
 			window.removeEventListener("scroll", handleScrollThrottled);
 			if (rafId !== null) {

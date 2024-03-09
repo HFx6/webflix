@@ -18,8 +18,8 @@ export default function CarouselSize({
 	handleMouseLeave,
 }) {
 	return (
-		<div>
-			<p>{title}</p>
+		<div className="flex gap-2 flex-col">
+			<p className="text-lg font-bold">{title}</p>
 			<Carousel
 				opts={{
 					align: "start",
@@ -28,7 +28,7 @@ export default function CarouselSize({
 				className="w-full"
 			>
 				<CarouselContent>
-					{items.map((movie, index) => (
+					{items?.map((movie, index) => (
 						<CarouselItem
 							key={index}
 							className="md:basis-1/2 lg:basis-1/6"
