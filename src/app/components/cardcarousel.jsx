@@ -31,7 +31,7 @@ export default function CarouselSize({
 					{items?.map((movie, index) => (
 						<CarouselItem
 							key={index}
-							className="md:basis-1/2 lg:basis-1/6"
+							className="md:basis-1/2 lg:basis-1/6 relative"
 						>
 							<MovieCard
 								key={movie.id}
