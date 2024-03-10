@@ -20,7 +20,6 @@ export default function MediaListContent({ results, titles }) {
 		offsetWidth,
 		backdrop_path,
 	}) => {
-		console.log(offset, offsetHeight, offsetWidth);
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,

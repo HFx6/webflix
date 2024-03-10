@@ -1,5 +1,7 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import useScrollPosition from "../hooks/useScrollPosition";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -19,8 +21,14 @@ import Mobile from "./mobile";
 
 const pathname = "/docs";
 export default function SiteHeader() {
+	const scrollPosition = useScrollPosition();
+
 	return (
-		<header className="fixed top-0 z-50 w-full bg-background/95 bg-black supports-[backdrop-filter]:bg-background/60">
+		<header
+			className={`fixed top-0 z-50 w-full transition-all duration-300 bg-background/95 ${
+				scrollPosition.pixels > 90 && "bg-black"
+			} supports-[backdrop-filter]:bg-background/60`}
+		>
 			<div className="flex h-10 items-center mx-[2rem] my-1.5">
 				<div className="mr-4 hidden md:flex">
 					<Link href="/" className="mr-6 flex items-center space-x-2">
@@ -133,7 +141,6 @@ export default function SiteHeader() {
 											⌘S
 										</DropdownMenuShortcut>
 									</DropdownMenuItem>
-									
 								</DropdownMenuGroup>
 								<DropdownMenuSeparator />
 								<DropdownMenuItem>

@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={inter.className}>
 				<div className="relative flex min-h-screen flex-col bg-background">
-					< Scrollbar />
+					<Scrollbar />
 					<NavBar />
 					<main className="flex-1">{children}</main>
 					<Footer />

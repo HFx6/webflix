@@ -36,14 +36,15 @@ export default function YoutubeEmbed({ videoId }) {
 				} absolute transition duration-700 ease-in-out`}
 			/>
 
-			<YouTube
+			{/* <YouTube
 				videoId={videoId}
 				opts={opts}
 				iframeClassName="w-full pointer-events-none"
 				onReady={onPlayerReady}
 				onEnd={onPlayerEnd}
 				onPlay={() => setReady(true)}
-			/>
+			/> */}
+			<div className="h-[400px]"></div>
 		</div>
 	);
 }
