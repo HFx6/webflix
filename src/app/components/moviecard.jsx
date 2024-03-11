@@ -5,6 +5,26 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+var cumulativeOffset = function (element) {
+	var _elm = element;
+	var top = 0,
+		left = 0;
+	do {
+		top += element.offsetTop || 0;
+		left += element.offsetLeft || 0;
+		element = element.offsetParent;
+	} while (element);
+	const parentOffset = new WebKitCSSMatrix(
+		window.getComputedStyle(
+			_elm.parentElement.parentElement
+		).transform
+	);
+	return {
+		top: top,
+		left: left + parentOffset.m41,
+	};
+};
+
 export default function MovieCard({
 	handleMouseEnter,
 	handleMouseLeave,
@@ -24,7 +44,7 @@ export default function MovieCard({
 		<rect id="r" width="${w}" height="${h}" fill="url(#g)" />
 		<animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
 	</svg>`;
-	
+
 	const toBase64 = (str) =>
 		typeof window === "undefined"
 			? Buffer.from(str).toString("base64")
@@ -33,6 +53,7 @@ export default function MovieCard({
 		<>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<Image
+				key={new Date().getTime()}
 				src={"https://image.tmdb.org/t/p/original/" + backdrop_path}
 				alt={backdrop_path}
 				className="moviecardimage w-full !relative"
@@ -42,10 +63,16 @@ export default function MovieCard({
 						offsetHeight: imageRef.current.offsetHeight,
 						offsetWidth: imageRef.current.offsetWidth,
 						backdrop_path: backdrop_path,
+						cumulativeOffset: cumulativeOffset(imageRef.current),
 					})
 				}
 				fill={true}
-				placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+				sizes={
+					"(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+				}
+				placeholder={`data:image/svg+xml;base64,${toBase64(
+					shimmer(700, 475)
+				)}`}
 				onMouseLeave={() => handleMouseLeave()}
 				ref={imageRef}
 			/>
