@@ -30,7 +30,7 @@ export default function YoutubeEmbed({ videoId }) {
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				src="https://image.tmdb.org/t/p/original//ibk375gQlUnEUyqyQpt2rCiHll7.jpg"
-				alt=""
+				alt="youtube embed placeholder"
 				className={`w-full ${
 					ready ? "opacity-0" : ""
 				} absolute transition duration-700 ease-in-out`}

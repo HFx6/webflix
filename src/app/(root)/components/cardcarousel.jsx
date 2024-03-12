@@ -35,7 +35,7 @@ export default function CarouselSize({
 						>
 							<MovieCard
 								key={movie.id}
-								backdrop_path={movie.backdrop_path}
+								movie={movie}
 								handleMouseEnter={handleMouseEnter}
 								handleMouseLeave={handleMouseLeave}
 							/>

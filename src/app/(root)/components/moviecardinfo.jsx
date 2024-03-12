@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -10,9 +10,9 @@ import { BsChevronDown } from "react-icons/bs";
 import { LuDot } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 
-function Cardbutton({ children, active, location }) {
+function Cardbutton({ children, active, params }) {
 	return (
-		<Link href={location}  scroll={false}>
+		<Link href={params || "#"} scroll={false}>
 			<div
 				className={`${
 					active ? "!text-black bg-white" : "border-zinc-50 border-2 "
@@ -62,17 +62,28 @@ export default function MovieCardInfo({
 			<div className="hovercard__content flex flex-col gap-2">
 				<div className="flex items-center justify-between text-[0.9rem]">
 					<div className="flex gap-1">
-						<Cardbutton active={true} location={"#"}>
+						<Cardbutton
+							active={true}
+							params={{
+								pathname: "/watch",
+								query: { mediaid: "792307" },
+							}}
+						>
 							<FaPlay />
 						</Cardbutton>
-						<Cardbutton location={"#"}>
+						<Cardbutton>
 							<LuPlus />
 						</Cardbutton>
-						<Cardbutton location={"#"}>
+						<Cardbutton>
 							<BsHandThumbsUp />
 						</Cardbutton>
 					</div>
-					<Cardbutton location={"?mediaid=792307"}>
+					<Cardbutton
+						params={{
+							pathname: "/browse",
+							query: { mediaid: "792307" },
+						}}
+					>
 						<BsChevronDown />
 					</Cardbutton>
 				</div>

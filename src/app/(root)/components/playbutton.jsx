@@ -5,10 +5,16 @@ import { FaPlay } from "react-icons/fa";
 
 export default function MoreInfoButton() {
 	return (
-		<>
+		<Link
+			href={{
+				pathname: "/watch",
+				query: { mediaid: "23423432" },
+			}}
+			scroll={false}
+		>
 			<Button variant="secondary" className="flex gap-2">
 				<FaPlay className="text-base" /> Play
 			</Button>
-		</>
+		</Link>
 	);
 }

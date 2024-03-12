@@ -49,7 +49,7 @@ async function MediaModal({ mediaid }) {
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
 							src="https://image.tmdb.org/t/p/original/gOWf4IYBP2m1Q7dhbQJkwxH714x.png"
-							alt=""
+							alt="movie backdrop"
 						/>
 						<div className="flex p-6">
 							<div className="flex flex-col">

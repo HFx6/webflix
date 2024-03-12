@@ -28,7 +28,7 @@ var cumulativeOffset = function (element) {
 export default function MovieCard({
 	handleMouseEnter,
 	handleMouseLeave,
-	backdrop_path,
+	movie,
 }) {
 	const imageRef = useRef(null);
 	const shimmer = (w, h) => `
@@ -54,15 +54,15 @@ export default function MovieCard({
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<Image
 				key={new Date().getTime()}
-				src={"https://image.tmdb.org/t/p/original/" + backdrop_path}
-				alt={backdrop_path}
+				src={"https://image.tmdb.org/t/p/original/" + movie.backdrop_path}
+				alt={movie.backdrop_path}
 				className="moviecardimage w-full !relative"
 				onMouseEnter={() =>
 					handleMouseEnter({
 						offset: imageRef.current.getBoundingClientRect(),
 						offsetHeight: imageRef.current.offsetHeight,
 						offsetWidth: imageRef.current.offsetWidth,
-						backdrop_path: backdrop_path,
+						backdrop_path: movie.backdrop_path,
 						cumulativeOffset: cumulativeOffset(imageRef.current),
 					})
 				}
