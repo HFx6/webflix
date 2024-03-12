@@ -15,9 +15,7 @@ var cumulativeOffset = function (element) {
 		element = element.offsetParent;
 	} while (element);
 	const parentOffset = new WebKitCSSMatrix(
-		window.getComputedStyle(
-			_elm.parentElement.parentElement
-		).transform
+		window.getComputedStyle(_elm.parentElement.parentElement).transform
 	);
 	return {
 		top: top,
@@ -55,7 +53,7 @@ export default function MovieCard({
 			<Image
 				key={new Date().getTime()}
 				src={"https://image.tmdb.org/t/p/original/" + movie.backdrop_path}
-				alt={movie.backdrop_path}
+				alt={"movie poster for " + movie.title}
 				className="moviecardimage w-full !relative"
 				onMouseEnter={() =>
 					handleMouseEnter({

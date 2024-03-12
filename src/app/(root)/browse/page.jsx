@@ -53,7 +53,7 @@ export default function Page({ searchParams }) {
 						</p>
 						<p>2024</p>
 						<div className="flex gap-3">
-							<PlayButton />
+							<PlayButton mediaid={"792307"}/>
 							<MoreInfoButton mediaid={"792307"}/>
 						</div>
 					</div>

@@ -28,7 +28,7 @@ export default function MediaListContent({ results, titles }) {
 		clearTimeout(delay);
 		delay = setTimeout(async function () {
 			imageRef.current.src =
-				"https://image.tmdb.org/t/p/original/" + backdrop_path;
+			"https://image.tmdb.org/t/p/original/" + backdrop_path;
 
 			cardRef.current.style.left = `${
 				offset.left - (size.width * 1.5 - size.width) / 2

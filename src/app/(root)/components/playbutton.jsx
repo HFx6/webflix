@@ -3,16 +3,16 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FaPlay } from "react-icons/fa";
 
-export default function MoreInfoButton() {
+export default function MoreInfoButton({ mediaid }) {
 	return (
 		<Link
 			href={{
 				pathname: "/watch",
-				query: { mediaid: "23423432" },
+				query: { mediaid },
 			}}
 			scroll={false}
 		>
-			<Button variant="secondary" className="flex gap-2">
+			<Button variant="secondary" className="flex gap-2 pointer-events-auto">
 				<FaPlay className="text-base" /> Play
 			</Button>
 		</Link>

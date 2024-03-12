@@ -10,19 +10,8 @@ import { BsChevronDown } from "react-icons/bs";
 import { LuDot } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 
-function Cardbutton({ children, active, params }) {
-	return (
-		<Link href={params || "#"} scroll={false}>
-			<div
-				className={`${
-					active ? "!text-black bg-white" : "border-zinc-50 border-2 "
-				} border-zinc-50 border-2 rounded-full p-2`}
-			>
-				{children}
-			</div>
-		</Link>
-	);
-}
+import Cardbutton from "./cardbutton";
+
 
 function getColor(value) {
 	const colors = [

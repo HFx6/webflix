@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 import YouTubeEmbed from "../components/youtubeembed";
 
 async function getMovie() {
-	const res = await fetch(process.env.URL + "/api/discover");
+	const res = await fetch(process.env.URL + "/api/moviedata?mediaid=872585");
 	return res.json();
 }
 function getColor(value) {
@@ -20,7 +20,7 @@ function getColor(value) {
 		{ val: 0, color: "red" },
 		{ val: 30, color: "orange" },
 		{ val: 60, color: "yellow" },
-		{ val: 80, color: "#21d07a" },
+		{ val: 75, color: "#21d07a" },
 	];
 
 	let colorToUse = colors[0].color;
@@ -34,68 +34,92 @@ function getColor(value) {
 
 	return colorToUse;
 }
+
+function fmtMSS(s) {
+	let minutes = s % 60;
+	let hours = (s - minutes) / 60;
+	let result = "";
+	if (hours > 0) {
+		result += hours + "h ";
+	}
+	if (minutes > 0) {
+		result += minutes + "m";
+	}
+	return result.trim();
+}
+
 async function MediaModal({ mediaid }) {
 	const movieData = getMovie();
-	const [movie] = await Promise.all([movieData]);
+	const [_movie] = await Promise.all([movieData]);
+	const movie = _movie.data;
+
 	return (
 		<Dialog defaultOpen={mediaid}>
 			<DialogContent className={"overflow-y-scroll max-h-screen"}>
 				<DialogHeader>
 					{/* <DialogTitle>Are you absolutely sure?</DialogTitle> */}
-					<DialogDescription>
-						{/* <video src="https://www.youtube.com/embed/tQucjg4-Q6M"></video> */}
-						
-						<YouTubeEmbed videoId={"tQucjg4-Q6M"} />
-						{/* eslint-disable-next-line @next/next/no-img-element */}
-						<img
-							src="https://image.tmdb.org/t/p/original/gOWf4IYBP2m1Q7dhbQJkwxH714x.png"
-							alt="movie backdrop"
-						/>
-						<div className="flex p-6">
-							<div className="flex flex-col">
-								<div className="flex">
-									<div
-										className="movierating"
-										style={{ color: getColor(84) }}
-									>
-										<p>84% score</p>
-									</div>
-									<div className="movieyear text-gray-300">
-										<p>2020</p>
-									</div>
-									<div className="movieruntime text-gray-300">
-										<p>1h 30m</p>
-									</div>
-								</div>
+					<DialogDescription></DialogDescription>
+				</DialogHeader>
+				{/* <video src="https://www.youtube.com/embed/tQucjg4-Q6M"></video> */}
 
-								<div className="flex">M+</div>
-								<p>Dune Part two</p>
+				<YouTubeEmbed
+					videoId={
+						movie.videos.results.find((m) => {
+							return m.site == "YouTube" && m.type == "Trailer";
+						}).key
+					}
+					backdrop_path={movie.backdrop_path}
+				/>
+				{/* eslint-disable-next-line @next/next/no-img-element */}
+
+				<div className="flex p-6 ">
+					<div className="flex flex-col basis-[70%] text-sm gap-3">
+						<div className="flex gap-3">
+							<div
+								className="movierating"
+								style={{
+									color: getColor(
+										Math.round(movie.vote_average * 100) /
+											10
+									),
+								}}
+							>
 								<p>
-									Follow the mythic journey of Paul Atreides
-									as he unites with Chani and the Fremen while
-									on a path of revenge against the
-									conspirators who destroyed his family.
-									Facing a choice between the love of his life
-									and the fate of the known universe, Paul
-									endeavors to prevent a terrible future only
-									he can foresee.
+									{Math.round(movie.vote_average * 100) / 10}%
+									rating
 								</p>
 							</div>
-
-							<div className="flex flex-col">
-								<div className="flex">
-									Cast: <p>John Doe, Jane Doe</p>
-								</div>
-								<div className="flex">
-									Genres: <p>Animation</p>
-								</div>
-								<div className="flex">
-									This show is: <p>John Doe, Jane Doe</p>
-								</div>
+							<div className="movieyear text-[#8e8e8e] font-semibold">
+								<p>{movie.release_date.slice(0, 4)}</p>
+							</div>
+							<div className="movieruntime text-[#8e8e8e] font-semibold">
+								<p>{fmtMSS(movie.runtime)}</p>
 							</div>
 						</div>
-					</DialogDescription>
-				</DialogHeader>
+
+						<p>{movie.overview}</p>
+					</div>
+
+					<div className="flex flex-col basis-[30%] text-xs gap-3">
+						<p>
+							<span className="text-[#595959]">Cast: </span>
+							{movie?.credits?.cast
+								?.slice(0, 3)
+								.map((u) => u.name)
+								.join(", ")}
+							, more
+						</p>
+
+						<p>
+							<span className="text-[#595959]">Genres: </span>
+							{movie?.genres?.map((u) => u.name).join(", ")}
+						</p>
+
+						{/* <div>
+							This show is: <p>John Doe, Jane Doe</p>
+						</div> */}
+					</div>
+				</div>
 			</DialogContent>
 		</Dialog>
 	);
