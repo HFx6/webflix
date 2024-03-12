@@ -26,7 +26,10 @@ const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => {
 				className
 			)}
 			onClick={() => {
-				router.replace("/browse", undefined, { shallow: true });
+				router.replace("/browse", undefined, {
+					shallow: true,
+					scroll: false,
+				});
 			}}
 			{...props}
 		/>
@@ -53,6 +56,7 @@ const DialogContent = React.forwardRef(
 						onClick={() => {
 							router.replace("/browse", undefined, {
 								shallow: true,
+								scroll: false,
 							});
 						}}
 						className="absolute right-4 top-4 rounded-lg opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-neutral-100 data-[state=open]:text-neutral-500 dark:ring-offset-neutral-950 dark:data-[state=open]:bg-neutral-800 dark:data-[state=open]:text-neutral-400"

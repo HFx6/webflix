@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -9,9 +10,9 @@ import { BsChevronDown } from "react-icons/bs";
 import { LuDot } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 
-function Cardbutton({ children, active }) {
+function Cardbutton({ children, active, location }) {
 	return (
-		<Link href="#">
+		<Link href={location}  scroll={false}>
 			<div
 				className={`${
 					active ? "!text-black bg-white" : "border-zinc-50 border-2 "
@@ -61,17 +62,17 @@ export default function MovieCardInfo({
 			<div className="hovercard__content flex flex-col gap-2">
 				<div className="flex items-center justify-between text-[0.9rem]">
 					<div className="flex gap-1">
-						<Cardbutton active={true}>
+						<Cardbutton active={true} location={"#"}>
 							<FaPlay />
 						</Cardbutton>
-						<Cardbutton>
+						<Cardbutton location={"#"}>
 							<LuPlus />
 						</Cardbutton>
-						<Cardbutton>
+						<Cardbutton location={"#"}>
 							<BsHandThumbsUp />
 						</Cardbutton>
 					</div>
-					<Cardbutton>
+					<Cardbutton location={"?mediaid=792307"}>
 						<BsChevronDown />
 					</Cardbutton>
 				</div>

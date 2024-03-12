@@ -19,7 +19,7 @@ export default function CarouselSize({
 }) {
 	return (
 		<div className="flex gap-2 flex-col">
-			<p className="text-lg font-bold">{title}</p>
+			<p className="text-lg font-bold z-[1]">{title}</p>
 			<Carousel
 				opts={{
 					align: "start",

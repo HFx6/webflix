@@ -39,7 +39,7 @@ async function MediaModal({ mediaid }) {
 	const [movie] = await Promise.all([movieData]);
 	return (
 		<Dialog defaultOpen={mediaid}>
-			<DialogContent>
+			<DialogContent className={"overflow-y-scroll max-h-screen"}>
 				<DialogHeader>
 					{/* <DialogTitle>Are you absolutely sure?</DialogTitle> */}
 					<DialogDescription>
