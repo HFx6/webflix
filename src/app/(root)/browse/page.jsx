@@ -32,7 +32,7 @@ export default function Page({ searchParams }) {
 							zIndex: "-1",
 						}}
 					/>
-					<div className="heroinfo gap-3 mx-[2rem] my-auto">
+					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
 						<Image
 							src={
 								"https://image.tmdb.org/t/p/original/6tpiiM1i862oS2tjSwqmjv4dKGD.png"

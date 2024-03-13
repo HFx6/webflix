@@ -76,7 +76,7 @@ export default function MovieCardInfo({
 						<BsChevronDown />
 					</Cardbutton>
 				</div>
-				<div className="flex justify-between">
+				<div className="flex gap-3">
 					<div
 						className="movierating"
 						style={{ color: getColor(84) }}

@@ -29,7 +29,7 @@ export default function SiteHeader() {
 				scrollPosition.pixels > 90 && "bg-black"
 			} supports-[backdrop-filter]:bg-background/60`}
 		>
-			<div className="flex h-10 items-center mx-[2rem] my-1.5">
+			<div className="flex h-10 items-center mx-[2.5vw] my-1.5">
 				<div className="mr-4 hidden md:flex">
 					<Link href="/" className="mr-6 flex items-center space-x-2">
 						<Image

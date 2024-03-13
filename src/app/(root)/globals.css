@@ -116,6 +116,7 @@ html::-webkit-scrollbar, .dialogoverlay::-webkit-scrollbar {
   opacity: 0;
   padding: 16px;
   transition: all 0.3s;
+	font-size: clamp(1rem, 1vw, 2rem);
 }
 
 .hovercard--active {
