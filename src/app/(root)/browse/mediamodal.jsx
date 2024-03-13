@@ -11,8 +11,10 @@ import dynamic from "next/dynamic";
 
 import YouTubeEmbed from "../components/youtubeembed";
 
-async function getMovie() {
-	const res = await fetch(process.env.URL + "/api/moviedata?mediaid=872585");
+async function getMovie(mediaid) {
+	const res = await fetch(
+		process.env.URL + "/api/moviedata?mediaid=" + mediaid
+	);
 	return res.json();
 }
 function getColor(value) {
@@ -49,7 +51,7 @@ function fmtMSS(s) {
 }
 
 async function MediaModal({ mediaid }) {
-	const movieData = getMovie();
+	const movieData = getMovie(mediaid);
 	const [_movie] = await Promise.all([movieData]);
 	const movie = _movie.data;
 
@@ -72,8 +74,8 @@ async function MediaModal({ mediaid }) {
 				/>
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 
-				<div className="flex p-6 ">
-					<div className="flex flex-col basis-[70%] text-sm gap-3">
+				<div className="flex p-12">
+					<div className="flex flex-col basis-[70%] gap-3 leading-none lg:text-3xl md:text-base text-sm ">
 						<div className="flex gap-3">
 							<div
 								className="movierating"
@@ -100,7 +102,7 @@ async function MediaModal({ mediaid }) {
 						<p>{movie.overview}</p>
 					</div>
 
-					<div className="flex flex-col basis-[30%] text-xs gap-3">
+					<div className="flex flex-col basis-[30%] gap-3 leading-none lg:text-3xl md:text-base text-sm">
 						<p>
 							<span className="text-[#595959]">Cast: </span>
 							{movie?.credits?.cast

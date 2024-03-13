@@ -37,6 +37,7 @@ export default function MovieCardInfo({
 	cardRef,
 	imageRef,
 	cardHandleMouseLeave,
+	mediaId
 }) {
 	return (
 		<div
@@ -70,7 +71,7 @@ export default function MovieCardInfo({
 					<Cardbutton
 						params={{
 							pathname: "/browse",
-							query: { mediaid: "792307" },
+							query: { mediaid: mediaId },
 						}}
 					>
 						<BsChevronDown />

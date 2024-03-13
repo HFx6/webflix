@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,8 @@ import MovieCardInfo from "./moviecardinfo";
 export default function MediaListContent({ results, titles }) {
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);
+
+	const [mediaId, setMediaId] = useState(null);
 	// console.log(results[0]);
 	let delay = setTimeout(() => {}, 100);
 
@@ -20,7 +22,9 @@ export default function MediaListContent({ results, titles }) {
 		offsetWidth,
 		backdrop_path,
 		cumulativeOffset,
+		mediaId
 	}) => {
+		setMediaId(mediaId);
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,
@@ -79,6 +83,7 @@ export default function MediaListContent({ results, titles }) {
 			<MovieCardInfo
 				cardRef={cardRef}
 				imageRef={imageRef}
+				mediaId={mediaId}
 				cardHandleMouseLeave={cardHandleMouseLeave}
 			/>
 		</div>

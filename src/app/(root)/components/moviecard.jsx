@@ -62,6 +62,7 @@ export default function MovieCard({
 						offsetWidth: imageRef.current.offsetWidth,
 						backdrop_path: movie.backdrop_path,
 						cumulativeOffset: cumulativeOffset(imageRef.current),
+						mediaId: movie.id,
 					})
 				}
 				fill={true}
