@@ -12,7 +12,6 @@ export default function MediaListContent({ results, titles }) {
 	const imageRef = useRef(null);
 
 	const [mediaId, setMediaId] = useState(null);
-	// console.log(results[0]);
 	let delay = setTimeout(() => {}, 100);
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

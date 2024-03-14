@@ -11,7 +11,7 @@ export async function GET(request) {
 	};
 
 	const dataRequest = await fetch(
-		`https://api.themoviedb.org/3/movie/${query}?append_to_response=credits%2Cvideos&language=en-US`,
+		`https://api.themoviedb.org/3/movie/${query}?append_to_response=credits%2Cvideos%2Cexternal_ids&language=en-US`,
 		options
 	);
 	const data = await dataRequest.json();

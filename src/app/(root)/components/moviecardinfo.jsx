@@ -56,7 +56,7 @@ export default function MovieCardInfo({
 							active={true}
 							params={{
 								pathname: "/watch",
-								query: { mediaid: "792307" },
+								query: { mediaid: mediaId },
 							}}
 						>
 							<FaPlay />
