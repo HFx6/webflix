@@ -22,7 +22,7 @@ export default function MediaListContent({ results, titles }) {
 		offsetWidth,
 		backdrop_path,
 		cumulativeOffset,
-		mediaId
+		mediaId,
 	}) => {
 		setMediaId(mediaId);
 		let size = {
@@ -31,30 +31,26 @@ export default function MediaListContent({ results, titles }) {
 		};
 		clearTimeout(delay);
 		delay = setTimeout(async function () {
-			imageRef.current.src =
-			"https://image.tmdb.org/t/p/original/" + backdrop_path;
-
+			imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
+			cardRef.current.style.setProperty("--scale", ".66");
+			cardRef.current.style.width = `${size.width * 1.5}px`;
 			cardRef.current.style.left = `${
 				offset.left - (size.width * 1.5 - size.width) / 2
 			}px`;
-			const e = {
-				left: offset.left + window.scrollX,
-				top: offset.top,
-			};
-			cardRef.current.style.width = `${size.width * 1.5}px`;
+
 			cardRef.current.style.top = `${
 				cumulativeOffset.top - size.height / 2
 			}px`;
 			cardRef.current.style.left = `${
 				cumulativeOffset.left - size.width / 4
 			}px`;
-			await sleep(500);
+			await sleep(600);
 
 			cardRef.current.classList.add("hovercard--active");
 
 			cardRef.current.style.setProperty("--scale", "1");
 			cardRef.current.style.width = `${size.width * 1.5}px`;
-		}, 300);
+		}, 400);
 	};
 
 	const handleMouseLeave = async () => {
@@ -62,11 +58,11 @@ export default function MediaListContent({ results, titles }) {
 	};
 
 	const cardHandleMouseLeave = async () => {
-		await sleep(50);
+		// await sleep(50);
 		cardRef.current.style.setProperty("--scale", ".66");
 		cardRef.current.style.setProperty("--translateY", "0px");
 		// cardRef.current.style.setProperty("--translateX", "0px");
-		await sleep(100);
+		// await sleep(100);
 		cardRef.current.classList.remove("hovercard--active");
 	};
 	return (

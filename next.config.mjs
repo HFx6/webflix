@@ -11,6 +11,9 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    IMAGE_PATH: process.env.IMAGE_PATH,
+  },
 };
 
 export default nextConfig;
