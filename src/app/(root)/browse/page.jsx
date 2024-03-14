@@ -10,8 +10,8 @@ import MediaListWrapper from "../components/medialistwrapper";
 
 import Image from "next/image";
 
-async function getTrending() {
-	const res = await fetch(process.env.URL + "/api/trending", {
+async function getHero() {
+	const res = await fetch(process.env.URL + "/api/hero", {
 		next: { revalidate: 86400 },
 	});
 	return res.json();
@@ -19,7 +19,7 @@ async function getTrending() {
 
 export default async function Page({ searchParams }) {
 	const { mediaid } = searchParams;
-	const movieData = getTrending();
+	const movieData = getHero();
 	const [_movie] = await Promise.all([movieData]);
 	const { movie, image } = _movie;
 	return (
