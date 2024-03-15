@@ -17,6 +17,7 @@ async function getMovie(mediaid) {
 	);
 	return res.json();
 }
+
 function getColor(value) {
 	const colors = [
 		{ val: 0, color: "red" },

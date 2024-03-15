@@ -17,6 +17,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
+import { FaCaretDown } from "react-icons/fa";
+import { MdOutlineNotificationsNone } from "react-icons/md";
+
+import SearchInput from "./searchinput";
+
 import Mobile from "./mobile";
 
 const pathname = "/docs";
@@ -89,21 +94,25 @@ export default function SiteHeader() {
 				</div>
 				<Mobile />
 				<div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-					<div className="w-full flex-1 md:w-auto md:flex-none"></div>
+					<div className="w-full flex-1 md:w-auto md:flex-none flex gap-4 text-xl items-center">
+						<SearchInput />
+						<MdOutlineNotificationsNone className="cursor-pointer" />
+					</div>
 					<nav className="flex items-center">
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button
-									variant="ghost"
-									className="relative h-8 w-8"
+									variant="navbardropdown"
+									className="relative h-8 ml-4 px-0"
 								>
-									<Avatar className="h-8 w-8">
+									<Avatar className="h-8 w-8 rounded-sm">
 										<AvatarImage
 											src="/avatar.png"
 											alt="@shadcn"
 										/>
 										<AvatarFallback>JS</AvatarFallback>
 									</Avatar>
+									<FaCaretDown />
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent
