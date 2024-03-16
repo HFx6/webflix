@@ -36,7 +36,7 @@ export default function SiteHeader() {
 		>
 			<div className="flex h-10 items-center mx-[2.5vw] my-1.5">
 				<div className="mr-4 hidden md:flex">
-					<Link href="/" className="mr-6 flex items-center space-x-2">
+					<Link href="/browse" className="mr-6 flex items-center space-x-2">
 						<Image
 							src="/logo/100.png"
 							width={100}

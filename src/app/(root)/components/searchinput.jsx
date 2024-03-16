@@ -30,7 +30,7 @@ export default function SearchInput() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} autoComplete="off">
 			<div
 				className={`flex items-center p-1 ${
 					scrollPosition.pixels > 90 && show
@@ -47,7 +47,7 @@ export default function SearchInput() {
 				<input
 					className={`${
 						show ? "w-52" : "w-0"
-					} text-base bg-transparent transition-[width] duration-300 border-transparent focus:outline-none focus:border-transparent focus:ring-0 focus:shadow-transparent`}
+					} searchinput text-base bg-transparent transition-[width] duration-300 border-transparent focus:outline-none focus:border-transparent focus:ring-0 focus:shadow-transparent`}
 					ref={inputRef}
 					name="q"
 				/>

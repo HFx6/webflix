@@ -47,7 +47,7 @@ export default function MovieCardInfo({
 		>
 			<div className="hovercard__image">
 				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img src="" alt="Image" draggable="false" ref={imageRef} />
+				<img src="" alt="Image" draggable="false" ref={imageRef} className="aspect-video overflow-hidden"/>
 			</div>
 			<div className="hovercard__content flex flex-col gap-2">
 				<div className="flex items-center justify-between text-[0.9rem]">
