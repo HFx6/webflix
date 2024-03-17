@@ -123,3 +123,19 @@ html::-webkit-scrollbar,
 	opacity: 1;
 }
 
+.profileblock * {
+	transition: all 300ms ease;
+}
+.profileblock > div {
+	border: 6px solid #1f1f1f;
+
+	cursor: pointer;
+}
+
+.profileblock:hover > div {
+	border: 6px solid #ebecec;
+}
+
+.profileblock:hover p {
+	color: #ebecec;
+}
