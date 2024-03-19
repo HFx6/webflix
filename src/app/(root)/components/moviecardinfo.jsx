@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -10,19 +10,8 @@ import { BsChevronDown } from "react-icons/bs";
 import { LuDot } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 
-function Cardbutton({ children, active, location }) {
-	return (
-		<Link href={location}  scroll={false}>
-			<div
-				className={`${
-					active ? "!text-black bg-white" : "border-zinc-50 border-2 "
-				} border-zinc-50 border-2 rounded-full p-2`}
-			>
-				{children}
-			</div>
-		</Link>
-	);
-}
+import Cardbutton from "./cardbutton";
+
 
 function getColor(value) {
 	const colors = [
@@ -48,6 +37,7 @@ export default function MovieCardInfo({
 	cardRef,
 	imageRef,
 	cardHandleMouseLeave,
+	mediaId
 }) {
 	return (
 		<div
@@ -57,26 +47,37 @@ export default function MovieCardInfo({
 		>
 			<div className="hovercard__image">
 				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img src="" alt="Image" draggable="false" ref={imageRef} />
+				<img src="" alt="Image" draggable="false" ref={imageRef} className="aspect-video overflow-hidden"/>
 			</div>
 			<div className="hovercard__content flex flex-col gap-2">
 				<div className="flex items-center justify-between text-[0.9rem]">
 					<div className="flex gap-1">
-						<Cardbutton active={true} location={"#"}>
+						<Cardbutton
+							active={true}
+							params={{
+								pathname: "/watch",
+								query: { mediaid: mediaId },
+							}}
+						>
 							<FaPlay />
 						</Cardbutton>
-						<Cardbutton location={"#"}>
+						<Cardbutton>
 							<LuPlus />
 						</Cardbutton>
-						<Cardbutton location={"#"}>
+						<Cardbutton>
 							<BsHandThumbsUp />
 						</Cardbutton>
 					</div>
-					<Cardbutton location={"?mediaid=792307"}>
+					<Cardbutton
+						params={{
+							pathname: "/browse",
+							query: { mediaid: mediaId },
+						}}
+					>
 						<BsChevronDown />
 					</Cardbutton>
 				</div>
-				<div className="flex justify-between">
+				<div className="flex gap-3">
 					<div
 						className="movierating"
 						style={{ color: getColor(84) }}

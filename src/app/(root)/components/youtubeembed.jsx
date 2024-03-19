@@ -4,9 +4,11 @@ import { useState } from "react";
 
 import YouTube from "react-youtube";
 
-export default function YoutubeEmbed({ videoId }) {
+export default function YoutubeEmbed({ videoId, backdrop_path }) {
 	const [ready, setReady] = useState(false);
 	const opts = {
+		height: "100%",
+		width: "100%",
 		playerVars: {
 			autoplay: 1,
 			controls: 0,
@@ -26,11 +28,20 @@ export default function YoutubeEmbed({ videoId }) {
 	}
 
 	return (
-		<div>
+		<div className="max-h-[720px] aspect-video relative">
+			<div
+				className="flex items-end px-8 py-4 gap-2 pointer-events-none"
+				style={{
+					width: "100%",
+					height: "100%",
+					position: "absolute",
+				}}
+			>
+			</div>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
-				src="https://image.tmdb.org/t/p/original//ibk375gQlUnEUyqyQpt2rCiHll7.jpg"
-				alt=""
+				src={"https://image.tmdb.org/t/p/original/" + backdrop_path}
+				alt="youtube embed placeholder"
 				className={`w-full ${
 					ready ? "opacity-0" : ""
 				} absolute transition duration-700 ease-in-out`}
@@ -39,7 +50,8 @@ export default function YoutubeEmbed({ videoId }) {
 			<YouTube
 				videoId={videoId}
 				opts={opts}
-				iframeClassName="w-full pointer-events-none"
+				className="h-[100%]"
+				iframeClassName="w-full pointer-events-none scale-150"
 				onReady={onPlayerReady}
 				onEnd={onPlayerEnd}
 				onPlay={() => setReady(true)}

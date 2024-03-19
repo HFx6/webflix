@@ -10,17 +10,25 @@ import MediaListWrapper from "../components/medialistwrapper";
 
 import Image from "next/image";
 
-export default function Page({ searchParams }) {
+async function getHero() {
+	const res = await fetch(process.env.URL + "/api/hero", {
+		next: { revalidate: 86400 },
+	});
+	return res.json();
+}
+
+export default async function Page({ searchParams }) {
 	const { mediaid } = searchParams;
+	const movieData = getHero();
+	const [_movie] = await Promise.all([movieData]);
+	const { movie, image } = _movie;
 	return (
 		<>
 			<div>
 				{mediaid ? <MediaModal mediaid={mediaid} /> : null}
-				<div className="imagepage h-[100vh]">
+				<div className="imagepage h-full w-full aspect-video">
 					<Image
-						src={
-							"https://image.tmdb.org/t/p/original/bQS43HSLZzMjZkcHJz4fGc7fNdz.jpg"
-						}
+						src={process.env.IMAGE_PATH + movie.backdrop_path}
 						alt="Picture of the author"
 						width={0}
 						height={0}
@@ -32,29 +40,20 @@ export default function Page({ searchParams }) {
 							zIndex: "-1",
 						}}
 					/>
-					<div className="heroinfo gap-3 mx-[2rem] my-auto">
+					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
 						<Image
-							src={
-								"https://image.tmdb.org/t/p/original/6tpiiM1i862oS2tjSwqmjv4dKGD.png"
-							}
+							src={process.env.IMAGE_PATH + image.file_path}
 							alt="Picture of the author"
 							width="0"
 							height="0"
 							sizes="100dvw"
 							className="w-[37%]"
 						/>
-						<p className="text-[0.75rem]">
-							Follow the mythic journey of Paul Atreides as he
-							unites with Chani and the Fremen while on a path of
-							revenge against the conspirators who destroyed his
-							family. Facing a choice between the love of his life
-							and the fate of the known universe, Paul endeavors
-							to prevent a terrible future only he can foresee.
-						</p>
-						<p>2024</p>
+						<p className="text-[1vw]">{movie.overview}</p>
+						<p>{movie.release_date.slice(0, 4)}</p>
 						<div className="flex gap-3">
-							<PlayButton />
-							<MoreInfoButton mediaid={"792307"}/>
+							<PlayButton mediaid={movie.id} />
+							<MoreInfoButton mediaid={movie.id} />
 						</div>
 					</div>
 				</div>

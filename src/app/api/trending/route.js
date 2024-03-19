@@ -1,7 +1,4 @@
-export async function GET(request) {
-	const searchParams = request.nextUrl.searchParams;
-	const query = searchParams.get("mediaid");
-
+export async function GET() {
 	const options = {
 		method: "GET",
 		headers: {
@@ -11,7 +8,7 @@ export async function GET(request) {
 	};
 
 	const dataRequest = await fetch(
-		`https://api.themoviedb.org/3/movie/${query}?append_to_response=images%2Ccredits%2Cvideos%2Cexternal_ids&language=en`,
+		`https://api.themoviedb.org/3/trending/all/day?language=en-US`,
 		options
 	);
 	const data = await dataRequest.json();

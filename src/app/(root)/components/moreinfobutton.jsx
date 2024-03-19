@@ -6,18 +6,16 @@ import { TbInfoCircle } from "react-icons/tb";
 
 export default function MoreInfoButton({ mediaid }) {
 	return (
-		<>
-			<Link
-				href={{
-					pathname: "/browse",
-					query: { mediaid },
-				}}
-				scroll={false}
-			>
-				<Button variant="moreinfo" className="flex gap-2 text-white">
-					<TbInfoCircle className="text-xl" /> More Info
-				</Button>
-			</Link>
-		</>
+		<Link
+			href={{
+				pathname: "/browse",
+				query: { mediaid },
+			}}
+			scroll={false}
+		>
+			<Button variant="moreinfo" className="flex gap-2 text-white">
+				<TbInfoCircle className="text-xl" /> More Info
+			</Button>
+		</Link>
 	);
 }
