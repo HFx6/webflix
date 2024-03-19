@@ -65,7 +65,7 @@ export default function MediaListContent({ results, titles }) {
 		cardRef.current.classList.remove("hovercard--active");
 	};
 	return (
-		<div className="flex flex-col moviecardsblock static mx-[2.5vw] my-3 gap-16 mt-[-18vh]">
+		<div className="flex flex-col moviecardsblock static mx-[2.5vw] my-3 gap-16 mt-[-6vh]">
 			{results.map((result, index) => (
 				<Carousel
 					key={titles[index]}

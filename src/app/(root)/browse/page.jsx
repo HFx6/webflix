@@ -26,7 +26,7 @@ export default async function Page({ searchParams }) {
 		<>
 			<div>
 				{mediaid ? <MediaModal mediaid={mediaid} /> : null}
-				<div className="imagepage h-[100vh]">
+				<div className="imagepage h-full w-full aspect-video">
 					<Image
 						src={process.env.IMAGE_PATH + movie.backdrop_path}
 						alt="Picture of the author"
