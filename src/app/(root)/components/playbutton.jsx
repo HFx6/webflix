@@ -12,7 +12,10 @@ export default function MoreInfoButton({ mediaid }) {
 			}}
 			scroll={false}
 		>
-			<Button variant="secondary" className="flex gap-2 pointer-events-auto">
+			<Button
+				variant="secondary"
+				className="flex gap-2 pointer-events-auto"
+			>
 				<FaPlay className="text-base" /> Play
 			</Button>
 		</Link>

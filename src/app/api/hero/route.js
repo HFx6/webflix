@@ -1,30 +1,30 @@
 export async function GET(request) {
 	const searchParams = request.nextUrl.searchParams;
-	const query = searchParams.get("mediaid");
+	const mediaId = searchParams.get("mediaid");
 
-	const options = {
-		method: "GET",
-		headers: {
-			accept: "application/json",
-			Authorization:
-				"Bearer "+process.env.TMDB_API_KEY,
-		},
+	const requestOptions = {
+			method: "GET",
+			headers: {
+		accept: "application/json",
+					Authorization: "Bearer " + process.env.TMDB_API_KEY,
+			},
 	};
 
-	const dataRequest = await fetch(
-		`https://api.themoviedb.org/3/trending/all/day?language=en-US`,
-		options
+	const trendingRequest = await fetch(
+			`https://api.themoviedb.org/3/trending/all/day?language=en-US`,
+			requestOptions
 	);
-	const data = await dataRequest.json();
+	const trendingData = await trendingRequest.json();
 
-	const dataRequest2 = await fetch(
-		`https://api.themoviedb.org/3/movie/${data.results[0].id}/images?include_image_language=en&language=en`,
-		options
+	let randomMovieIndex = Math.floor(Math.random() * trendingData.results.length);
+	let selectedMovie = trendingData.results[randomMovieIndex];
+
+	const imagesRequest = await fetch(
+			`https://api.themoviedb.org/3/movie/${selectedMovie.id}/images?include_image_language=en&language=en`,
+			requestOptions
 	);
-	const data2 = await dataRequest2.json();
+	const imagesData = await imagesRequest.json();
 
 
-	
-
-	return Response.json({ movie: data.results[0], image: data2.logos[0] });
+	return Response.json({ movie: selectedMovie, image: imagesData.logos[0] });
 }
