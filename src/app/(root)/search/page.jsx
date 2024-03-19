@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useEffect, useCallback, useState, useRef } from "react";
+import React, {
+	useEffect,
+	useCallback,
+	useState,
+	useRef,
+	Suspense,
+} from "react";
 import Image from "next/image";
 
 import { useSearchParams } from "next/navigation";
@@ -134,58 +140,61 @@ export default function Search() {
 
 	return (
 		<div className="gap-y-[10vh] mx-[2.5vw] mt-40 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-			<InfiniteGrid hasMore={hasMore} load={load}>
-				{results.map((result, index) => (
-					<div
-						key={index}
-						className="group relative aspect-video overflow-hidden"
-					>
-						<Image
-							src={
-								result.backdrop_path
-									? process.env.IMAGE_PATH 
-									  +result.backdrop_path
-									: result.poster_path
-									? process.env.IMAGE_PATH 
-									  +result.poster_path
-									: process.env.URL +"/logo/noimage.png"
-							}
-							width={500}
-							height={280}
-							alt={result.title}
-							placeholder={`data:image/svg+xml;base64,${toBase64(
-								shimmer(500, 280)
-							)}`}
-							className="w-full h-auto object-cover rounded-sm"
-							onMouseEnter={(e) =>
-								handleMouseEnter({
-									offset: e.target.getBoundingClientRect(),
-									offsetHeight: e.target.offsetHeight,
-									offsetWidth: e.target.offsetWidth,
-									backdrop_path: result.backdrop_path
-										? process.env.IMAGE_PATH 
-										  +result.backdrop_path
+			<Suspense>
+				<InfiniteGrid hasMore={hasMore} load={load}>
+					{results.map((result, index) => (
+						<div
+							key={index}
+							className="group relative aspect-video overflow-hidden"
+						>
+							<Image
+								src={
+									result.backdrop_path
+										? process.env.IMAGE_PATH +
+										  result.backdrop_path
 										: result.poster_path
-										? process.env.IMAGE_PATH 
-										  +result.poster_path
-										: process.env.URL +"/logo/noimage.png",
-									cumulativeOffset: cumulativeOffset(
-										e.target
-									),
-									mediaId: result.id,
-								})
-							}
-							cardHandleMouseLeave={cardHandleMouseLeave}
-						/>
-					</div>
-				))}
-			</InfiniteGrid>
-			<MovieCardInfo
-				cardRef={cardRef}
-				imageRef={imageRef}
-				mediaId={mediaId}
-				cardHandleMouseLeave={cardHandleMouseLeave}
-			/>
+										? process.env.IMAGE_PATH +
+										  result.poster_path
+										: process.env.URL + "/logo/noimage.png"
+								}
+								width={500}
+								height={280}
+								alt={result.title}
+								placeholder={`data:image/svg+xml;base64,${toBase64(
+									shimmer(500, 280)
+								)}`}
+								className="w-full h-auto object-cover rounded-sm"
+								onMouseEnter={(e) =>
+									handleMouseEnter({
+										offset: e.target.getBoundingClientRect(),
+										offsetHeight: e.target.offsetHeight,
+										offsetWidth: e.target.offsetWidth,
+										backdrop_path: result.backdrop_path
+											? process.env.IMAGE_PATH +
+											  result.backdrop_path
+											: result.poster_path
+											? process.env.IMAGE_PATH +
+											  result.poster_path
+											: process.env.URL +
+											  "/logo/noimage.png",
+										cumulativeOffset: cumulativeOffset(
+											e.target
+										),
+										mediaId: result.id,
+									})
+								}
+								cardHandleMouseLeave={cardHandleMouseLeave}
+							/>
+						</div>
+					))}
+				</InfiniteGrid>
+				<MovieCardInfo
+					cardRef={cardRef}
+					imageRef={imageRef}
+					mediaId={mediaId}
+					cardHandleMouseLeave={cardHandleMouseLeave}
+				/>
+			</Suspense>
 		</div>
 	);
 }

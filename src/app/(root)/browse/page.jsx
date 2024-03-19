@@ -12,7 +12,7 @@ import Image from "next/image";
 
 async function getHero() {
 	const res = await fetch(process.env.URL + "/api/hero", {
-		next: { revalidate: 86400 },
+		next: { revalidate: 3600 },
 	});
 	return res.json();
 }
