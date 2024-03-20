@@ -50,9 +50,10 @@ export default function MediaListContent({ results, titles }) {
 			cardRef.current.style.top = `${
 				cumulativeOffset.top - size.height / 2
 			}px`;
-			cardRef.current.style.left = `${
-				cumulativeOffset.left - size.width / 4
-			}px`;
+			cardRef.current.style.left = `${Math.min(
+				Math.max(cumulativeOffset.left - size.width / 4, 10),
+				window.innerWidth - size.width * 1.5 - 10
+			)}px`;
 			await sleep(600);
 
 			cardRef.current.classList.add("hovercard--active");

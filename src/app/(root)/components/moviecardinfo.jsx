@@ -1,7 +1,6 @@
 "use client";
-import Link from "next/link";
+
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 import { Fragment } from "react";
 
@@ -10,7 +9,6 @@ import { LuPlus } from "react-icons/lu";
 import { BsHandThumbsUp } from "react-icons/bs";
 import { BsChevronDown } from "react-icons/bs";
 import { LuDot } from "react-icons/lu";
-import { FaStar } from "react-icons/fa";
 
 import Cardbutton from "./cardbutton";
 
@@ -31,6 +29,24 @@ export default function MovieCardInfo({
 		return null;
 	}
 	const genres = getGenres(media_type, genre_ids);
+	const shimmer = (w, h) => `
+	<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+			<linearGradient id="g">
+				<stop stop-color="#333" offset="20%" />
+				<stop stop-color="#222" offset="50%" />
+				<stop stop-color="#333" offset="70%" />
+			</linearGradient>
+		</defs>
+		<rect width="${w}" height="${h}" fill="#333" />
+		<rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+		<animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+	</svg>`;
+
+	const toBase64 = (str) =>
+		typeof window === "undefined"
+			? Buffer.from(str).toString("base64")
+			: window.btoa(str);
 	return (
 		<div
 			className="hovercard"
@@ -38,13 +54,16 @@ export default function MovieCardInfo({
 			onMouseLeave={() => cardHandleMouseLeave()}
 		>
 			<div className="hovercard__image">
-				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img
+				<Image
 					src=""
 					alt="Image"
 					draggable="false"
 					ref={imageRef}
 					className="aspect-video overflow-hidden"
+					width={300}
+					placeholder={`data:image/svg+xml;base64,${toBase64(
+						shimmer(300, 165)
+					)}`}
 				/>
 			</div>
 			<div className="hovercard__content flex flex-col gap-2">

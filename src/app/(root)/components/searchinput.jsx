@@ -40,7 +40,6 @@ export default function SearchInput() {
 				onBlur={handleBlur}
 			>
 				<FiSearch
-					ref={buttonRef}
 					className="cursor-pointer"
 					onClick={handleFocus}
 				/>

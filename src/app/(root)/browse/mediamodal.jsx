@@ -1,18 +1,13 @@
 import {
 	Dialog,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
 } from "@/components/ui/dialog";
 
 import { BsHandThumbsUp } from "react-icons/bs";
-import { LuCheck } from "react-icons/lu";
 
 import dynamic from "next/dynamic";
 
-import PlayButton from "../components/playbutton";
 
 import YouTubeEmbed from "../components/youtubeembed";
 
