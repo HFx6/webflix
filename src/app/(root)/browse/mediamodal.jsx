@@ -1,18 +1,18 @@
-import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 
 import { BsHandThumbsUp } from "react-icons/bs";
 
 import dynamic from "next/dynamic";
 
-
 import YouTubeEmbed from "../components/youtubeembed";
+
+import CollectionGrid from "./collectiongrid";
+
+import { Suspense } from "react";
 
 import { fmtMSS } from "../../../utils/convertTime";
 import { getColor } from "../../../utils/getColor";
+import { Suspense } from "react";
 
 async function getMovie(mediaid) {
 	const res = await fetch(
@@ -194,6 +194,12 @@ async function MediaModal({ mediaid }) {
 							</div>
 						</div>
 					</div>
+					<Suspense>
+						<CollectionGrid
+							collection_id={movie?.belongs_to_collection?.id}
+							title={movie?.belongs_to_collection?.name}
+						/>
+					</Suspense>
 				</div>
 			</DialogContent>
 		</Dialog>

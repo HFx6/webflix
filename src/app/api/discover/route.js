@@ -1,9 +1,3 @@
-import Trending from "./data.json";
-import Animation from "./discovergenre.json";
-import Tv from "./discovertv2023.json";
-import NetflixMovie from "./netflixpopularmovie.json";
-import NetflixTV from "./netflixpopulartv.json";
-
 export async function GET(request) {
 	const searchParams = request.nextUrl.searchParams;
 	const query = searchParams.get("type");

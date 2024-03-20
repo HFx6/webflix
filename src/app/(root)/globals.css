@@ -297,7 +297,7 @@ html::-webkit-scrollbar,
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	column-gap: 10px;
-	padding: 15px 48px 52px 48px;
+	padding: 15px 48px 30px 48px;
 }
 
 .modal .modal-body .modal-content-first {
