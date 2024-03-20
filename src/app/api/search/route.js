@@ -13,7 +13,7 @@ export async function GET(request) {
 	const dataRequest = await fetch(
 		`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
 			query
-		)}&include_adult=false&language=en-US&page=${encodeURIComponent(page)}`,
+		)}&include_adult=true&with_watch_providers=8&language=en-US&page=${encodeURIComponent(page)}`,
 		options
 	);
 	const data = await dataRequest.json();

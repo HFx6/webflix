@@ -11,7 +11,7 @@ export default function MediaListContent({ results, titles }) {
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);
 
-	const [mediaId, setMediaId] = useState(null);
+	const [selectedMedia, setSelectedmedia] = useState({});
 	let delay = setTimeout(() => {}, 100);
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -22,8 +22,18 @@ export default function MediaListContent({ results, titles }) {
 		backdrop_path,
 		cumulativeOffset,
 		mediaId,
+		release_date,
+		vote_average,
+		genre_ids,
+		media_type,
 	}) => {
-		setMediaId(mediaId);
+		setSelectedmedia({
+			mediaId,
+			release_date,
+			vote_average,
+			genre_ids,
+			media_type,
+		});
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,
@@ -78,7 +88,7 @@ export default function MediaListContent({ results, titles }) {
 			<MovieCardInfo
 				cardRef={cardRef}
 				imageRef={imageRef}
-				mediaId={mediaId}
+				selectedMedia={selectedMedia}
 				cardHandleMouseLeave={cardHandleMouseLeave}
 			/>
 		</div>

@@ -52,7 +52,9 @@ export default function MovieCard({
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<Image
 				key={new Date().getTime()}
-				src={"https://image.tmdb.org/t/p/original/" + movie.backdrop_path}
+				src={
+					"https://image.tmdb.org/t/p/original/" + movie.backdrop_path
+				}
 				alt={"movie poster for " + movie.title}
 				className="moviecardimage w-full !relative"
 				onMouseEnter={() =>
@@ -63,6 +65,10 @@ export default function MovieCard({
 						backdrop_path: movie.backdrop_path,
 						cumulativeOffset: cumulativeOffset(imageRef.current),
 						mediaId: movie.id,
+						release_date: movie.release_date || movie.first_air_date,
+						vote_average: movie.vote_average,
+						genre_ids: movie.genre_ids,
+						media_type: movie.media_type,
 					})
 				}
 				fill={true}

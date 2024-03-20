@@ -16,44 +16,14 @@ import PlayButton from "../components/playbutton";
 
 import YouTubeEmbed from "../components/youtubeembed";
 
+import { fmtMSS } from "../../../utils/convertTime";
+import { getColor } from "../../../utils/getColor";
+
 async function getMovie(mediaid) {
 	const res = await fetch(
 		process.env.URL + "/api/moviedata?mediaid=" + mediaid
 	);
 	return res.json();
-}
-
-function getColor(value) {
-	const colors = [
-		{ val: 0, color: "red" },
-		{ val: 30, color: "orange" },
-		{ val: 60, color: "yellow" },
-		{ val: 75, color: "#21d07a" },
-	];
-
-	let colorToUse = colors[0].color;
-
-	for (let i = 0; i < colors.length; i++) {
-		if (value < colors[i].val) {
-			break;
-		}
-		colorToUse = colors[i].color;
-	}
-
-	return colorToUse;
-}
-
-function fmtMSS(s) {
-	let minutes = s % 60;
-	let hours = (s - minutes) / 60;
-	let result = "";
-	if (hours > 0) {
-		result += hours + "h ";
-	}
-	if (minutes > 0) {
-		result += minutes + "m";
-	}
-	return result.trim();
 }
 
 async function MediaModal({ mediaid }) {
@@ -145,7 +115,6 @@ async function MediaModal({ mediaid }) {
 							</div>
 						</div>
 					</div>
-
 				</DialogHeader>
 
 				<div className="modal">

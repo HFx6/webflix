@@ -13,5 +13,10 @@ export async function GET() {
 	);
 	const data = await dataRequest.json();
 
+	// loop through the results and remove any that dont have media_type of movie or tv
+	data.results = data.results.filter(
+		(result) => result.media_type === "movie" || result.media_type === "tv"
+	);
+
 	return Response.json({ data });
 }
