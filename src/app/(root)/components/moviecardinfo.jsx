@@ -59,6 +59,7 @@ export default function MovieCardInfo({
 					alt="Image"
 					draggable="false"
 					ref={imageRef}
+					loading="eager"
 					className="aspect-video overflow-hidden"
 					width={300}
 					placeholder={`data:image/svg+xml;base64,${toBase64(

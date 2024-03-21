@@ -38,9 +38,12 @@ export default function MediaListContent({ results, titles }) {
 			height: offsetHeight,
 			width: offsetWidth,
 		};
+		// remove active class from all other cards
+		if (cardRef?.current) cardRef?.current?.classList?.remove("hovercard--active");
+		if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
 		clearTimeout(delay);
 		delay = setTimeout(async function () {
-			imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
+			
 			cardRef.current.style.setProperty("--scale", ".66");
 			cardRef.current.style.width = `${size.width * 1.5}px`;
 			cardRef.current.style.left = `${
