@@ -9,7 +9,7 @@ export async function POST(request, res) {
 			Authorization: "Bearer " + process.env.TMDB_API_KEY,
 		},
 	};
-
+	console.log("apiParams", apiParams);
 	const dataRequest = await fetch(
 		`https://api.themoviedb.org/3${endpoint}?${new URLSearchParams(
 			apiParams
@@ -17,6 +17,6 @@ export async function POST(request, res) {
 		options
 	);
 	const data = await dataRequest.json();
-
+	console.log("data", data);
 	return NextResponse.json({ data });
 }

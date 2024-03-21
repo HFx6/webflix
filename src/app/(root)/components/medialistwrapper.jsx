@@ -84,6 +84,7 @@ export default async function MediaListWrapper() {
 		}).then((res) => res.json())
 	);
 	const results = await Promise.all(listOfData);
+	console.log(results);
 	return (
 		<MediaListContent
 			results={results}
