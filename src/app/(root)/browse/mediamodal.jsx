@@ -12,7 +12,6 @@ import { Suspense } from "react";
 
 import { fmtMSS } from "../../../utils/convertTime";
 import { getColor } from "../../../utils/getColor";
-import { Suspense } from "react";
 
 async function getMovie(mediaid) {
 	const res = await fetch(
