@@ -73,7 +73,7 @@ export default function MovieCardInfo({
 							active={true}
 							params={{
 								pathname: "/watch",
-								query: { mediaid: mediaId },
+								query: { mediaid: mediaId, type: media_type },
 							}}
 						>
 							<FaPlay />
@@ -88,7 +88,7 @@ export default function MovieCardInfo({
 					<Cardbutton
 						params={{
 							pathname: "/browse",
-							query: { mediaid: mediaId },
+							query: { mediaid: mediaId, type: media_type },
 						}}
 					>
 						<BsChevronDown />

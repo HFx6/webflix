@@ -13,7 +13,7 @@ export default function Page() {
 					<div>
 						<Link href="/browse">
 							<Image
-								src="/avatar.png"
+								src="/bouba.png"
 								width={150}
 								height={150}
 								alt="empty"
@@ -26,7 +26,7 @@ export default function Page() {
 					<div>
 						<Link href="/browse">
 							<Image
-								src="/avatar.png"
+								src="/kiki.png"
 								width={150}
 								height={150}
 								alt="empty"

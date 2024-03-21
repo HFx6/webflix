@@ -110,10 +110,10 @@ export default function SiteHeader() {
 								>
 									<Avatar className="h-8 w-8 rounded-sm">
 										<AvatarImage
-											src="/avatar.png"
+											src=""
 											alt="@shadcn"
 										/>
-										<AvatarFallback>JS</AvatarFallback>
+										<AvatarFallback>WF</AvatarFallback>
 									</Avatar>
 									<FaCaretDown />
 								</Button>
@@ -126,7 +126,7 @@ export default function SiteHeader() {
 								<DropdownMenuLabel className="font-normal">
 									<div className="flex flex-col space-y-1">
 										<p className="text-sm font-medium leading-none">
-											j Smith
+											Web Flix
 										</p>
 										<p className="text-xs leading-none text-muted-foreground">
 											viewer@webflix.com

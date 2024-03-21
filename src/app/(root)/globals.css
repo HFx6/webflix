@@ -329,14 +329,14 @@ html::-webkit-scrollbar,
 	width: 30px;
 }
 
-.modal .modal-body .modal-content-first .modal-description .description-badge {
+.description-badge {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 15px;
 	border: 1px solid hsla(0, 0%, 100%, 0.4);
 	border-radius: 3px;
-	color: hsla(0, 0%, 100%, 0.9);
+	color: inherit;
 	font-size: 14px;
 	padding: 0 0.5em;
 	white-space: nowrap;

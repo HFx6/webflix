@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { FaPlay } from "react-icons/fa";
 import { TbInfoCircle } from "react-icons/tb";
 
-export default function MoreInfoButton({ mediaid }) {
+export default function MoreInfoButton({ mediaid, media_type }) {
 	return (
 		<Link
 			href={{
 				pathname: "/browse",
-				query: { mediaid },
+				query: { mediaid, type: media_type },
 			}}
 			scroll={false}
 		>

@@ -18,14 +18,17 @@ async function getHero() {
 }
 
 export default async function Page({ searchParams }) {
-	const { mediaid } = searchParams;
+	const { mediaid, type } = searchParams;
 	const movieData = getHero();
 	const [_movie] = await Promise.all([movieData]);
 	const { movie, image } = _movie;
+
 	return (
 		<>
 			<div>
-				{mediaid ? <MediaModal mediaid={mediaid} /> : null}
+				{mediaid && type ? (
+					<MediaModal mediaid={mediaid} type={type} />
+				) : null}
 				<div className="imagepage h-full w-full aspect-video">
 					<Image
 						src={process.env.IMAGE_PATH + movie.backdrop_path}
@@ -42,7 +45,7 @@ export default async function Page({ searchParams }) {
 					/>
 					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
 						<Image
-							src={process.env.IMAGE_PATH + image.file_path}
+							src={process.env.IMAGE_PATH + image?.file_path}
 							alt="Picture of the author"
 							width="0"
 							height="0"
@@ -50,10 +53,15 @@ export default async function Page({ searchParams }) {
 							className="w-[37%]"
 						/>
 						<p className="text-[1vw]">{movie.overview}</p>
-						<p>{movie.release_date.slice(0, 4)}</p>
+						<p>
+							{movie.release_date||movie.first_air_date?.slice(0, 4)}
+						</p>
 						<div className="flex gap-3">
 							<PlayButton mediaid={movie.id} />
-							<MoreInfoButton mediaid={movie.id} />
+							<MoreInfoButton
+								mediaid={movie.id}
+								media_type={movie.media_type}
+							/>
 						</div>
 					</div>
 				</div>
