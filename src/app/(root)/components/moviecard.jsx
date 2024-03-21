@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -23,12 +23,20 @@ var cumulativeOffset = function (element) {
 	};
 };
 
+async function fetchImage(src) {
+	const response = await fetch(src);
+	const arrayBuffer = await response.arrayBuffer();
+	const base64Image = `data:image/jpeg;base64,${Buffer.from(
+		arrayBuffer
+	).toString("base64")}`;
+	return base64Image;
+}
+
 export default function MovieCard({
 	handleMouseEnter,
 	handleMouseLeave,
 	movie,
 }) {
-	const imageRef = useRef(null);
 	const shimmer = (w, h) => `
 	<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
@@ -47,11 +55,31 @@ export default function MovieCard({
 		typeof window === "undefined"
 			? Buffer.from(str).toString("base64")
 			: window.btoa(str);
+	const imageRef = useRef(null);
+	const [src, setSrc] = useState(
+		`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`
+	);
+
+	useEffect(() => {
+		movie.media_type = movie.media_type
+			? movie.media_type
+			: movie.first_air_date
+			? "tv"
+			: "movie";
+		const loadSmallImage = async () => {
+			const smallImage = await fetchImage(
+				"https://image.tmdb.org/t/p/w200/" + movie.backdrop_path
+			);
+			setSrc(smallImage);
+		};
+
+		loadSmallImage();
+	}, [movie.backdrop_path]);
 	return (
 		<>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<Image
-				key={new Date().getTime()}
+				key={movie.id + movie.media_type}
 				src={
 					"https://image.tmdb.org/t/p/original/" + movie.backdrop_path
 				}
@@ -69,16 +97,15 @@ export default function MovieCard({
 							movie.release_date || movie.first_air_date,
 						vote_average: movie.vote_average,
 						genre_ids: movie.genre_ids,
-						media_type: movie.media_type ? movie.media_type : movie.first_air_date ? "tv" : "movie",
+						media_type: movie.media_type,
 					})
 				}
 				fill={true}
 				sizes={
 					"(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
 				}
-				placeholder={`data:image/svg+xml;base64,${toBase64(
-					shimmer(700, 475)
-				)}`}
+				placeholder="blur"
+				blurDataURL={src}
 				onMouseLeave={() => handleMouseLeave()}
 				ref={imageRef}
 			/>

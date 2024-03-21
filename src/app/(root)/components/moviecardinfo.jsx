@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 
+import { useEffect, useRef, useState } from "react";
+
 import { Fragment } from "react";
 
 import { FaPlay } from "react-icons/fa";
@@ -16,19 +18,30 @@ import { getColor } from "../../../utils/getColor";
 
 import { getGenres } from "../../../utils/getGenres";
 
+async function fetchImage(src) {
+	const response = await fetch(src);
+	const arrayBuffer = await response.arrayBuffer();
+	const base64Image = `data:image/jpeg;base64,${Buffer.from(
+		arrayBuffer
+	).toString("base64")}`;
+	return base64Image;
+}
+
 export default function MovieCardInfo({
 	cardRef,
 	imageRef,
 	cardHandleMouseLeave,
 	selectedMedia,
 }) {
-	const { mediaId, release_date, vote_average, genre_ids, media_type } =
-		selectedMedia;
+	const {
+		mediaId,
+		release_date,
+		vote_average,
+		genre_ids,
+		media_type,
+		backdrop_path,
+	} = selectedMedia;
 
-	if (mediaId === undefined) {
-		return null;
-	}
-	const genres = getGenres(media_type, genre_ids);
 	const shimmer = (w, h) => `
 	<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
@@ -47,6 +60,26 @@ export default function MovieCardInfo({
 		typeof window === "undefined"
 			? Buffer.from(str).toString("base64")
 			: window.btoa(str);
+	const [src, setSrc] = useState(
+		`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`
+	);
+
+	useEffect(() => {
+		const loadSmallImage = async () => {
+			const smallImage = await fetchImage(
+				"https://image.tmdb.org/t/p/w200/" + backdrop_path
+			);
+			setSrc(smallImage);
+		};
+
+		loadSmallImage();
+	}, [backdrop_path]);
+
+	if (mediaId === undefined) {
+		return null;
+	}
+	const genres = getGenres(media_type, genre_ids);
+
 	return (
 		<div
 			className="hovercard"
@@ -55,16 +88,16 @@ export default function MovieCardInfo({
 		>
 			<div className="hovercard__image">
 				<Image
-					src=""
+					src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
 					alt="Image"
 					draggable="false"
 					ref={imageRef}
 					loading="eager"
 					className="aspect-video overflow-hidden"
 					width={300}
-					placeholder={`data:image/svg+xml;base64,${toBase64(
-						shimmer(300, 165)
-					)}`}
+					height={150}
+					placeholder="blur"
+					blurDataURL={src}
 				/>
 			</div>
 			<div className="hovercard__content flex flex-col gap-2">

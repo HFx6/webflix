@@ -25,22 +25,24 @@ export default function MediaListContent({ results, titles }) {
 		release_date,
 		vote_average,
 		genre_ids,
-		media_type,
+		media_type
 	}) => {
+		if (cardRef?.current) cardRef?.current?.classList?.remove("hovercard--active");
 		setSelectedmedia({
 			mediaId,
 			release_date,
 			vote_average,
 			genre_ids,
 			media_type,
+			backdrop_path
 		});
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,
 		};
 		// remove active class from all other cards
-		if (cardRef?.current) cardRef?.current?.classList?.remove("hovercard--active");
-		if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
+		
+		// if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
 		clearTimeout(delay);
 		delay = setTimeout(async function () {
 			

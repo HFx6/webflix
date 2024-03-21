@@ -17,11 +17,25 @@ async function getHero() {
 	return res.json();
 }
 
+const toBase64 = (str) =>
+	typeof window === "undefined"
+		? Buffer.from(str).toString("base64")
+		: window.btoa(str);
+
+		async function fetchImage(src) {
+			const response = await fetch(src);
+			const buffer = await response.arrayBuffer();
+			const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`;
+			return base64Image;
+		}
+
 export default async function Page({ searchParams }) {
 	const { mediaid, type } = searchParams;
 	const movieData = getHero();
 	const [_movie] = await Promise.all([movieData]);
 	const { movie, image } = _movie;
+
+	const smallImage = await fetchImage(process.env.IMAGE_PATH_SMALL + movie.backdrop_path);
 
 	return (
 		<>
@@ -42,6 +56,8 @@ export default async function Page({ searchParams }) {
 							position: "absolute",
 							zIndex: "-1",
 						}}
+						placeholder="blur"
+						blurDataURL={smallImage}
 					/>
 					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
 						<Image
@@ -54,7 +70,8 @@ export default async function Page({ searchParams }) {
 						/>
 						<p className="text-[1vw]">{movie.overview}</p>
 						<p>
-							{movie.release_date||movie.first_air_date?.slice(0, 4)}
+							{movie.release_date ||
+								movie.first_air_date?.slice(0, 4)}
 						</p>
 						<div className="flex gap-3">
 							<PlayButton mediaid={movie.id} />

@@ -26,11 +26,11 @@ async function getTv(mediaid) {
 }
 
 async function MediaModal({ mediaid, type }) {
-	console.log(mediaid, type);
+
 	const mediaData = type == "tv" ? getTv(mediaid) : getMovie(mediaid);
 	const [_media] = await Promise.all([mediaData]);
 	const media = _media.data;
-	console.log(media);
+	
 	return (
 		<Dialog defaultOpen={mediaid}>
 			<DialogContent className={"overflow-y-scroll max-h-screen"}>

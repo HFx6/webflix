@@ -26,20 +26,26 @@ export default async function CollectionGrid({ title, collection_id }) {
 							className="h-full rounded-sm overflow-hidden flex flex-col "
 						>
 							<Link href={`/browse?mediaid=${movie.id}`} passHref>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src={
-									process.env.IMAGE_PATH + movie.backdrop_path
-								}
-								alt={movie.title}
-								className="w-full aspect-video"
-							/>
+								{/* eslint-disable-next-line @next/next/no-img-element */}
+								<img
+									src={
+										process.env.IMAGE_PATH +
+										movie.backdrop_path
+									}
+									alt={movie.title}
+									className="w-full aspect-video"
+								/>
 							</Link>
 							<div className="bg-[#2F2F2E] text-[#808080] p-3 flex-1">
 								<div className="flex justify-between">
 									<div className="flex items-center gap-2">
 										<span>
-											{movie.release_date||movie.first_air_date?.slice(0, 4)}
+											{movie.release_date?.slice(0, 4) ||
+												movie.first_air_date?.slice(
+													0,
+													4
+												) ||
+												"tba"}
 										</span>
 
 										<span className="description-badge">
