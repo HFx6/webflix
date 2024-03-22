@@ -8,6 +8,8 @@ import MoreInfoButton from "../components/moreinfobutton";
 
 import MediaListWrapper from "../components/medialistwrapper";
 
+import YoutubeEmbed from "../components/youtubeembed";
+
 import Image from "next/image";
 
 async function getHero() {
@@ -22,20 +24,24 @@ const toBase64 = (str) =>
 		? Buffer.from(str).toString("base64")
 		: window.btoa(str);
 
-		async function fetchImage(src) {
-			const response = await fetch(src);
-			const buffer = await response.arrayBuffer();
-			const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`;
-			return base64Image;
-		}
+async function fetchImage(src) {
+	const response = await fetch(src);
+	const buffer = await response.arrayBuffer();
+	const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString(
+		"base64"
+	)}`;
+	return base64Image;
+}
 
 export default async function Page({ searchParams }) {
 	const { mediaid, type } = searchParams;
 	const movieData = getHero();
 	const [_movie] = await Promise.all([movieData]);
-	const { movie, image } = _movie;
+	const { movie, data } = _movie;
 
-	const smallImage = await fetchImage(process.env.IMAGE_PATH_SMALL + movie.backdrop_path);
+	const smallImage = await fetchImage(
+		process.env.IMAGE_PATH_SMALL + movie.backdrop_path
+	);
 
 	return (
 		<>
@@ -59,9 +65,22 @@ export default async function Page({ searchParams }) {
 						placeholder="blur"
 						blurDataURL={smallImage}
 					/>
+					<YoutubeEmbed
+						videoId={
+							data.videos.results.find((m) => {
+								return (
+									m.site == "YouTube" && m.type == "Trailer"
+								);
+							}).key
+						}
+						shouldPlay={!(mediaid && type)}
+					/>
 					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
 						<Image
-							src={process.env.IMAGE_PATH + image?.file_path}
+							src={
+								process.env.IMAGE_PATH +
+								data.images.logos[0]?.file_path
+							}
 							alt="Picture of the author"
 							width="0"
 							height="0"
@@ -70,7 +89,7 @@ export default async function Page({ searchParams }) {
 						/>
 						<p className="text-[1vw]">{movie.overview}</p>
 						<p>
-							{movie.release_date ||
+							{movie.release_date?.slice(0, 4) ||
 								movie.first_air_date?.slice(0, 4)}
 						</p>
 						<div className="flex gap-3">

@@ -97,7 +97,9 @@ export default function MovieCard({
 							movie.release_date || movie.first_air_date,
 						vote_average: movie.vote_average,
 						genre_ids: movie.genre_ids,
-						media_type: movie.media_type,
+						media_type:
+							movie.media_type ||
+							(movie.first_air_date ? "tv" : "movie"),
 					})
 				}
 				fill={true}

@@ -1,16 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import YouTube from "react-youtube";
 
-export default function YoutubeEmbed({ videoId, backdrop_path }) {
+export default function YoutubeEmbed({ videoId, shouldPlay }) {
 	const [ready, setReady] = useState(false);
+	const playerRef = useRef(null);
+
+	useEffect(() => {
+		if (shouldPlay) {
+			playerRef.current.getInternalPlayer().playVideo();
+		} else {
+			playerRef.current.getInternalPlayer().pauseVideo();
+		}
+	}, [shouldPlay]);
+
 	const opts = {
 		height: "100%",
 		width: "100%",
 		playerVars: {
-			autoplay: 1,
 			controls: 0,
 			showinfo: 0,
 			modestbranding: 1,
@@ -19,43 +28,39 @@ export default function YoutubeEmbed({ videoId, backdrop_path }) {
 		},
 	};
 	async function onPlayerReady(event) {
-		event.target.setVolume(0);
-		event.target.playVideo();
+		setTimeout(() => {
+			event.target.setVolume(0);
+			if (shouldPlay) {
+				event.target.playVideo();
+			} else {
+				event.target.pauseVideo();
+			}
+		}, 2000);
 	}
 	function onPlayerEnd(event) {
 		event.target.setVolume(0);
 		event.target.playVideo();
 	}
+	async function onPlay(event) {
+		setTimeout(() => {
+			setReady(true);
+		}, 500);
+	}
 
 	return (
-		<div className="max-h-[720px] aspect-video relative">
-			<div
-				className="flex items-end px-8 py-4 gap-2 pointer-events-none"
-				style={{
-					width: "100%",
-					height: "100%",
-					position: "absolute",
-				}}
-			>
-			</div>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
-			<img
-				src={"https://image.tmdb.org/t/p/original/" + backdrop_path}
-				alt="youtube embed placeholder"
-				className={`w-full ${
-					ready ? "opacity-0" : ""
-				} absolute transition duration-700 ease-in-out`}
-			/>
-
+		<>
 			<YouTube
+				ref={playerRef}
 				videoId={videoId}
 				opts={opts}
-				className="h-[100%]"
+				className={`h-full w-full absolute z-[-1] transition-opacity duration-500 ${
+					ready ? "opacity-1" : "opacity-0"
+				}`}
 				iframeClassName="w-full pointer-events-none scale-150"
 				onReady={onPlayerReady}
+				onPlay={onPlay}
 				onEnd={onPlayerEnd}
-				onPlay={() => setReady(true)}
 			/>
-		</div>
+		</>
 	);
 }

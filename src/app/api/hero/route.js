@@ -20,18 +20,16 @@ export async function GET(request) {
 		Math.random() * trendingData.results.length
 	);
 	let selectedMovie = trendingData.results[randomMovieIndex];
-
 	selectedMovie.media_type =
-		selectedMovie.media_type || selectedMovie.first_air_date
-			? "tv"
-			: "movie";
+		selectedMovie.media_type ||
+		(selectedMovie.first_air_date ? "tv" : "movie");
 
-
-	const imagesRequest = await fetch(
-		`https://api.themoviedb.org/3/${selectedMovie.media_type}/${selectedMovie.id}/images?include_image_language=en&language=en`,
+	const dataRequest = await fetch(
+		`https://api.themoviedb.org/3/${selectedMovie.media_type}/${selectedMovie.id}?append_to_response=images%2Ccredits%2Cvideos%2Cexternal_ids&language=en`,
 		requestOptions
 	);
-	const imagesData = await imagesRequest.json();
 
-	return Response.json({ movie: selectedMovie, image: imagesData.logos[0] });
+	const data = await dataRequest.json();
+
+	return Response.json({ movie: selectedMovie, data });
 }

@@ -4,7 +4,7 @@ import { BsHandThumbsUp } from "react-icons/bs";
 
 import dynamic from "next/dynamic";
 
-import YouTubeEmbed from "../components/youtubeembed";
+import YouTubeEmbed from "../components/modalyoutubeembed";
 
 import CollectionGrid from "./collectiongrid";
 
@@ -26,11 +26,10 @@ async function getTv(mediaid) {
 }
 
 async function MediaModal({ mediaid, type }) {
-
 	const mediaData = type == "tv" ? getTv(mediaid) : getMovie(mediaid);
 	const [_media] = await Promise.all([mediaData]);
 	const media = _media.data;
-	
+
 	return (
 		<Dialog defaultOpen={mediaid}>
 			<DialogContent className={"overflow-y-scroll max-h-screen"}>
@@ -38,12 +37,16 @@ async function MediaModal({ mediaid, type }) {
 					<div className="modal-header">
 						<YouTubeEmbed
 							videoId={
-								media.videos.results.find((m) => {
-									return (
-										m.site == "YouTube" &&
-										m.type == "Trailer"
-									);
-								}).key
+								(
+									media.videos.results.find(
+										(m) =>
+											m.site == "YouTube" &&
+											m.type == "Trailer"
+									) ||
+									media.videos.results.find(
+										(m) => m.site == "YouTube"
+									) || { key: "default_key" }
+								).key // fallback object
 							}
 							backdrop_path={media.backdrop_path}
 						/>
