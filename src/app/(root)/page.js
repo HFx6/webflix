@@ -1,10 +1,17 @@
+"use client";
+
 import { ImPlus } from "react-icons/im";
 
 import Link from "next/link";
 
 import Image from "next/image";
 
+import { db, login } from "../../utils/db";
+
 export default function Page() {
+	const loginWithUser = async (username) => {
+		await login(username);
+	};
 	return (
 		<div className="flex items-center m-auto justify-center h-[100vh] flex-col gap-7">
 			<p className="font-normal text-5xl">Who&apos;s Watching?</p>
@@ -17,6 +24,7 @@ export default function Page() {
 								width={150}
 								height={150}
 								alt="empty"
+								onClick={() => loginWithUser("Bouba")}
 							/>
 						</Link>
 					</div>
@@ -30,6 +38,7 @@ export default function Page() {
 								width={150}
 								height={150}
 								alt="empty"
+								onClick={() => loginWithUser("Kiki")}
 							/>
 						</Link>
 					</div>

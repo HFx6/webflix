@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 import { Fragment } from "react";
 
@@ -17,6 +17,14 @@ import Cardbutton from "./cardbutton";
 import { getColor } from "../../../utils/getColor";
 
 import { getGenres } from "../../../utils/getGenres";
+
+import {
+	db,
+	updateLikedMedia,
+	updateWatchlistMedia,
+	isMovieLiked,
+	isMovieInWatchlist,
+} from "../../../utils/db";
 
 async function fetchImage(src) {
 	const response = await fetch(src);
@@ -41,6 +49,29 @@ export default function MovieCardInfo({
 		media_type,
 		backdrop_path,
 	} = selectedMedia;
+
+	const [liked, setLiked] = useState(false);
+	const [watched, setWatched] = useState(false);
+
+	useEffect(() => {
+		async function checkRecords() {
+			const isLiked = await isMovieLiked(mediaId);
+			const isInWatchlist = await isMovieInWatchlist(mediaId);
+			setLiked(isLiked);
+			setWatched(isInWatchlist);
+		}
+		if (mediaId !== undefined) {
+			checkRecords();
+		}
+	}, [mediaId]);
+
+	const addMoveToWatchlist = async (mediaId) => {
+		setWatched(await updateWatchlistMedia(mediaId));
+	};
+
+	const addMovieToLiked = async (mediaId) => {
+		setLiked(await updateLikedMedia(mediaId));
+	};
 
 	const shimmer = (w, h) => `
 	<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -88,7 +119,7 @@ export default function MovieCardInfo({
 		>
 			<div className="hovercard__image">
 				<Image
-					src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+					src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
 					alt="Image"
 					draggable="false"
 					ref={imageRef}
@@ -112,11 +143,15 @@ export default function MovieCardInfo({
 						>
 							<FaPlay />
 						</Cardbutton>
-						<Cardbutton>
-							<LuPlus />
+						<Cardbutton active={watched}>
+							<LuPlus
+								onClick={() => addMoveToWatchlist(mediaId)}
+							/>
 						</Cardbutton>
-						<Cardbutton>
-							<BsHandThumbsUp />
+						<Cardbutton active={liked}>
+							<BsHandThumbsUp
+								onClick={() => addMovieToLiked(mediaId)}
+							/>
 						</Cardbutton>
 					</div>
 					<Cardbutton

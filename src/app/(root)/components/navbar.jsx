@@ -24,9 +24,36 @@ import SearchInput from "./searchinput";
 
 import Mobile from "./mobile";
 
+import { db, logOutCurrentUser } from "../../../utils/db";
+
+import { useLiveQuery } from "dexie-react-hooks";
+import { useState, useEffect } from "react";
+
+import { useRouter } from "next/navigation";
+
 const pathname = "/docs";
 export default function SiteHeader() {
+	const current_user = useLiveQuery(() => db.current_user.toArray());
+	const watchlist = useLiveQuery(() => db.watchlist.toArray());
+	const liked = useLiveQuery(() => db.liked.toArray());
 	const scrollPosition = useScrollPosition();
+	const [user, setUser] = useState("");
+	const router = useRouter();
+	useEffect(() => {
+		if (current_user?.length > 0) {
+			setUser(current_user[0].username);
+		}
+	}, [current_user]);
+
+	useEffect(() => {
+		console.log("watchlist", watchlist);
+		console.log("liked", liked);
+	}, [watchlist, liked]);
+
+	async function logOut() {
+		logOutCurrentUser();
+		router.push("");
+	}
 
 	return (
 		<header
@@ -110,7 +137,7 @@ export default function SiteHeader() {
 								>
 									<Avatar className="h-8 w-8 rounded-sm">
 										<AvatarImage
-											src=""
+											src={`/${user}.png`}
 											alt="@shadcn"
 										/>
 										<AvatarFallback>WF</AvatarFallback>
@@ -126,10 +153,10 @@ export default function SiteHeader() {
 								<DropdownMenuLabel className="font-normal">
 									<div className="flex flex-col space-y-1">
 										<p className="text-sm font-medium leading-none">
-											Web Flix
+											{user}
 										</p>
 										<p className="text-xs leading-none text-muted-foreground">
-											viewer@webflix.com
+											{user}@webflix.com
 										</p>
 									</div>
 								</DropdownMenuLabel>
@@ -155,7 +182,7 @@ export default function SiteHeader() {
 									</DropdownMenuItem>
 								</DropdownMenuGroup>
 								<DropdownMenuSeparator />
-								<DropdownMenuItem>
+								<DropdownMenuItem onClick={() => logOut()}>
 									Log out
 									<DropdownMenuShortcut>
 										⇧⌘Q

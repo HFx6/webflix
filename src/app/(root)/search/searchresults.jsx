@@ -62,6 +62,7 @@ export default function SearchResults() {
 	const imageRef = useRef(null);
 
 	const [mediaId, setMediaId] = useState(null);
+	const [selectedMedia, setSelectedmedia] = useState({});
 	let delay = setTimeout(() => {}, 100);
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -72,15 +73,30 @@ export default function SearchResults() {
 		backdrop_path,
 		cumulativeOffset,
 		mediaId,
+		release_date,
+		vote_average,
+		genre_ids,
+		media_type
 	}) => {
-		setMediaId(mediaId);
+		if (cardRef?.current) cardRef?.current?.classList?.remove("hovercard--active");
+		setSelectedmedia({
+			mediaId,
+			release_date,
+			vote_average,
+			genre_ids,
+			media_type,
+			backdrop_path
+		});
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,
 		};
+		// remove active class from all other cards
+		
+		// if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
 		clearTimeout(delay);
 		delay = setTimeout(async function () {
-			imageRef.current.src = backdrop_path;
+			
 			cardRef.current.style.setProperty("--scale", ".66");
 			cardRef.current.style.width = `${size.width * 1.5}px`;
 			cardRef.current.style.left = `${
@@ -176,7 +192,7 @@ export default function SearchResults() {
 									mediaId: result.id,
 								})
 							}
-							cardHandleMouseLeave={cardHandleMouseLeave}
+							onMouseLeave={() => handleMouseLeave()}
 						/>
 					</div>
 				))}
@@ -184,7 +200,7 @@ export default function SearchResults() {
 			<MovieCardInfo
 				cardRef={cardRef}
 				imageRef={imageRef}
-				mediaId={mediaId}
+				selectedMedia={selectedMedia}
 				cardHandleMouseLeave={cardHandleMouseLeave}
 			/>
 		</div>
