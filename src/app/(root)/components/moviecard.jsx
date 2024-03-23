@@ -90,13 +90,14 @@ export default function MovieCard({
 						offset: imageRef.current.getBoundingClientRect(),
 						offsetHeight: imageRef.current.offsetHeight,
 						offsetWidth: imageRef.current.offsetWidth,
-						backdrop_path: movie.backdrop_path,
+						backdrop_path: movie?.backdrop_path,
 						cumulativeOffset: cumulativeOffset(imageRef.current),
 						mediaId: movie.id,
 						release_date:
 							movie.release_date || movie.first_air_date,
 						vote_average: movie.vote_average,
 						genre_ids: movie.genre_ids,
+						poster_path: movie?.poster_path,
 						media_type:
 							movie.media_type ||
 							(movie.first_air_date ? "tv" : "movie"),

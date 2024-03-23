@@ -151,7 +151,7 @@ const tvGenres = {
 export function getGenres(mediaType, id_array) {
 	const genres = mediaType === "movie" ? movieGenres : tvGenres;
 	const genreNames = [];
-	id_array.forEach((id) => {
+	id_array?.forEach((id) => {
 		const genre = genres.genres.find((genre) => genre.id === id);
 		if (genre) {
 			genreNames.push(genre.name);

@@ -71,32 +71,34 @@ export default function SearchResults() {
 		offsetHeight,
 		offsetWidth,
 		backdrop_path,
+		poster_path,
 		cumulativeOffset,
 		mediaId,
 		release_date,
 		vote_average,
 		genre_ids,
-		media_type
+		media_type,
 	}) => {
-		if (cardRef?.current) cardRef?.current?.classList?.remove("hovercard--active");
+		if (cardRef?.current)
+			cardRef?.current?.classList?.remove("hovercard--active");
 		setSelectedmedia({
 			mediaId,
 			release_date,
 			vote_average,
 			genre_ids,
+			poster_path,
 			media_type,
-			backdrop_path
+			backdrop_path,
 		});
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,
 		};
 		// remove active class from all other cards
-		
+
 		// if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
 		clearTimeout(delay);
 		delay = setTimeout(async function () {
-			
 			cardRef.current.style.setProperty("--scale", ".66");
 			cardRef.current.style.width = `${size.width * 1.5}px`;
 			cardRef.current.style.left = `${
@@ -165,7 +167,7 @@ export default function SearchResults() {
 									: result.poster_path
 									? process.env.IMAGE_PATH +
 									  result.poster_path
-									: process.env.URL + "/logo/noimage.png"
+									: "/logo/noimage.png"
 							}
 							width={500}
 							height={280}
@@ -185,11 +187,22 @@ export default function SearchResults() {
 										: result.poster_path
 										? process.env.IMAGE_PATH +
 										  result.poster_path
-										: process.env.URL + "/logo/noimage.png",
+										: "/logo/noimage.png",
 									cumulativeOffset: cumulativeOffset(
 										e.target
 									),
 									mediaId: result.id,
+									release_date:
+										result.release_date ||
+										result.first_air_date,
+									vote_average: result.vote_average,
+									genre_ids: result.genre_ids,
+									poster_path: result.poster_path,
+									media_type:
+										result.media_type ||
+										(result.first_air_date
+											? "tv"
+											: "movie"),
 								})
 							}
 							onMouseLeave={() => handleMouseLeave()}

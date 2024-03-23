@@ -48,7 +48,16 @@ export default function MovieCardInfo({
 		genre_ids,
 		media_type,
 		backdrop_path,
+		poster_path,
 	} = selectedMedia;
+
+	console.log(
+		backdrop_path
+			? process.env.IMAGE_PATH + backdrop_path
+			: poster_path
+			? process.env.IMAGE_PATH + poster_path
+			: "/logo/noimage.png"
+	);
 
 	const [liked, setLiked] = useState(false);
 	const [watched, setWatched] = useState(false);
@@ -119,7 +128,13 @@ export default function MovieCardInfo({
 		>
 			<div className="hovercard__image">
 				<Image
-					src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
+					src={
+						backdrop_path
+							? backdrop_path
+							: poster_path
+							? poster_path
+							: "/logo/noimage.png"
+					}
 					alt="Image"
 					draggable="false"
 					ref={imageRef}
