@@ -185,7 +185,7 @@ export default function MovieCardInfo({
 						</p>
 					</div>
 					<div className="movieyear text-gray-300">
-						<p>{release_date.slice(0, 4)}</p>
+						<p>{release_date?.slice(0, 4)}</p>
 					</div>
 				</div>
 				<div className="flex items-center flex-wrap">

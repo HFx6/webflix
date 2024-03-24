@@ -85,7 +85,7 @@ export default function MovieCard({
 				}
 				alt={"movie poster for " + movie.title}
 				className="moviecardimage w-full !relative"
-				onMouseEnter={() =>
+				onMouseEnter={() => {
 					handleMouseEnter({
 						offset: imageRef.current.getBoundingClientRect(),
 						offsetHeight: imageRef.current.offsetHeight,
@@ -105,15 +105,17 @@ export default function MovieCard({
 						media_type:
 							movie.media_type ||
 							(movie.first_air_date ? "tv" : "movie"),
-					})
-				}
+					});
+				}}
 				fill={true}
 				sizes={
 					"(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
 				}
 				placeholder="blur"
 				blurDataURL={src}
-				onMouseLeave={() => handleMouseLeave()}
+				onMouseLeave={() => {
+					handleMouseLeave();
+				}}
 				ref={imageRef}
 			/>
 		</>

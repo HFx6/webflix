@@ -15,7 +15,7 @@ export default function CarouselSize({
 	title,
 	items,
 	handleMouseEnter,
-	handleMouseLeave,
+	handleMouseLeave
 }) {
 	return (
 		<div className="flex gap-2 flex-col">

@@ -11,8 +11,9 @@ export default function MediaListContent({ results, titles }) {
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);
 
+	const delay = useRef(setTimeout(() => {}, 100));
+
 	const [selectedMedia, setSelectedmedia] = useState({});
-	let delay = setTimeout(() => {}, 100);
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const handleMouseEnter = ({
@@ -25,27 +26,27 @@ export default function MediaListContent({ results, titles }) {
 		release_date,
 		vote_average,
 		genre_ids,
-		media_type
+		media_type,
 	}) => {
-		if (cardRef?.current) cardRef?.current?.classList?.remove("hovercard--active");
+		if (cardRef?.current)
+			cardRef?.current?.classList?.remove("hovercard--active");
 		setSelectedmedia({
 			mediaId,
 			release_date,
 			vote_average,
 			genre_ids,
 			media_type,
-			backdrop_path
+			backdrop_path,
 		});
 		let size = {
 			height: offsetHeight,
 			width: offsetWidth,
 		};
 		// remove active class from all other cards
-		
+
 		// if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
-		clearTimeout(delay);
-		delay = setTimeout(async function () {
-			
+		clearTimeout(delay.current);
+		delay.current = setTimeout(async function () {
 			cardRef.current.style.setProperty("--scale", ".66");
 			cardRef.current.style.width = `${size.width * 1.5}px`;
 			cardRef.current.style.left = `${
@@ -69,7 +70,7 @@ export default function MediaListContent({ results, titles }) {
 	};
 
 	const handleMouseLeave = async () => {
-		clearTimeout(delay);
+		clearTimeout(delay.current);
 	};
 
 	const cardHandleMouseLeave = async () => {

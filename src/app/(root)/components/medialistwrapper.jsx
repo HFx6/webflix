@@ -11,14 +11,14 @@ const curatedLists = [
 		title: "Trending",
 		endpoint: "/trending/all/day",
 		apiParams: {
-			language: "en-US",
+			language: "en",
 		},
 	},
 	{
 		title: "Popular movies on Netflix",
 		endpoint: "/discover/movie",
 		apiParams: {
-			language: "en-US",
+			language: "en",
 			sort_by: "popularity.desc",
 			include_adult: true,
 			include_video: false,
@@ -31,7 +31,7 @@ const curatedLists = [
 		title: "Popular shows on Netflix",
 		endpoint: "/discover/tv",
 		apiParams: {
-			language: "en-US",
+			language: "en",
 			include_adult: true,
 			include_null_first_air_dates: false,
 			sort_by: "popularity.desc",
@@ -44,7 +44,7 @@ const curatedLists = [
 		title: "We Think You'll Love These",
 		endpoint: "/discover/movie",
 		apiParams: {
-			language: "en-US",
+			language: "en",
 			sort_by: "popularity.desc",
 			include_adult: true,
 			include_video: false,
@@ -58,7 +58,7 @@ const curatedLists = [
 		title: "Documentaries",
 		endpoint: "/discover/movie",
 		apiParams: {
-			language: "en-US",
+			language: "en",
 			sort_by: "popularity.desc",
 			include_adult: true,
 			include_video: false,

@@ -63,7 +63,7 @@ export default function SearchResults() {
 
 	const [mediaId, setMediaId] = useState(null);
 	const [selectedMedia, setSelectedmedia] = useState({});
-	let delay = setTimeout(() => {}, 100);
+	const delay = useRef(setTimeout(() => {}, 100));
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const handleMouseEnter = ({
@@ -97,8 +97,8 @@ export default function SearchResults() {
 		// remove active class from all other cards
 
 		// if (imageRef?.current) imageRef.current.src = process.env.IMAGE_PATH + backdrop_path;
-		clearTimeout(delay);
-		delay = setTimeout(async function () {
+		clearTimeout(delay.current);
+		delay.current = setTimeout(async function () {
 			cardRef.current.style.setProperty("--scale", ".66");
 			cardRef.current.style.width = `${size.width * 1.5}px`;
 			cardRef.current.style.left = `${
@@ -122,7 +122,7 @@ export default function SearchResults() {
 	};
 
 	const handleMouseLeave = async () => {
-		clearTimeout(delay);
+		clearTimeout(delay.current);
 	};
 
 	const cardHandleMouseLeave = async () => {
