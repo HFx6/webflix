@@ -42,7 +42,7 @@ export default function SearchResults() {
 				`/api/search?q=${search}&page=${currentPage + 1}`
 			);
 			const { data } = await res.json();
-			console.log(data.page, data.total_pages, data.results.length);
+			
 			setCurrentPage(data.page);
 			setHasMore(data.total_pages > data.page);
 			setResults((prevResults) => [...prevResults, ...data.results]);

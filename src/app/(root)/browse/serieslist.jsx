@@ -1,43 +1,32 @@
-async function getCollection(collectionid) {
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+
+import { Suspense } from "react";
+
+import Episodes from "../components/episodes";
+
+async function getCollection(series_id, seasons) {
 	const res = await fetch(
-		process.env.URL + "/api/collection?collectionid=" + collectionid
+		`${process.env.URL}/api/episodes?series_id=${series_id}&seasons=${seasons}`
 	);
 	return res.json();
 }
-export default async function SeriesList({ title, collection_id }) {
-  if (!collection_id || !title) {
-    return null;
-  }
-	const collectionData = getCollection(collection_id);
-	const [_collection] = await Promise.all([collectionData]);
-	const collection = _collection.data;
+export default async function SeriesList({ series_id, seasons }) {
+	if (!series_id || !seasons) {
+		return null;
+	}
+	const episodesData = getCollection(series_id, seasons);
+	const [_episodes] = await Promise.all([episodesData]);
+	const episodes = _episodes.data;
+
 	return (
 		<div className="px-12 pb-14">
-			<p>{title}</p>
-			<div className="grid grid-cols-3 gap-4">
-				{collection?.parts.map((movie) => {
-					return (
-						<div
-							key={movie.id}
-							className="group relative aspect-video"
-						>
-							<img
-								src={
-									process.env.IMAGE_PATH + movie.backdrop_path
-								}
-								alt={movie.title}
-								className="w-full "
-							/>
-							<div className="bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2">
-								<h1 className="text-xl font-bold">
-									{movie.title}
-								</h1>
-								<p>{movie.overview.slice(0, 200)}</p>
-							</div>
-						</div>
-					);
-				})}
-			</div>
+			<Episodes series={episodes}/>
 		</div>
 	);
 }

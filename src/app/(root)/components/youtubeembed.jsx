@@ -25,6 +25,7 @@ export default function YoutubeEmbed({ videoId, shouldPlay }) {
 			modestbranding: 1,
 			autohide: 1,
 			mute: 1,
+			iv_load_policy: 3,
 		},
 	};
 	async function onPlayerReady(event) {

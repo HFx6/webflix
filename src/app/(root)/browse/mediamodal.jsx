@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import YouTubeEmbed from "../components/modalyoutubeembed";
 
 import CollectionGrid from "./collectiongrid";
+import SeriesList from "./serieslist";
 
 import { Suspense } from "react";
 
@@ -29,7 +30,7 @@ async function MediaModal({ mediaid, type }) {
 	const mediaData = type == "tv" ? getTv(mediaid) : getMovie(mediaid);
 	const [_media] = await Promise.all([mediaData]);
 	const media = _media.data;
-
+	// console.log(media);
 	return (
 		<Dialog defaultOpen={mediaid}>
 			<DialogContent className={"overflow-y-scroll max-h-screen"}>
@@ -203,10 +204,17 @@ async function MediaModal({ mediaid, type }) {
 						</div>
 					</div>
 					<Suspense>
-						<CollectionGrid
-							collection_id={media?.belongs_to_collection?.id}
-							title={media?.belongs_to_collection?.name}
-						/>
+						{media.media_type == "movie" ? (
+							<CollectionGrid
+								collection_id={media?.belongs_to_collection?.id}
+								title={media?.belongs_to_collection?.name}
+							/>
+						) : media.media_type == "tv" ? (
+							<SeriesList
+								series_id={media.id}
+								seasons={media.number_of_seasons}
+							/>
+						) : null}
 					</Suspense>
 				</div>
 			</DialogContent>

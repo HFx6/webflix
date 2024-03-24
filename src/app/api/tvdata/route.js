@@ -15,6 +15,11 @@ export async function GET(request) {
 		options
 	);
 	const data = await dataRequest.json();
+	data.media_type = data.media_type
+		? data.media_type
+		: data.first_air_date
+		? "tv"
+		: "movie";
 
 	return Response.json({ data });
 }

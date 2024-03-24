@@ -34,25 +34,16 @@ import { useRouter } from "next/navigation";
 const pathname = "/docs";
 export default function SiteHeader() {
 	const current_user = useLiveQuery(() => db.current_user.toArray());
-	const watchlist = useLiveQuery(() => db.watchlist.toArray());
-	const liked = useLiveQuery(() => db.liked.toArray());
 	const scrollPosition = useScrollPosition();
 	const [user, setUser] = useState("");
 	const router = useRouter();
 	useEffect(() => {
-		if (current_user?.length > 0) {
-			setUser(current_user[0].username);
-		}
+		setUser(current_user?.length ? current_user[0].username : false);
 	}, [current_user]);
-
-	useEffect(() => {
-		console.log("watchlist", watchlist);
-		console.log("liked", liked);
-	}, [watchlist, liked]);
 
 	async function logOut() {
 		logOutCurrentUser();
-		router.push("");
+		router.push("/");
 	}
 
 	return (
@@ -124,73 +115,81 @@ export default function SiteHeader() {
 				</div>
 				<Mobile />
 				<div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-					<div className="w-full flex-1 md:w-auto md:flex-none flex gap-4 text-xl items-center">
-						<SearchInput />
-						<MdOutlineNotificationsNone className="cursor-pointer" />
-					</div>
-					<nav className="flex items-center">
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<Button
-									variant="navbardropdown"
-									className="relative h-8 ml-4 px-0"
-								>
-									<Avatar className="h-8 w-8 rounded-sm">
-										<AvatarImage
-											src={`/${user}.png`}
-											alt="@shadcn"
-										/>
-										<AvatarFallback>WF</AvatarFallback>
-									</Avatar>
-									<FaCaretDown />
-								</Button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent
-								className="w-56"
-								align="end"
-								forceMount
-							>
-								<DropdownMenuLabel className="font-normal">
-									<div className="flex flex-col space-y-1">
-										<p className="text-sm font-medium leading-none">
-											{user}
-										</p>
-										<p className="text-xs leading-none text-muted-foreground">
-											{user}@webflix.com
-										</p>
-									</div>
-								</DropdownMenuLabel>
-								<DropdownMenuSeparator />
-								<DropdownMenuGroup>
-									<DropdownMenuItem>
-										Profile
-										<DropdownMenuShortcut>
-											⇧⌘P
-										</DropdownMenuShortcut>
-									</DropdownMenuItem>
-									<DropdownMenuItem>
-										Billing
-										<DropdownMenuShortcut>
-											⌘B
-										</DropdownMenuShortcut>
-									</DropdownMenuItem>
-									<DropdownMenuItem>
-										Settings
-										<DropdownMenuShortcut>
-											⌘S
-										</DropdownMenuShortcut>
-									</DropdownMenuItem>
-								</DropdownMenuGroup>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem onClick={() => logOut()}>
-									Log out
-									<DropdownMenuShortcut>
-										⇧⌘Q
-									</DropdownMenuShortcut>
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
-					</nav>
+					{user ? (
+						<>
+							<div className="w-full flex-1 md:w-auto md:flex-none flex gap-4 text-xl items-center">
+								<SearchInput />
+								<MdOutlineNotificationsNone className="cursor-pointer" />
+							</div>
+							<nav className="flex items-center">
+								<DropdownMenu>
+									<DropdownMenuTrigger asChild>
+										<Button
+											variant="navbardropdown"
+											className="relative h-8 ml-4 px-0"
+										>
+											<Avatar className="h-8 w-8 rounded-sm">
+												<AvatarImage
+													src={`/${user}.png`}
+													alt="@shadcn"
+												/>
+												<AvatarFallback>
+													WF
+												</AvatarFallback>
+											</Avatar>
+											<FaCaretDown />
+										</Button>
+									</DropdownMenuTrigger>
+									<DropdownMenuContent
+										className="w-56"
+										align="end"
+										forceMount
+									>
+										<DropdownMenuLabel className="font-normal">
+											<div className="flex flex-col space-y-1">
+												<p className="text-sm font-medium leading-none">
+													{user}
+												</p>
+												<p className="text-xs leading-none text-muted-foreground">
+													{user}@webflix.com
+												</p>
+											</div>
+										</DropdownMenuLabel>
+										<DropdownMenuSeparator />
+										<DropdownMenuGroup>
+											<DropdownMenuItem>
+												Profile
+												<DropdownMenuShortcut>
+													⇧⌘P
+												</DropdownMenuShortcut>
+											</DropdownMenuItem>
+											<DropdownMenuItem>
+												Billing
+												<DropdownMenuShortcut>
+													⌘B
+												</DropdownMenuShortcut>
+											</DropdownMenuItem>
+											<DropdownMenuItem>
+												Settings
+												<DropdownMenuShortcut>
+													⌘S
+												</DropdownMenuShortcut>
+											</DropdownMenuItem>
+										</DropdownMenuGroup>
+										<DropdownMenuSeparator />
+										<DropdownMenuItem
+											onClick={() => logOut()}
+										>
+											Log out
+											<DropdownMenuShortcut>
+												⇧⌘Q
+											</DropdownMenuShortcut>
+										</DropdownMenuItem>
+									</DropdownMenuContent>
+								</DropdownMenu>
+							</nav>
+						</>
+					) : null}
 				</div>
 			</div>
 		</header>

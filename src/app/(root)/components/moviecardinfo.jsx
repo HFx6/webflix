@@ -51,13 +51,7 @@ export default function MovieCardInfo({
 		poster_path,
 	} = selectedMedia;
 
-	console.log(
-		backdrop_path
-			? process.env.IMAGE_PATH + backdrop_path
-			: poster_path
-			? process.env.IMAGE_PATH + poster_path
-			: "/logo/noimage.png"
-	);
+
 
 	const [liked, setLiked] = useState(false);
 	const [watched, setWatched] = useState(false);
@@ -194,7 +188,7 @@ export default function MovieCardInfo({
 						<p>{release_date.slice(0, 4)}</p>
 					</div>
 				</div>
-				<div className="flex items-center">
+				<div className="flex items-center flex-wrap">
 					{genres.map((genre, index) => (
 						<Fragment key={index}>
 							<p>{genre}</p>
