@@ -29,8 +29,10 @@ export default async function CollectionGrid({ title, collection_id }) {
 								{/* eslint-disable-next-line @next/next/no-img-element */}
 								<img
 									src={
-										process.env.IMAGE_PATH +
 										movie.backdrop_path
+											? process.env.IMAGE_PATH +
+											  movie.backdrop_path
+											: "/logo/noimage.png"
 									}
 									alt={movie.title}
 									className="w-full aspect-video"

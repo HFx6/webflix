@@ -38,7 +38,7 @@ export default function SiteHeader() {
 	const [user, setUser] = useState("");
 	const router = useRouter();
 	useEffect(() => {
-		setUser(current_user?.length ? current_user[0].username : false);
+		setUser(current_user?.length ? current_user : false);
 	}, [current_user]);
 
 	async function logOut() {
@@ -130,7 +130,7 @@ export default function SiteHeader() {
 										>
 											<Avatar className="h-8 w-8 rounded-sm">
 												<AvatarImage
-													src={`/${user}.png`}
+													src={user.avatarUrl}
 													alt="@shadcn"
 												/>
 												<AvatarFallback>
@@ -148,10 +148,10 @@ export default function SiteHeader() {
 										<DropdownMenuLabel className="font-normal">
 											<div className="flex flex-col space-y-1">
 												<p className="text-sm font-medium leading-none">
-													{user}
+													{user.username}
 												</p>
 												<p className="text-xs leading-none text-muted-foreground">
-													{user}@webflix.com
+													{user.username}@webflix.com
 												</p>
 											</div>
 										</DropdownMenuLabel>
