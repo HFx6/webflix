@@ -8,7 +8,7 @@ export function getColor(value) {
 
 	let colorToUse = colors[0].color;
 
-	for (let i = 0; i < colors.length; i++) {
+	for (let i = 0; i < colors?.length; i++) {
 		if (value < colors[i].val) {
 			break;
 		}

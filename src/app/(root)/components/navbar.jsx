@@ -19,12 +19,15 @@ import Image from "next/image";
 
 import { FaCaretDown } from "react-icons/fa";
 import { MdOutlineNotificationsNone } from "react-icons/md";
+import { PiPencil } from "react-icons/pi";
+import { CiUser } from "react-icons/ci";
+import { GoQuestion } from "react-icons/go";
 
 import SearchInput from "./searchinput";
 
 import Mobile from "./mobile";
 
-import { db, logOutCurrentUser } from "../../../utils/db";
+import { db, logOutCurrentUser, login } from "../../../utils/db";
 
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState, useEffect } from "react";
@@ -34,6 +37,7 @@ import { useRouter } from "next/navigation";
 const pathname = "/docs";
 export default function SiteHeader() {
 	const current_user = useLiveQuery(() => db.current_user.toArray());
+	const users = useLiveQuery(() => db.users.toArray());
 	const scrollPosition = useScrollPosition();
 	const [user, setUser] = useState("");
 	const router = useRouter();
@@ -46,6 +50,11 @@ export default function SiteHeader() {
 		router.push("/");
 	}
 
+	async function loginUser(username) {
+		await login(username);
+		router.push("/browse");
+		router.refresh();
+	}
 
 	return (
 		<header
@@ -69,6 +78,17 @@ export default function SiteHeader() {
 					</Link>
 					<nav className="flex items-center gap-6 text-sm">
 						<Link
+							href="/browse"
+							className={cn(
+								"transition-colors hover:text-foreground/80",
+								pathname === "/docs"
+									? "text-foreground"
+									: "text-foreground/60"
+							)}
+						>
+							Home
+						</Link>
+						<Link
 							href="/movies"
 							className={cn(
 								"transition-colors hover:text-foreground/80",
@@ -88,7 +108,7 @@ export default function SiteHeader() {
 									: "text-foreground/60"
 							)}
 						>
-							Series
+							TV Shows
 						</Link>
 						<Link
 							href="/latest"
@@ -99,10 +119,10 @@ export default function SiteHeader() {
 									: "text-foreground/60"
 							)}
 						>
-							Latest
+							New & Popular
 						</Link>
 						<Link
-							href="/trending"
+							href="/mylist"
 							className={cn(
 								"transition-colors hover:text-foreground/80",
 								pathname?.startsWith("/examples")
@@ -110,7 +130,7 @@ export default function SiteHeader() {
 									: "text-foreground/60"
 							)}
 						>
-							Trending
+							My list
 						</Link>
 					</nav>
 				</div>
@@ -142,49 +162,50 @@ export default function SiteHeader() {
 										</Button>
 									</DropdownMenuTrigger>
 									<DropdownMenuContent
-										className="w-56"
+										className="w-56 bg-[#010101] text-white border-none"
+										// className=""
 										align="end"
 										forceMount
 									>
-										<DropdownMenuLabel className="font-normal">
-											<div className="flex flex-col space-y-1">
-												<p className="text-sm font-medium leading-none">
-													{user.username}
-												</p>
-												<p className="text-xs leading-none text-muted-foreground">
-													{user.username}@webflix.com
-												</p>
-											</div>
-										</DropdownMenuLabel>
-										<DropdownMenuSeparator />
 										<DropdownMenuGroup>
-											<DropdownMenuItem>
-												Profile
-												<DropdownMenuShortcut>
-													⇧⌘P
-												</DropdownMenuShortcut>
+											{users?.map((user) => (
+												<DropdownMenuItem
+													key={user.id}
+													onClick={() =>
+														loginUser(user.username)
+													}
+													className="flex items-center gap-2 "
+												>
+													<Image
+														src={user.avatarUrl}
+														width={30}
+														height={30}
+														className="rounded-sm"
+														alt={user.username}
+													/>
+													<span>{user.username}</span>
+												</DropdownMenuItem>
+											))}
+											<DropdownMenuItem className="flex items-center gap-4 ">
+												<PiPencil className="text-2xl" />
+												<span>Manage profiles</span>
 											</DropdownMenuItem>
-											<DropdownMenuItem>
-												Billing
-												<DropdownMenuShortcut>
-													⌘B
-												</DropdownMenuShortcut>
+
+											<DropdownMenuItem className="flex items-center gap-4 ">
+												<CiUser className="text-2xl stroke-1" />
+												<span>Account</span>
 											</DropdownMenuItem>
-											<DropdownMenuItem>
-												Settings
-												<DropdownMenuShortcut>
-													⌘S
-												</DropdownMenuShortcut>
+											<DropdownMenuItem className="flex items-center gap-4 ">
+												<GoQuestion className="text-2xl" />
+												<span>Help Center</span>
 											</DropdownMenuItem>
+											<DropdownMenuItem></DropdownMenuItem>
 										</DropdownMenuGroup>
-										<DropdownMenuSeparator />
+										<DropdownMenuSeparator className="bg-gray-600" />
 										<DropdownMenuItem
 											onClick={() => logOut()}
 										>
 											Log out
-											<DropdownMenuShortcut>
-												⇧⌘Q
-											</DropdownMenuShortcut>
 										</DropdownMenuItem>
 									</DropdownMenuContent>
 								</DropdownMenu>

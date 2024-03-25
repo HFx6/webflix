@@ -308,7 +308,6 @@ html::-webkit-scrollbar,
 .modal .modal-body .modal-content-first .modal-description {
 	display: flex;
 	align-items: center;
-	margin-bottom: 30px;
 }
 
 .modal .modal-body .modal-content-first .modal-description span,
@@ -322,7 +321,7 @@ html::-webkit-scrollbar,
 
 .modal .modal-body .modal-content-first .modal-description span {
 	font-size: 16px;
-	font-weight: 700;
+	font-weight: 400;
 }
 
 .modal .modal-body .modal-content-first .modal-description svg {

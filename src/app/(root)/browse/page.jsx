@@ -14,7 +14,7 @@ import Image from "next/image";
 
 async function getHero() {
 	const res = await fetch(process.env.URL + "/api/hero", {
-		next: { revalidate: 3600 },
+		next: { revalidate: 1800 },
 	});
 	return res.json();
 }
@@ -33,6 +33,7 @@ async function fetchImage(src) {
 	return base64Image;
 }
 
+
 export default async function Page({ searchParams }) {
 	const { mediaid, type } = searchParams;
 	const movieData = getHero();
@@ -42,6 +43,66 @@ export default async function Page({ searchParams }) {
 	const smallImage = await fetchImage(
 		process.env.IMAGE_PATH_SMALL + movie.backdrop_path
 	);
+
+	const curatedLists = [
+		{
+			title: "Trending",
+			endpoint: "/trending/all/day",
+			apiParams: {
+				language: "en",
+			},
+		},
+		{
+			title: "Popular movies on Netflix",
+			endpoint: "/discover/movie",
+			apiParams: {
+				language: "en",
+				sort_by: "popularity.desc",
+				include_video: false,
+				with_watch_providers: 8,
+				with_original_language: "en",
+				watch_region: "US",
+			},
+		},
+		{
+			title: "Popular shows on Netflix",
+			endpoint: "/discover/tv",
+			apiParams: {
+				language: "en",
+				include_null_first_air_dates: false,
+				sort_by: "popularity.desc",
+				watch_region: "US",
+				with_original_language: "en",
+				with_watch_providers: 8,
+			},
+		},
+		{
+			title: "We Think You'll Love These",
+			endpoint: "/discover/movie",
+			apiParams: {
+				language: "en",
+				sort_by: "popularity.desc",
+				include_video: false,
+				with_watch_providers: 8,
+				with_original_language: "en",
+				watch_region: "US",
+				with_genres: 16,
+			},
+		},
+		{
+			title: "Documentaries",
+			endpoint: "/discover/movie",
+			apiParams: {
+				language: "en",
+				sort_by: "popularity.desc",
+				include_video: false,
+				with_watch_providers: 8,
+				with_original_language: "en",
+				watch_region: "US",
+				with_genres: 99,
+			},
+		},
+	];
 
 	return (
 		<>
@@ -102,7 +163,7 @@ export default async function Page({ searchParams }) {
 					</div>
 				</div>
 
-				<MediaListWrapper />
+				<MediaListWrapper curatedLists={curatedLists}/>
 			</div>
 		</>
 	);

@@ -49,6 +49,7 @@ export default function Page() {
 							<input
 								type="checkbox"
 								className="block profilecheckbox appearance-none h-9 w-9 border-[1px] border-[#676667] bg-[#181818] accent-[#181818]"
+								autoComplete="off"
 							/>
 							<p className="text-2xl font-thin">Kid?</p>
 						</div>

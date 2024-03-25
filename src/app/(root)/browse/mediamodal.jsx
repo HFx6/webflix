@@ -124,30 +124,29 @@ async function MediaModal({ mediaid, type }) {
 				<div className="modal">
 					<div className="modal-body">
 						<div className="modal-content-first">
-							<div className="modal-description">
-								<div className="description-match">
-									<span
-										style={{
-											color: getColor(
-												Math.round(
-													media.vote_average * 100
-												) / 10
-											),
-										}}
-									>
-										{Math.round(media.vote_average * 100) /
-											10}
-										% Rating
+							<div className="flex flex-col gap-1 mb-8">
+								<div className="modal-description ">
+									<div className="description-match">
+										<span
+											style={{
+												color: getColor(
+													Math.round(
+														media.vote_average * 100
+													) / 10
+												),
+											}}
+										>
+											{Math.round(
+												media.vote_average * 100
+											) / 10}
+											% Rating
+										</span>
+									</div>
+									<span>
+										{media.release_date?.slice(0, 4)}
 									</span>
-								</div>
-								<span>{media.release_date?.slice(0, 4)}</span>
-								<span>
-									{
-										media?.release_dates?.release_dates[0]
-											?.certification
-									}
-								</span>
-								{/* <svg viewBox="0 0 100 100">
+
+									{/* <svg viewBox="0 0 100 100">
 									<path
 										id="Fill-41"
 										fill="#D7262D"
@@ -159,35 +158,44 @@ async function MediaModal({ mediaid, type }) {
 										d="M30.596 27.01h7.828v46.465h-8.929V38.928a14.121 14.121 0 01-2.52 2.085A14.722 14.722 0 0124 42.477v-8.335c1.595-.913 2.947-1.965 4.058-3.16a12.723 12.723 0 002.538-3.972zm35.248 28.73c0-2.36-.162-3.894-.482-4.603-.32-.708-.904-1.062-1.745-1.062-.844 0-1.428.403-1.76 1.208-.333.804-.502 2.29-.502 4.457v6.373c0 2.36.161 3.895.484 4.602.32.708.914 1.062 1.778 1.062.82 0 1.397-.385 1.73-1.158.332-.772.497-2.274.497-4.506V55.74zm9.605-18.475v.483h-9.605v-.483c0-2.36-.162-3.894-.482-4.602-.32-.708-.904-1.063-1.745-1.063-.844 0-1.428.408-1.76 1.223-.333.817-.502 2.296-.502 4.442v9.302c.844-1.073 1.79-1.867 2.843-2.382 1.054-.516 2.266-.773 3.641-.773 2.659 0 4.602.821 5.833 2.462 1.23 1.642 1.843 4.265 1.843 7.871v4.956c0 5.6-.87 9.463-2.608 11.586-1.74 2.125-4.815 3.188-9.223 3.188-4.434 0-7.517-1.057-9.258-3.17-1.74-2.115-2.608-5.983-2.608-11.604V40.71c0-5.6.868-9.452 2.608-11.555C56.167 27.052 59.25 26 63.684 26c4.453 0 7.527.8 9.223 2.397 1.694 1.6 2.542 4.556 2.542 8.868z"
 									></path>
 								</svg> */}
-								<span>{fmtMSS(media.runtime)}</span>
-								<span className="description-badge">HD</span>
-								<svg viewBox="0 0 58.07 24">
-									<path
-										fill="currentColor"
-										d="M18.34,10.7v7.62l-4.73,0ZM.5,26.6h8l2.17-3,7.49,0s0,2.08,0,3.06h5.7V2.77H17C16.3,3.79.5,26.6.5,26.6Z"
-										transform="translate(-0.5 -2.62)"
-									></path>
-									<path
-										fill="currentColor"
-										d="M30.63,8.91c3.6-.13,6.1,1.8,6.48,4.9.5,4.15-2.43,6.85-6.66,6.56V9.19A.26.26,0,0,1,30.63,8.91ZM25,3V26.56c5.78.11,10.22.32,13.49-1.85a12.2,12.2,0,0,0,5.14-11.36A11.52,11.52,0,0,0,33.38,2.72c-2.76-.23-8.25,0-8.25,0A.66.66,0,0,0,25,3Z"
-										transform="translate(-0.5 -2.62)"
-									></path>
-									<path
-										fill="currentColor"
-										d="M43.72,3.43c1.45-.4,1.88,1.2,2.51,2.31a18.73,18.73,0,0,1-1.42,20.6h-.92a1.86,1.86,0,0,1,.42-1.11,21.39,21.39,0,0,0,2.76-10.16A22.54,22.54,0,0,0,43.72,3.43Z"
-										transform="translate(-0.5 -2.62)"
-									></path>
-									<path
-										fill="currentColor"
-										d="M48.66,3.43c1.43-.4,1.87,1.2,2.5,2.31a18.83,18.83,0,0,1-1.42,20.6h-.91c-.07-.42.24-.79.41-1.11A21.39,21.39,0,0,0,52,15.07,22.63,22.63,0,0,0,48.66,3.43Z"
-										transform="translate(-0.5 -2.62)"
-									></path>
-									<path
-										fill="currentColor"
-										d="M53.57,3.43c1.46-.4,1.9,1.2,2.54,2.31a18.58,18.58,0,0,1-1.44,20.6h-.93c-.07-.42.24-.79.42-1.11A21,21,0,0,0,57,15.07,22.26,22.26,0,0,0,53.57,3.43Z"
-										transform="translate(-0.5 -2.62)"
-									></path>
-								</svg>
+									<span>{fmtMSS(media.runtime)}</span>
+									<span className="description-badge">
+										HD
+									</span>
+									<svg viewBox="0 0 58.07 24">
+										<path
+											fill="currentColor"
+											d="M18.34,10.7v7.62l-4.73,0ZM.5,26.6h8l2.17-3,7.49,0s0,2.08,0,3.06h5.7V2.77H17C16.3,3.79.5,26.6.5,26.6Z"
+											transform="translate(-0.5 -2.62)"
+										></path>
+										<path
+											fill="currentColor"
+											d="M30.63,8.91c3.6-.13,6.1,1.8,6.48,4.9.5,4.15-2.43,6.85-6.66,6.56V9.19A.26.26,0,0,1,30.63,8.91ZM25,3V26.56c5.78.11,10.22.32,13.49-1.85a12.2,12.2,0,0,0,5.14-11.36A11.52,11.52,0,0,0,33.38,2.72c-2.76-.23-8.25,0-8.25,0A.66.66,0,0,0,25,3Z"
+											transform="translate(-0.5 -2.62)"
+										></path>
+										<path
+											fill="currentColor"
+											d="M43.72,3.43c1.45-.4,1.88,1.2,2.51,2.31a18.73,18.73,0,0,1-1.42,20.6h-.92a1.86,1.86,0,0,1,.42-1.11,21.39,21.39,0,0,0,2.76-10.16A22.54,22.54,0,0,0,43.72,3.43Z"
+											transform="translate(-0.5 -2.62)"
+										></path>
+										<path
+											fill="currentColor"
+											d="M48.66,3.43c1.43-.4,1.87,1.2,2.5,2.31a18.83,18.83,0,0,1-1.42,20.6h-.91c-.07-.42.24-.79.41-1.11A21.39,21.39,0,0,0,52,15.07,22.63,22.63,0,0,0,48.66,3.43Z"
+											transform="translate(-0.5 -2.62)"
+										></path>
+										<path
+											fill="currentColor"
+											d="M53.57,3.43c1.46-.4,1.9,1.2,2.54,2.31a18.58,18.58,0,0,1-1.44,20.6h-.93c-.07-.42.24-.79.42-1.11A21,21,0,0,0,57,15.07,22.26,22.26,0,0,0,53.57,3.43Z"
+											transform="translate(-0.5 -2.62)"
+										></path>
+									</svg>
+								</div>
+								<span className="text-sm text-[#7e7e7e] border-[1px] rounded-sm border-[#7e7e7e] w-fit px-1">
+									{
+										media?.release_dates?.release_dates[0]
+											?.certification
+									}
+								</span>
 							</div>
 
 							<p>{media.overview}</p>

@@ -3,7 +3,7 @@ import Dexie from "dexie";
 export const db = new Dexie("webflix");
 
 db.version(1).stores({
-	watchlist: "++id, [mediaId+userId]",
+	watchlist: "++id, [mediaId+userId], userId",
 	liked: "++id, [mediaId+userId]",
 	watched: "++id, [mediaId+userId]",
 	users: "++id, &username",
@@ -22,7 +22,7 @@ export async function getCurrentUser() {
 }
 
 export async function getUsers() {
-    return await db.users.toArray();
+	return await db.users.toArray();
 }
 
 export async function login(username) {
@@ -31,7 +31,11 @@ export async function login(username) {
 		throw new Error(`User with username ${username} not found.`);
 	}
 	await db.current_user.clear();
-	await db.current_user.add({ userId: user.id, username: user.username, avatarUrl: user.avatarUrl});
+	await db.current_user.add({
+		userId: user.id,
+		username: user.username,
+		avatarUrl: user.avatarUrl,
+	});
 }
 
 export async function addUser(username) {
@@ -61,7 +65,7 @@ export async function updateLikedMedia(mediaId) {
 	}
 }
 
-export async function updateWatchlistMedia(mediaId) {
+export async function updateWatchlistMedia(mediaId, mediaObject) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.watchlist
@@ -75,7 +79,7 @@ export async function updateWatchlistMedia(mediaId) {
 			.delete();
 		return false;
 	} else {
-		await db.watchlist.add({ mediaId, userId });
+		await db.watchlist.add({ mediaId, userId, media: mediaObject });
 		return true;
 	}
 }
@@ -99,7 +103,7 @@ export async function updateWatchedMedia(mediaId) {
 	}
 }
 
-export async function isMovieLiked(mediaId) {
+export async function isMovieLiked(mediaId, username) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.liked
@@ -109,7 +113,7 @@ export async function isMovieLiked(mediaId) {
 	return isIn !== undefined;
 }
 
-export async function isMovieInWatchlist(mediaId) {
+export async function isMovieInWatchlist(mediaId, username) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.watchlist
@@ -119,7 +123,7 @@ export async function isMovieInWatchlist(mediaId) {
 	return isIn !== undefined;
 }
 
-export async function isMovieWatched(mediaId) {
+export async function isMovieWatched(mediaId, username) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.watched
@@ -127,4 +131,10 @@ export async function isMovieWatched(mediaId) {
 		.equals([mediaId, userId])
 		.first();
 	return isIn !== undefined;
+}
+
+export async function getWatchlist() {
+	const currentUser = await getCurrentUser();
+	const userId = currentUser[0]?.userId;
+	return await db.watchlist.where("userId").equals(userId).toArray();
 }

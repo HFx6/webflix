@@ -1,6 +1,6 @@
 export async function GET(request) {
 	const searchParams = request.nextUrl.searchParams;
-	const mediaId = searchParams.get("mediaid");
+	const type = searchParams.get("type");
 
 	const requestOptions = {
 		method: "GET",
@@ -11,13 +11,13 @@ export async function GET(request) {
 	};
 
 	const trendingRequest = await fetch(
-		`https://api.themoviedb.org/3/trending/all/day?language=en-US`,
+		`https://api.themoviedb.org/3/trending/${type}/day?language=en-US`,
 		requestOptions
 	);
 	const trendingData = await trendingRequest.json();
 
 	let randomMovieIndex = Math.floor(
-		Math.random() * trendingData.results.length
+		Math.random() * trendingData.results?.length
 	);
 	let selectedMovie = trendingData.results[randomMovieIndex];
 	selectedMovie.media_type =

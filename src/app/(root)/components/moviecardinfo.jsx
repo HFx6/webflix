@@ -19,11 +19,14 @@ import { getColor } from "../../../utils/getColor";
 import { getGenres } from "../../../utils/getGenres";
 
 import {
+	db,
 	updateLikedMedia,
 	updateWatchlistMedia,
 	isMovieLiked,
 	isMovieInWatchlist,
 } from "../../../utils/db";
+
+import { useLiveQuery } from "dexie-react-hooks";
 
 async function fetchImage(src) {
 	const response = await fetch(src);
@@ -50,25 +53,29 @@ export default function MovieCardInfo({
 		poster_path,
 	} = selectedMedia;
 
-
-
 	const [liked, setLiked] = useState(false);
 	const [watched, setWatched] = useState(false);
+	const [user, setUser] = useState("");
+	const current_user = useLiveQuery(() => db.current_user.toArray());
 
 	useEffect(() => {
 		async function checkRecords() {
-			const isLiked = await isMovieLiked(mediaId);
-			const isInWatchlist = await isMovieInWatchlist(mediaId);
+			const isLiked = await isMovieLiked(mediaId, user.username);
+			const isInWatchlist = await isMovieInWatchlist(
+				mediaId,
+				user.username
+			);
 			setLiked(isLiked);
 			setWatched(isInWatchlist);
 		}
-		if (mediaId !== undefined) {
+		if (mediaId !== undefined && current_user?.length) {
+			setUser(current_user[0]);
 			checkRecords();
 		}
-	}, [mediaId]);
+	}, [mediaId, current_user]);
 
 	const addMoveToWatchlist = async (mediaId) => {
-		setWatched(await updateWatchlistMedia(mediaId));
+		setWatched(await updateWatchlistMedia(mediaId, selectedMedia));
 	};
 
 	const addMovieToLiked = async (mediaId) => {
@@ -183,6 +190,7 @@ export default function MovieCardInfo({
 							{Math.round(vote_average * 100) / 10}% Rating
 						</p>
 					</div>
+
 					<div className="movieyear text-gray-300">
 						<p>{release_date?.slice(0, 4)}</p>
 					</div>
@@ -191,7 +199,7 @@ export default function MovieCardInfo({
 					{genres.map((genre, index) => (
 						<Fragment key={index}>
 							<p>{genre}</p>
-							{index !== genres.length - 1 && (
+							{index !== genres?.length - 1 && (
 								<span className="text-gray-500">
 									<LuDot />
 								</span>
