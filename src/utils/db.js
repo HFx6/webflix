@@ -31,7 +31,7 @@ export async function login(username) {
 		throw new Error(`User with username ${username} not found.`);
 	}
 	await db.current_user.clear();
-	await db.current_user.add({ userId: user.id, username: user.username });
+	await db.current_user.add({ userId: user.id, username: user.username, avatarUrl: user.avatarUrl});
 }
 
 export async function addUser(username) {

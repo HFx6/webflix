@@ -19,7 +19,6 @@ import { getColor } from "../../../utils/getColor";
 import { getGenres } from "../../../utils/getGenres";
 
 import {
-	db,
 	updateLikedMedia,
 	updateWatchlistMedia,
 	isMovieLiked,

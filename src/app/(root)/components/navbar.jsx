@@ -38,13 +38,14 @@ export default function SiteHeader() {
 	const [user, setUser] = useState("");
 	const router = useRouter();
 	useEffect(() => {
-		setUser(current_user?.length ? current_user : false);
+		setUser(current_user?.length ? current_user[0] : false);
 	}, [current_user]);
 
 	async function logOut() {
 		logOutCurrentUser();
 		router.push("/");
 	}
+
 
 	return (
 		<header

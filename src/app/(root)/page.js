@@ -9,7 +9,6 @@ import { useLiveQuery } from "dexie-react-hooks";
 import Image from "next/image";
 
 import { db, login } from "../../utils/db";
-import { Suspense } from "react";
 
 export default function Page() {
 	const users = useLiveQuery(() => db.users.toArray());
