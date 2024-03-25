@@ -27,6 +27,11 @@ export async function login(username) {
     await db.current_user.add({ userId: user.id, username: user.username });
 }
 
+
+export async function addUser(username) {
+    await db.users.add({ username });
+}
+
 export async function logOutCurrentUser() {
     await db.current_user.clear();
 }

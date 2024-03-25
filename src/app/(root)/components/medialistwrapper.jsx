@@ -20,7 +20,6 @@ const curatedLists = [
 		apiParams: {
 			language: "en",
 			sort_by: "popularity.desc",
-			include_adult: true,
 			include_video: false,
 			with_watch_providers: 8,
 			with_original_language: "en",
@@ -32,7 +31,6 @@ const curatedLists = [
 		endpoint: "/discover/tv",
 		apiParams: {
 			language: "en",
-			include_adult: true,
 			include_null_first_air_dates: false,
 			sort_by: "popularity.desc",
 			watch_region: "US",
@@ -46,7 +44,6 @@ const curatedLists = [
 		apiParams: {
 			language: "en",
 			sort_by: "popularity.desc",
-			include_adult: true,
 			include_video: false,
 			with_watch_providers: 8,
 			with_original_language: "en",
@@ -60,7 +57,6 @@ const curatedLists = [
 		apiParams: {
 			language: "en",
 			sort_by: "popularity.desc",
-			include_adult: true,
 			include_video: false,
 			with_watch_providers: 8,
 			with_original_language: "en",
