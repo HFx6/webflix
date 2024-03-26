@@ -40,7 +40,7 @@ export default function YoutubeEmbed({ videoId, backdrop_path }) {
 			></div>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
-				src={"https://image.tmdb.org/t/p/original/" + backdrop_path}
+				src={process.env.IMAGE_PATH + backdrop_path}
 				alt="youtube embed placeholder"
 				className={`w-full ${
 					ready ? "opacity-0" : ""
