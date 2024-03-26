@@ -12,8 +12,8 @@ db.version(1).stores({
 
 db.on("populate", () => {
 	db.users.bulkPut([
-		{ username: "Bouba", avatarUrl: "/Bouba.png" },
-		{ username: "Kiki", avatarUrl: "/Kiki.png" },
+		{ username: "Bouba", avatarUrl: "https://i.imgur.com/gBbRCL2.png" },
+		{ username: "Kiki", avatarUrl: "https://i.imgur.com/Nj9cuxa.png" },
 	]);
 });
 
@@ -39,7 +39,7 @@ export async function login(username) {
 }
 
 export async function addUser(username) {
-	await db.users.add({ username, avatarUrl: "/avatar.png" });
+	await db.users.add({ username, avatarUrl: "https://i.imgur.com/LJ9dB0T.png" });
 }
 
 export async function logOutCurrentUser() {
