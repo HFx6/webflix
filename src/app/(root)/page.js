@@ -27,7 +27,8 @@ export default function Page() {
 					>
 						<div>
 							<Link href="/browse">
-								<Image
+								{/* eslint-disable-next-line @next/next/no-img-element */}
+								<img
 									src={user.avatarUrl}
 									width={150}
 									height={150}
