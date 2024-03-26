@@ -13,8 +13,8 @@ import YoutubeEmbed from "../components/youtubeembed";
 import Image from "next/image";
 
 async function getHero() {
-	const res = await fetch(process.env.URL + "/api/hero", {
-		next: { revalidate: 1800 },
+	const res = await fetch(process.env.URL + "/api/hero?type=all", {
+		next: { revalidate: 900 },
 	});
 	return res.json();
 }
@@ -32,7 +32,6 @@ async function fetchImage(src) {
 	)}`;
 	return base64Image;
 }
-
 
 export default async function Page({ searchParams }) {
 	const { mediaid, type } = searchParams;
@@ -163,7 +162,7 @@ export default async function Page({ searchParams }) {
 					</div>
 				</div>
 
-				<MediaListWrapper curatedLists={curatedLists}/>
+				<MediaListWrapper curatedLists={curatedLists} />
 			</div>
 		</>
 	);
