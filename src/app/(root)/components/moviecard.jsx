@@ -68,21 +68,18 @@ export default function MovieCard({
 			: "movie";
 		const loadSmallImage = async () => {
 			const smallImage = await fetchImage(
-				"https://image.tmdb.org/t/p/w200/" + movie.backdrop_path
+				process.env.IMAGE_PATH_SMALL + movie.backdrop_path
 			);
 			setSrc(smallImage);
 		};
 
 		loadSmallImage();
-	}, [movie.backdrop_path]);
+	}, [movie]);
 	return (
 		<>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<Image
 				key={movie.id + movie.media_type}
-				src={
-					"https://image.tmdb.org/t/p/original/" + movie.backdrop_path
-				}
+				src={process.env.IMAGE_PATH + movie.backdrop_path}
 				alt={"movie poster for " + movie.title}
 				className="moviecardimage w-full !relative"
 				onMouseEnter={() => {

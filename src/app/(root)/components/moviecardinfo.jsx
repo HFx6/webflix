@@ -59,6 +59,12 @@ export default function MovieCardInfo({
 	const current_user = useLiveQuery(() => db.current_user.toArray());
 
 	useEffect(() => {
+		if (mediaId !== undefined && current_user?.length) {
+			setUser(current_user[0]);
+		}
+	}, [mediaId, current_user]);
+
+	useEffect(() => {
 		async function checkRecords() {
 			const isLiked = await isMovieLiked(mediaId, user.username);
 			const isInWatchlist = await isMovieInWatchlist(
@@ -68,11 +74,21 @@ export default function MovieCardInfo({
 			setLiked(isLiked);
 			setWatched(isInWatchlist);
 		}
-		if (mediaId !== undefined && current_user?.length) {
-			setUser(current_user[0]);
+		if (user) {
 			checkRecords();
 		}
-	}, [mediaId, current_user]);
+	}, [mediaId, user]);
+
+	useEffect(() => {
+		const loadSmallImage = async () => {
+			const smallImage = await fetchImage(
+				process.env.IMAGE_PATH_SMALL + backdrop_path
+			);
+			setSrc(smallImage);
+		};
+
+		loadSmallImage();
+	}, [backdrop_path]);
 
 	const addMoveToWatchlist = async (mediaId) => {
 		setWatched(await updateWatchlistMedia(mediaId, selectedMedia));
@@ -103,17 +119,6 @@ export default function MovieCardInfo({
 	const [src, setSrc] = useState(
 		`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`
 	);
-
-	useEffect(() => {
-		const loadSmallImage = async () => {
-			const smallImage = await fetchImage(
-				"https://image.tmdb.org/t/p/w200/" + backdrop_path
-			);
-			setSrc(smallImage);
-		};
-
-		loadSmallImage();
-	}, [backdrop_path]);
 
 	if (mediaId === undefined) {
 		return null;

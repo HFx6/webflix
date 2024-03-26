@@ -42,7 +42,7 @@ export default function SearchResults() {
 				`/api/search?q=${search}&page=${currentPage + 1}`
 			);
 			const { data } = await res.json();
-			
+
 			setCurrentPage(data.page);
 			setHasMore(data.total_pages > data.page);
 			setResults((prevResults) => [...prevResults, ...data.results]);
@@ -56,7 +56,7 @@ export default function SearchResults() {
 		setCurrentPage(0);
 		setHasMore(true);
 		load();
-	}, [search]);
+	}, [search, load]);
 
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);

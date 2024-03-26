@@ -19,6 +19,7 @@ const nextConfig = {
 	},
 	env: {
 		IMAGE_PATH: process.env.IMAGE_PATH,
+		IMAGE_PATH_SMALL: process.env.IMAGE_PATH_SMALL,
 		URL: process.env.URL,
 	},
 };
