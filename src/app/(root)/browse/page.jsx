@@ -34,6 +34,7 @@ async function fetchImage(src) {
 }
 
 export default async function Page({ searchParams }) {
+	console.log(process.env.NEXT_PUBLIC_API_URL);
 	const { mediaid, type } = searchParams;
 	const movieData = getHero();
 	const [_movie] = await Promise.all([movieData]);
