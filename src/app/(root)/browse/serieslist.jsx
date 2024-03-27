@@ -1,13 +1,3 @@
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-
-import { Suspense } from "react";
-
 import Episodes from "../components/episodes";
 
 async function getCollection(series_id, seasons) {

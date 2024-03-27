@@ -54,7 +54,6 @@ export default function MyList() {
 		const fetchWatchlist = async () => {
 			const myList = await getWatchlist();
 			setResults(myList);
-			console.log(myList);
 		};
 		fetchWatchlist();
 	}, [watchlist]);

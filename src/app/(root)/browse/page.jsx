@@ -1,8 +1,5 @@
 import MediaModal from "./mediamodal";
 
-import Link from "next/link";
-
-import MovieCard from "../components/moviecard";
 import PlayButton from "../components/playbutton";
 import MoreInfoButton from "../components/moreinfobutton";
 
@@ -18,11 +15,6 @@ async function getHero() {
 	});
 	return res.json();
 }
-
-const toBase64 = (str) =>
-	typeof window === "undefined"
-		? Buffer.from(str).toString("base64")
-		: window.btoa(str);
 
 async function fetchImage(src) {
 	const response = await fetch(src);

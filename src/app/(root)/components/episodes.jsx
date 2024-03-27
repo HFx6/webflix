@@ -15,7 +15,6 @@ import { fmtMSS } from "../../../utils/convertTime";
 
 export default function Episodes({ series }) {
 	const [season, setSeason] = useState(1);
-	console.log(series);
 	if (!series) {
 		return null;
 	}

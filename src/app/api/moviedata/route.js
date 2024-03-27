@@ -25,7 +25,9 @@ export async function GET(request) {
 	const usRelease = data.release_dates.results.find(
 		(result) => result.iso_3166_1 === "US"
 	);
-	data.release_dates = usRelease ? usRelease : null;
+	data.content_rating = usRelease
+		? usRelease.release_dates[0]?.certification
+		: null;
 
 	return Response.json({ data });
 }

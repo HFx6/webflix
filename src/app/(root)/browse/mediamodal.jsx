@@ -16,13 +16,13 @@ import { getColor } from "../../../utils/getColor";
 
 async function getMovie(mediaid) {
 	const res = await fetch(
-		process.env.URL + "/api/moviedata?mediaid=" + mediaid
+		process.env.URL + "/api/moviedata?mediaid=" + mediaid + "&type=movie"
 	);
 	return res.json();
 }
 
 async function getTv(mediaid) {
-	const res = await fetch(process.env.URL + "/api/tvdata?mediaid=" + mediaid);
+	const res = await fetch(process.env.URL + "/api/tvdata?mediaid=" + mediaid + "&type=tv");
 	return res.json();
 }
 
@@ -30,7 +30,6 @@ async function MediaModal({ mediaid, type }) {
 	const mediaData = type == "tv" ? getTv(mediaid) : getMovie(mediaid);
 	const [_media] = await Promise.all([mediaData]);
 	const media = _media.data;
-	console.log(media);
 	return (
 		<Dialog defaultOpen={mediaid}>
 			<DialogContent className={"overflow-y-scroll max-h-screen"}>
@@ -192,8 +191,7 @@ async function MediaModal({ mediaid, type }) {
 								</div>
 								<span className="text-sm text-[#7e7e7e] border-[1px] rounded-sm border-[#7e7e7e] w-fit px-1">
 									{
-										media?.release_dates?.release_dates[0]
-											?.certification
+										media?.content_rating
 									}
 								</span>
 							</div>
