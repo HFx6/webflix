@@ -61,7 +61,6 @@ export default function SearchResults() {
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);
 
-	const [mediaId, setMediaId] = useState(null);
 	const [selectedMedia, setSelectedmedia] = useState({});
 	const delay = useRef(setTimeout(() => {}, 100));
 

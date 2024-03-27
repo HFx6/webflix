@@ -42,7 +42,7 @@ export default function YoutubeEmbed({ videoId, shouldPlay }) {
 		event.target.setVolume(0);
 		event.target.playVideo();
 	}
-	async function onPlay(event) {
+	async function onPlay() {
 		setTimeout(() => {
 			setReady(true);
 		}, 500);

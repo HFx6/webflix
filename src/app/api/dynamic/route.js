@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function POST(request, res) {
+export async function POST(request) {
 	const { apiParams, endpoint } = await request.json();
 	const options = {
 		method: "GET",

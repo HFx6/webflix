@@ -103,7 +103,7 @@ export async function updateWatchedMedia(mediaId) {
 	}
 }
 
-export async function isMovieLiked(mediaId, username) {
+export async function isMovieLiked(mediaId) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.liked
@@ -113,7 +113,7 @@ export async function isMovieLiked(mediaId, username) {
 	return isIn !== undefined;
 }
 
-export async function isMovieInWatchlist(mediaId, username) {
+export async function isMovieInWatchlist(mediaId) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.watchlist
@@ -123,7 +123,7 @@ export async function isMovieInWatchlist(mediaId, username) {
 	return isIn !== undefined;
 }
 
-export async function isMovieWatched(mediaId, username) {
+export async function isMovieWatched(mediaId) {
 	const currentUser = await getCurrentUser();
 	const userId = currentUser[0]?.userId;
 	const isIn = await db.watched

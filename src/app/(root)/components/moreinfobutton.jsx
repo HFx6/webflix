@@ -1,7 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { FaPlay } from "react-icons/fa";
 import { TbInfoCircle } from "react-icons/tb";
 
 export default function MoreInfoButton({ mediaid, media_type }) {

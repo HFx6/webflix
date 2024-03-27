@@ -13,14 +13,13 @@ export default function SearchInput() {
 	const scrollPosition = useScrollPosition();
 	const [show, setShow] = useState(false);
 	const inputRef = useRef(null);
-	const buttonRef = useRef(null);
 
 	function handleFocus() {
 		setShow(true);
 		inputRef.current.focus();
 	}
 
-	function handleBlur(e) {
+	function handleBlur() {
 		setShow(false);
 	}
 

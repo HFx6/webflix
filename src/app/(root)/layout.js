@@ -4,8 +4,6 @@ import "./globals.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 
-import Scrollbar from "./components/scrollbar";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -21,7 +19,6 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={inter.className}>
 				<div className="relative flex min-h-screen flex-col bg-background">
-					{/* <Scrollbar /> */}
 					<NavBar />
 					<main className="flex-1">{children}</main>
 					<Footer />

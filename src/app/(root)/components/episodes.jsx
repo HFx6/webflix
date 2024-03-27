@@ -45,7 +45,7 @@ export default function Episodes({ series }) {
 			</div>
 			<p className="text-sm">Season {season}</p>
 			<div className="flex flex-col w-full">
-				{series["season/" + season].episodes.map((episode, index) => (
+				{series["season/" + season].episodes.map((episode) => (
 					<div
 						key={episode.season_number + episode.episode_number}
 						className="flex items-center gap-5 p-9 w-full border-b-2 border-[#353535] hover:bg-[#333333]"
@@ -56,7 +56,10 @@ export default function Episodes({ series }) {
 						<div>
 							<Image
 								src={
-									process.env.IMAGE_PATH + episode.still_path
+									episode.still_path
+										? process.env.IMAGE_PATH +
+										  episode.still_path
+										: "/logo/noimage.png"
 								}
 								alt={episode.name}
 								width={200}

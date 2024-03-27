@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import JWPlayer from "@jwplayer/jwplayer-react";
 
 export default function WatchMedia() {

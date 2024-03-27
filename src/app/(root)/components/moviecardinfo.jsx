@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 import { Fragment } from "react";
 
@@ -66,10 +66,9 @@ export default function MovieCardInfo({
 
 	useEffect(() => {
 		async function checkRecords() {
-			const isLiked = await isMovieLiked(mediaId, user.username);
+			const isLiked = await isMovieLiked(mediaId);
 			const isInWatchlist = await isMovieInWatchlist(
-				mediaId,
-				user.username
+				mediaId
 			);
 			setLiked(isLiked);
 			setWatched(isInWatchlist);

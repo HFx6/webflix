@@ -6,8 +6,6 @@ import Link from "next/link";
 
 import { useLiveQuery } from "dexie-react-hooks";
 
-import Image from "next/image";
-
 import { db, login } from "../../utils/db";
 
 export default function Page() {
