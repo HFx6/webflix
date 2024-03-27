@@ -182,11 +182,9 @@ export default function SearchResults() {
 									offsetHeight: e.target.offsetHeight,
 									offsetWidth: e.target.offsetWidth,
 									backdrop_path: result.backdrop_path
-										? process.env.IMAGE_PATH +
-										  result.backdrop_path
+										? result.backdrop_path
 										: result.poster_path
-										? process.env.IMAGE_PATH +
-										  result.poster_path
+										? result.poster_path
 										: "/logo/noimage.png",
 									cumulativeOffset: cumulativeOffset(
 										e.target

@@ -9,6 +9,15 @@ import MovieCardInfo from "../components/moviecardinfo";
 
 import { useLiveQuery } from "dexie-react-hooks";
 
+async function fetchImage(src) {
+	const response = await fetch(src);
+	const buffer = await response.arrayBuffer();
+	const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString(
+		"base64"
+	)}`;
+	return base64Image;
+}
+
 export default function MyList() {
 	const shimmer = (w, h) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -34,6 +43,9 @@ export default function MyList() {
 
 	const [selectedMedia, setSelectedmedia] = useState({});
 	const [results, setResults] = useState([]);
+	const [smallImage, setSmallImage] = useState(
+		`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`
+	);
 	const delay = useRef(setTimeout(() => {}, 100));
 
 	const watchlist = useLiveQuery(() => db.watchlist.toArray());
@@ -46,6 +58,18 @@ export default function MyList() {
 		};
 		fetchWatchlist();
 	}, [watchlist]);
+
+	useEffect(() => {
+		const fetchSmallImage = async () => {
+			const smallImage = await fetchImage(
+				process.env.IMAGE_PATH_SMALL + selectedMedia.backdrop_path
+			);
+			setSmallImage(smallImage);
+		};
+		if (selectedMedia.backdrop_path) {
+			fetchSmallImage();
+		}
+	}, [selectedMedia]);
 
 	const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	const handleMouseEnter = ({
@@ -161,9 +185,8 @@ export default function MyList() {
 						width={500}
 						height={280}
 						alt={result.media.mediaId}
-						placeholder={`data:image/svg+xml;base64,${toBase64(
-							shimmer(500, 280)
-						)}`}
+						placeholder="blur"
+						blurDataURL={smallImage}
 						className="w-full h-auto object-cover rounded-sm"
 						onMouseEnter={(e) =>
 							handleMouseEnter({
@@ -171,11 +194,9 @@ export default function MyList() {
 								offsetHeight: e.target.offsetHeight,
 								offsetWidth: e.target.offsetWidth,
 								backdrop_path: result.media.backdrop_path
-									? process.env.IMAGE_PATH +
-									  result.media.backdrop_path
+									? result.media.backdrop_path
 									: result.media.poster_path
-									? process.env.IMAGE_PATH +
-									  result.media.poster_path
+									? result.media.poster_path
 									: "/logo/noimage.png",
 								cumulativeOffset: cumulativeOffset(e.target),
 								mediaId: result.media.mediaId,

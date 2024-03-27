@@ -11,7 +11,7 @@ export async function GET(request) {
 	};
 
 	const trendingRequest = await fetch(
-		`https://api.themoviedb.org/3/trending/${type}/day?language=en-US`,
+		`https://api.themoviedb.org/3/discover/${type}?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=en&with_watch_providers=8`,
 		requestOptions
 	);
 	const trendingData = await trendingRequest.json();

@@ -135,9 +135,9 @@ export default function MovieCardInfo({
 				<Image
 					src={
 						backdrop_path
-							? backdrop_path
+							? process.env.IMAGE_PATH + backdrop_path
 							: poster_path
-							? poster_path
+							? process.env.IMAGE_PATH + poster_path
 							: "/logo/noimage.png"
 					}
 					alt="Image"

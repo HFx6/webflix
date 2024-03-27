@@ -13,7 +13,7 @@ import YoutubeEmbed from "../components/youtubeembed";
 import Image from "next/image";
 
 async function getHero() {
-	const res = await fetch(process.env.URL + "/api/hero?type=all", {
+	const res = await fetch(process.env.URL + "/api/hero?type=movie", {
 		next: { revalidate: 900 },
 	});
 	return res.json();

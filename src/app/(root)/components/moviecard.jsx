@@ -88,9 +88,9 @@ export default function MovieCard({
 						offsetHeight: imageRef.current.offsetHeight,
 						offsetWidth: imageRef.current.offsetWidth,
 						backdrop_path: movie.backdrop_path
-							? process.env.IMAGE_PATH + movie.backdrop_path
+							? movie.backdrop_path
 							: movie.poster_path
-							? process.env.IMAGE_PATH + movie.poster_path
+							? movie.poster_path
 							: "/logo/noimage.png",
 						cumulativeOffset: cumulativeOffset(imageRef.current),
 						mediaId: movie.id,
