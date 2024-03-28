@@ -10,152 +10,152 @@ import YoutubeEmbed from "../components/youtubeembed";
 import Image from "next/image";
 
 async function getHero() {
-	const res = await fetch(process.env.URL + "/api/hero?type=movie", {
-		next: { revalidate: 900 },
-	});
-	return res.json();
+  const res = await fetch(process.env.URL + "/api/hero?type=movie", {
+    next: { revalidate: 900 },
+  });
+  return res.json();
 }
 
 async function fetchImage(src) {
-	const response = await fetch(src);
-	const buffer = await response.arrayBuffer();
-	const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString(
-		"base64"
-	)}`;
-	return base64Image;
+  const response = await fetch(src);
+  const buffer = await response.arrayBuffer();
+  const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString(
+    "base64"
+  )}`;
+  return base64Image;
 }
 
 export default async function Page({ searchParams }) {
-	const { mediaid, type } = searchParams;
-	const movieData = getHero();
-	const [_movie] = await Promise.all([movieData]);
-	const { movie, data } = _movie;
+  const { mediaid, type } = searchParams;
+  const movieData = getHero();
+  const [_movie] = await Promise.all([movieData]);
+  const { movie, data } = _movie;
 
-	const smallImage = await fetchImage(
-		process.env.IMAGE_PATH_SMALL + movie.backdrop_path
-	);
+  const smallImage = await fetchImage(
+    process.env.IMAGE_PATH_SMALL + movie.backdrop_path
+  );
 
-	const curatedLists = [
-		{
-			title: "Trending",
-			endpoint: "/trending/all/day",
-			apiParams: {
-				language: "en",
-			},
-		},
-		{
-			title: "Popular movies on Netflix",
-			endpoint: "/discover/movie",
-			apiParams: {
-				language: "en",
-				sort_by: "popularity.desc",
-				include_video: false,
-				with_watch_providers: 8,
-				with_original_language: "en",
-				watch_region: "US",
-			},
-		},
-		{
-			title: "Popular shows on Netflix",
-			endpoint: "/discover/tv",
-			apiParams: {
-				language: "en",
-				include_null_first_air_dates: false,
-				sort_by: "popularity.desc",
-				watch_region: "US",
-				with_original_language: "en",
-				with_watch_providers: 8,
-			},
-		},
-		{
-			title: "We Think You'll Love These",
-			endpoint: "/discover/movie",
-			apiParams: {
-				language: "en",
-				sort_by: "popularity.desc",
-				include_video: false,
-				with_watch_providers: 8,
-				with_original_language: "en",
-				watch_region: "US",
-				with_genres: 16,
-			},
-		},
-		{
-			title: "Documentaries",
-			endpoint: "/discover/movie",
-			apiParams: {
-				language: "en",
-				sort_by: "popularity.desc",
-				include_video: false,
-				with_watch_providers: 8,
-				with_original_language: "en",
-				watch_region: "US",
-				with_genres: 99,
-			},
-		},
-	];
+  const curatedLists = [
+    {
+      title: "Trending",
+      endpoint: "/trending/all/day",
+      apiParams: {
+        language: "en",
+      },
+    },
+    {
+      title: "Popular movies on Netflix",
+      endpoint: "/discover/movie",
+      apiParams: {
+        language: "en",
+        sort_by: "popularity.desc",
+        include_video: false,
+        with_watch_providers: 8,
+        with_original_language: "en",
+        watch_region: "US",
+      },
+    },
+    {
+      title: "Popular shows on Netflix",
+      endpoint: "/discover/tv",
+      apiParams: {
+        language: "en",
+        include_null_first_air_dates: false,
+        sort_by: "popularity.desc",
+        watch_region: "US",
+        with_original_language: "en",
+        with_watch_providers: 8,
+      },
+    },
+    {
+      title: "We Think You'll Love These",
+      endpoint: "/discover/movie",
+      apiParams: {
+        language: "en",
+        sort_by: "popularity.desc",
+        include_video: false,
+        with_watch_providers: 8,
+        with_original_language: "en",
+        watch_region: "US",
+        with_genres: 16,
+      },
+    },
+    {
+      title: "Documentaries",
+      endpoint: "/discover/movie",
+      apiParams: {
+        language: "en",
+        sort_by: "popularity.desc",
+        include_video: false,
+        with_watch_providers: 8,
+        with_original_language: "en",
+        watch_region: "US",
+        with_genres: 99,
+      },
+    },
+  ];
 
-	return (
-		<>
-			<div>
-				{mediaid && type ? (
-					<MediaModal mediaid={mediaid} type={type} />
-				) : null}
-				<div className="imagepage h-full w-full aspect-video">
-					<Image
-						src={process.env.IMAGE_PATH + movie.backdrop_path}
-						alt="Picture of the author"
-						width={0}
-						height={0}
-						sizes="100dvw"
-						style={{
-							width: "100%",
-							height: "auto",
-							position: "absolute",
-							zIndex: "-1",
-						}}
-						placeholder="blur"
-						blurDataURL={smallImage}
-					/>
-					<YoutubeEmbed
-						videoId={
-							data.videos.results.find((m) => {
-								return (
-									m.site == "YouTube" && m.type == "Trailer"
-								);
-							}).key
-						}
-						shouldPlay={!(mediaid && type)}
-					/>
-					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
-						<Image
-							src={
-								process.env.IMAGE_PATH +
-								data.images.logos[0]?.file_path
-							}
-							alt="Picture of the author"
-							width="0"
-							height="0"
-							sizes="100dvw"
-							className="w-[37%]"
-						/>
-						<p className="text-[1vw]">{movie.overview}</p>
-						<p>
-							{movie.release_date?.slice(0, 4) ||
-								movie.first_air_date?.slice(0, 4)}
-						</p>
-						<div className="flex gap-3">
-							<PlayButton mediaid={movie.id} />
-							<MoreInfoButton
-								mediaid={movie.id}
-								media_type={movie.media_type}
-							/>
-						</div>
-					</div>
-				</div>
+  return (
+    <>
+      <div>
+        {mediaid && type ? <MediaModal mediaid={mediaid} type={type} /> : null}
+        <div className="imagepage h-full w-full aspect-video">
+          <Image
+            src={process.env.IMAGE_PATH + movie.backdrop_path}
+            alt="Picture of the author"
+            width={0}
+            height={0}
+            sizes="100dvw"
+            style={{
+              width: "100%",
+              height: "auto",
+              position: "absolute",
+              zIndex: "-1",
+            }}
+            placeholder="blur"
+            blurDataURL={smallImage}
+          />
+          <YoutubeEmbed
+            videoId={
+              data.videos.results.find((m) => {
+                return m.site == "YouTube" && m.type == "Trailer";
+              }).key
+            }
+            shouldPlay={!(mediaid && type)}
+          />
+          <div className="heroinfo gap-3 mx-[2.5vw] my-auto">
+            <Image
+              src={process.env.IMAGE_PATH + data.images.logos[0]?.file_path}
+              alt="Picture of the author"
+              width="0"
+              height="0"
+              sizes="100dvw"
+              className="w-[29%]"
+            />
+            <p className="text-[1vw] max-w-[max(36vw,651px)]">
+              {movie.overview}
+            </p>
+            <p>
+              {movie.release_date?.slice(0, 4) ||
+                movie.first_air_date?.slice(0, 4)}
+            </p>
+            <div className="flex justify-between">
+              <div className="flex gap-3">
+                <PlayButton mediaid={movie.id} />
+                <MoreInfoButton
+                  mediaid={movie.id}
+                  media_type={movie.media_type}
+                />
+              </div>
+              <div className="font-bold w-[100px] bg-[#5b5b5b69] self-center p-[10px] text-[1.3rem] border-l-2 border-white -right-[2.5vw] absolute">
+                <p>{data.content_rating}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-				<MediaListWrapper curatedLists={curatedLists} />
-			</div>
-		</>
-	);
+        <MediaListWrapper curatedLists={curatedLists} />
+      </div>
+    </>
+  );
 }

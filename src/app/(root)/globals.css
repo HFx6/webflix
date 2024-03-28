@@ -30,7 +30,8 @@ body {
 .heroinfo {
 	display: flex;
 	flex-direction: column;
-	max-width: max(36vw, 651px);
+	/* max-width: max(36vw, 651px); */
+	width: 100%;
 	z-index: 2;
 	position: relative;
 }
