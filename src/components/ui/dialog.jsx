@@ -54,7 +54,7 @@ const DialogContent = React.forwardRef(
 					{children}
 					<DialogPrimitive.Close
 						onClick={() => {
-							router.replace("/browse", undefined, {
+							router.push("/browse", {
 								shallow: true,
 								scroll: false,
 							});
