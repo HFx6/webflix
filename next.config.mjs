@@ -20,6 +20,12 @@ const nextConfig = {
 				hostname: "i.imgur.com",
 				port: "",
 				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "occ-0-270-2567.1.nflxso.net",
+				port: "",
+				pathname: "/**",
 			}
 		],
 	},
