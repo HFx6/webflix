@@ -12,40 +12,17 @@ import AvatarsJson from "./avatars.json";
 
 import { HiArrowLeft } from "react-icons/hi";
 
-import { db } from "../../../utils/db";
-
-import { useEffect, useState } from "react";
-
-import { useSearchParams } from "next/navigation";
-
-export default function Page() {
-  const searchParams = useSearchParams();
-
-  const profile = searchParams.get("p");
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    async function getUserByUsername() {
-      var u = await db.users.get({
-        username: profile,
-      });
-      setUser(u);
-    }
-    getUserByUsername();
-  }, [profile]);
-
-  if (!user) {
-    return null;
-  }
-
+export default function Page({ profile, setAvatar, setChangingAvatar }) {
   return (
-    <>
+    <div>
       <div className="bg-[#181818e6] pb-6 sticky top-0 z-50">
         <div className="w-full h-[100px] bg-[linear-gradient(180deg,_rgba(0,_0,_0,_1)_0%,_rgba(0,_0,_0,_0.6131244734221813)_35%,_rgba(0,_0,_0,_0)_100%)]"></div>
         <div className="m-auto w-[88%] flex justify-between ">
           <div className="flex items-center gap-[20px]">
-            <div className="text-[2vw]">
+            <div
+              className="text-[2vw] cursor-pointer"
+              onClick={() => setChangingAvatar(false)}
+            >
               <HiArrowLeft size={40} />
             </div>
             <div className="flex flex-col gap-1">
@@ -59,10 +36,10 @@ export default function Page() {
           </div>
 
           <div className="flex items-center gap-[20px]">
-            <p className="text-[2vw]">{user.username}</p>
+            <p className="text-[2vw]">{profile.username}</p>
 
             <Image
-              src={user.avatarUrl}
+              src={profile.avatarUrl}
               className="rounded-md"
               width={100}
               height={100}
@@ -102,6 +79,10 @@ export default function Page() {
                   >
                     <Image
                       src={icon.icon_image}
+                      onClick={()=>{
+                        setAvatar(icon.icon_image);
+                        setChangingAvatar(false);
+                      }}
                       className="border-transparent rounded-md border-[2px] hover:border-[#fff] cursor-pointer"
                       width={150}
                       height={150}
@@ -120,6 +101,6 @@ export default function Page() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

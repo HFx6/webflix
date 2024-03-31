@@ -42,6 +42,7 @@ export async function addUser(username) {
 	await db.users.add({ username, avatarUrl: "https://i.imgur.com/LJ9dB0T.png" });
 }
 
+
 export async function logOutCurrentUser() {
 	await db.current_user.clear();
 }
