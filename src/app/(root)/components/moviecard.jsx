@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 var cumulativeOffset = function (element) {
   var _elm = element;
@@ -38,6 +38,7 @@ export default function MovieCard({
   movie,
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const shimmer = (w, h) => `
 	<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
@@ -85,7 +86,7 @@ export default function MovieCard({
         className="moviecardimage w-full !relative"
         onClick={() =>
           router.push(
-            `${router.pathname}?mediaid=${movie.id}&type=${movie.media_type}`, {
+            `${pathname}?mediaid=${movie.id}&type=${movie.media_type}`, {
 				shallow: true,
 				scroll: false,
 			}

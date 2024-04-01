@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname  } from "next/navigation";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -18,6 +18,7 @@ const DialogClose = DialogPrimitive.Close;
 
 const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => {
 	const router = useRouter();
+	const pathname = usePathname();
 	return (
 		<DialogPrimitive.Overlay
 			ref={ref}
@@ -26,7 +27,7 @@ const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => {
 				className
 			)}
 			onClick={() => {
-				router.push(router.pathname, {
+				router.push(pathname, {
 					shallow: true,
 					scroll: false,
 				});
@@ -40,6 +41,7 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 const DialogContent = React.forwardRef(
 	({ className, children, ...props }, ref) => {
 		const router = useRouter();
+		const pathname = usePathname();
 		return (
 			<DialogPortal>
 				<DialogOverlay />
@@ -54,7 +56,7 @@ const DialogContent = React.forwardRef(
 					{children}
 					<DialogPrimitive.Close
 						onClick={() => {
-							router.push(router.pathname, {
+							router.push(pathname, {
 								shallow: true,
 								scroll: false,
 							});

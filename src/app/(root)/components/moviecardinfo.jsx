@@ -28,7 +28,7 @@ import {
 
 import { useLiveQuery } from "dexie-react-hooks";
 
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 async function fetchImage(src) {
 	
@@ -55,7 +55,7 @@ export default function MovieCardInfo({
 		backdrop_path,
 		poster_path,
 	} = selectedMedia;
-	const router = useRouter();
+	const pathname = usePathname();
 	const [liked, setLiked] = useState(false);
 	const [watched, setWatched] = useState(false);
 	const [user, setUser] = useState("");
@@ -178,7 +178,7 @@ export default function MovieCardInfo({
 					</div>
 					<Cardbutton
 						params={{
-							pathname: router.pathname,
+							pathname: pathname,
 							query: { mediaid: mediaId, type: media_type },
 						}}
 					>

@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TbInfoCircle } from "react-icons/tb";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 
 export default function MoreInfoButton({ mediaid, media_type }) {
-	const router = useRouter();
+	const pathname = usePathname();
 	return (
 		<Link
 			href={{
-				pathname: router.pathname,
+				pathname: pathname,
 				query: { mediaid, type: media_type },
 			}}
 			scroll={false}
