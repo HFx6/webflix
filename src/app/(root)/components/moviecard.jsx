@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 var cumulativeOffset = function (element) {
   var _elm = element;
