@@ -26,7 +26,7 @@ const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => {
 				className
 			)}
 			onClick={() => {
-				router.replace("/browse", undefined, {
+				router.push(router.pathname, {
 					shallow: true,
 					scroll: false,
 				});
@@ -54,7 +54,7 @@ const DialogContent = React.forwardRef(
 					{children}
 					<DialogPrimitive.Close
 						onClick={() => {
-							router.push("/browse", {
+							router.push(router.pathname, {
 								shallow: true,
 								scroll: false,
 							});

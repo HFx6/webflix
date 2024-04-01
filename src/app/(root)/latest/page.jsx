@@ -121,65 +121,70 @@ export default async function Page({ searchParams }) {
 
 	return (
 		<>
-			<div>
-				{mediaid && type ? (
-					<MediaModal mediaid={mediaid} type={type} />
-				) : null}
-				<div className="imagepage h-full w-full aspect-video">
-					<Image
-						src={process.env.IMAGE_PATH + movie.backdrop_path}
-						alt="Picture of the author"
-						width={0}
-						height={0}
-						sizes="100dvw"
-						style={{
-							width: "100%",
-							height: "auto",
-							position: "absolute",
-							zIndex: "-1",
-						}}
-						placeholder="blur"
-						blurDataURL={smallImage}
+		  <div>
+			{mediaid && type ? <MediaModal mediaid={mediaid} type={type} /> : null}
+			<div className="imagepage h-full w-full aspect-video">
+			  <Image
+				src={process.env.IMAGE_PATH + movie.backdrop_path}
+				alt="Picture of the author"
+				width={0}
+				height={0}
+				sizes="100dvw"
+				style={{
+				  width: "100%",
+				  height: "auto",
+				  position: "absolute",
+				  zIndex: "-1",
+				}}
+				placeholder="blur"
+				blurDataURL={smallImage}
+			  />
+			  <YoutubeEmbed
+				videoId={
+				  (
+					data.videos.results.find(
+					  (m) => m.site == "YouTube" && m.type == "Trailer"
+					) ||
+					data.videos.results.find((m) => m.site == "YouTube") || {
+					  key: "",
+					}
+				  ).key // fallback object
+				}
+				shouldPlay={!(mediaid && type)}
+			  />
+			  <div className="heroinfo gap-3 mx-[2.5vw] my-auto">
+				<Image
+				  src={process.env.IMAGE_PATH + data.images.logos[0]?.file_path}
+				  alt="Picture of the author"
+				  width="0"
+				  height="0"
+				  sizes="100dvw"
+				  className="w-[29%]"
+				/>
+				<p className="text-[1vw] max-w-[max(36vw,651px)]">
+				  {movie.overview}
+				</p>
+				<p>
+				  {movie.release_date?.slice(0, 4) ||
+					movie.first_air_date?.slice(0, 4)}
+				</p>
+				<div className="flex justify-between">
+				  <div className="flex gap-3">
+					<PlayButton mediaid={movie.id} />
+					<MoreInfoButton
+					  mediaid={movie.id}
+					  media_type={movie.media_type}
 					/>
-					<YoutubeEmbed
-						videoId={
-							data.videos.results.find((m) => {
-								return (
-									m.site == "YouTube" && m.type == "Trailer"
-								);
-							}).key
-						}
-						shouldPlay={!(mediaid && type)}
-					/>
-					<div className="heroinfo gap-3 mx-[2.5vw] my-auto">
-						<Image
-							src={
-								process.env.IMAGE_PATH +
-								data.images.logos[0]?.file_path
-							}
-							alt="Picture of the author"
-							width="0"
-							height="0"
-							sizes="100dvw"
-							className="w-[37%]"
-						/>
-						<p className="text-[1vw]">{movie.overview}</p>
-						<p>
-							{movie.release_date?.slice(0, 4) ||
-								movie.first_air_date?.slice(0, 4)}
-						</p>
-						<div className="flex gap-3">
-							<PlayButton mediaid={movie.id} />
-							<MoreInfoButton
-								mediaid={movie.id}
-								media_type={movie.media_type}
-							/>
-						</div>
-					</div>
+				  </div>
+				  <div className="font-bold w-[100px] bg-[#5b5b5b69] self-center p-[10px] text-[1.3rem] border-l-2 border-white -right-[2.5vw] absolute">
+					<p>{data.content_rating}</p>
+				  </div>
 				</div>
-
-				<MediaListWrapper curatedLists={curatedLists}/>
+			  </div>
 			</div>
+	
+			<MediaListWrapper curatedLists={curatedLists} />
+		  </div>
 		</>
-	);
+	  );
 }

@@ -14,7 +14,7 @@ import { HiArrowLeft } from "react-icons/hi";
 
 export default function Page({ profile, setAvatar, setChangingAvatar }) {
   return (
-    <div>
+    <div className="h-screen max-h-screen overflow-auto">
       <div className="bg-[#181818e6] pb-6 sticky top-0 z-50">
         <div className="w-full h-[100px] bg-[linear-gradient(180deg,_rgba(0,_0,_0,_1)_0%,_rgba(0,_0,_0,_0.6131244734221813)_35%,_rgba(0,_0,_0,_0)_100%)]"></div>
         <div className="m-auto w-[88%] flex justify-between ">

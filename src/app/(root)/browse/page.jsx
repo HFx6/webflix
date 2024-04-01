@@ -117,9 +117,14 @@ export default async function Page({ searchParams }) {
           />
           <YoutubeEmbed
             videoId={
-              data.videos.results.find((m) => {
-                return m.site == "YouTube" && m.type == "Trailer";
-              }).key
+              (
+                data.videos.results.find(
+                  (m) => m.site == "YouTube" && m.type == "Trailer"
+                ) ||
+                data.videos.results.find((m) => m.site == "YouTube") || {
+                  key: "",
+                }
+              ).key // fallback object
             }
             shouldPlay={!(mediaid && type)}
           />

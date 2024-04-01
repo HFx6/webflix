@@ -38,14 +38,14 @@ export async function GET(request) {
     const usRelease = data.content_ratings.results.find(
       (result) => result.iso_3166_1 === "US"
     );
-    data.content_rating = usRelease ? usRelease.rating : null;
+    data.content_rating = usRelease ? usRelease.rating : "TBR";
   } else if (selectedMovie.media_type == "movie") {
     const usRelease = data.release_dates.results.find(
       (result) => result.iso_3166_1 === "US"
     );
     data.content_rating = usRelease
       ? usRelease.release_dates[0]?.certification
-      : null;
+      : "TBR";
   } else {
     data.content_rating = "TBR";
   }

@@ -45,7 +45,7 @@ async function MediaModal({ mediaid, type }) {
 									) ||
 									media.videos.results.find(
 										(m) => m.site == "YouTube"
-									) || { key: "default_key" }
+									) || { key: "" }
 								).key // fallback object
 							}
 							backdrop_path={media.backdrop_path}

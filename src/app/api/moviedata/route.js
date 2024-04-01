@@ -27,7 +27,7 @@ export async function GET(request) {
 	);
 	data.content_rating = usRelease
 		? usRelease.release_dates[0]?.certification
-		: null;
+		: "TBR";
 
 	return Response.json({ data });
 }
