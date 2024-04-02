@@ -1,9 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
 
-import NavBar from "./components/navbar";
-import Footer from "./components/footer";
-
 const netflixSans = localFont({
   src: [
     {
