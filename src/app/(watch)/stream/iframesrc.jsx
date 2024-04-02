@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-
 const sources = {
   smashystream: "https://embed.smashystream.com/playere.php?tmdb=",
   superembed: "https://multiembed.mov/?video_id=",
