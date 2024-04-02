@@ -56,7 +56,8 @@ export default function SearchResults() {
 		setCurrentPage(0);
 		setHasMore(true);
 		load();
-	}, [search, load]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [search]);
 
 	const cardRef = useRef(null);
 	const imageRef = useRef(null);
