@@ -39,7 +39,7 @@ export default function SearchResults() {
 	const load = useCallback(async () => {
 		try {
 			const res = await fetch(
-				`/api/search?q=${search}&page=${currentPage + 1}`
+				`/api/search?q=${search}&page=${currentPage + 1}&include_adult=false`
 			);
 			const { data } = await res.json();
 
