@@ -11,9 +11,9 @@ export async function GET(request) {
 	};
 
 	const dataRequest = await fetch(
-		`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+		`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(
 			query
-		)}&with_watch_providers=8&language=en-US&page=${encodeURIComponent(page)}`,
+		)}&with_watch_providers=8&language=en-US&include_adult=false&page=${encodeURIComponent(page)}`,
 		options
 	);
 	const data = await dataRequest.json();
