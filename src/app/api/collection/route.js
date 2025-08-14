@@ -11,7 +11,7 @@ export async function GET(request) {
 	};
 
 	const collectionReponse = await fetch(
-		`https://api.themoviedb.org/4/collection/${collectionid}?language=en`,
+		`https://api.themoviedb.org/3/collection/${collectionid}?language=en`,
 		requestOptions
 	);
 
