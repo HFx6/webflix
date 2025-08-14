@@ -17,7 +17,5 @@ export async function GET(request) {
 
 	const collectionData = await collectionReponse.json();
 
-	return Response.json({ 
-		data: collectionData
-	});
+	return Response.json({ data: collectionData});
 }
